@@ -1,0 +1,33 @@
+{
+  "name": "smacss-extend",
+  "version": "0.0.0",
+  "description": "smacss-extand",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {
+    "run-sequence": "^1.1.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-tasks-build": "^0.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pandoraui/smacss-extend.git"
+  },
+  "keywords": [
+    "samcss"
+  ],
+  "author": "cloudyan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pandoraui/smacss-extend/issues"
+  },
+  "homepage": "https://github.com/pandoraui/smacss-extend#readme"
+}
