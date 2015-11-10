@@ -4,25 +4,29 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-$cssRoot: "../../"; //TODO: 没法用变量啊
+//这里 @import 不能引用变量链接
+//$cssRoot: "../../"; 
 
- // Core variables and mixins
+// Core variables and mixins
 @import "../../utilities/variables";
 @import "../../utilities/mixins";
 
-// Reset and dependencies
+// base Reset and dependencies
 @import "../../base/normalize";
+@import "../../base/reboot";
+
+// states
 @import "../../states/print";
 
-// Core CSS
-@import "../../base/reboot";
-@import "../../base/type";
+// Elements && Layout
+@import "../../core/type";
 @import "../../core/images";
 @import "../../core/code";
-@import "../../core/grid";
 @import "../../core/tables";
-@import "../../core/forms";
 @import "../../core/buttons";
+@import "../../core/forms";
+
+@import "../../core/grid";
 
 // Components
 @import "../../components/animation";

@@ -86,3 +86,59 @@ styles/
         ├── bootstrap-reboot.scss
         └── bootstrap.scss
 ```
+
+## 实现细节
+
+为了实现目标，我们按照顺序对各个组件进行改造，依次进行，我们的文档跟着代码的完善，也充当 demo 以及预览，同步进行完善。
+
+```
+// Core variables and mixins
+@import "variables";            done
+@import "mixins";               doing
+
+// Reset and dependencies
+@import "normalize";            
+@import "print";                
+
+// Core CSS
+@import "reboot";               
+@import "type";                 
+@import "images";               
+@import "code";                 
+@import "grid";                 
+@import "tables";               
+@import "forms";                
+@import "buttons";              
+
+// // Components
+@import "animation";            
+@import "dropdown";             
+@import "button-group";         
+@import "input-group";          
+@import "custom-forms";         
+@import "nav";                  
+@import "navbar";               
+@import "card";                 
+@import "breadcrumb";           
+@import "pagination";           
+@import "pager";                
+@import "labels";               
+@import "jumbotron";            
+@import "alert";                
+@import "progress";             
+@import "media";                
+@import "list-group";           
+@import "responsive-embed";     
+@import "close";                
+
+// Components / JavaScript
+@import "modal";                
+@import "tooltip";              
+@import "popover";              
+@import "carousel";             
+
+// Utility classes
+@import "utilities";            
+@import "utilities-spacing";    
+@import "utilities-responsive"; 
+```

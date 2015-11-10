@@ -2,7 +2,7 @@
 // Basic Bootstrap table
 //
 
-.table {
+.#{$ns}table {
   width: 100%;
   max-width: 100%;
   margin-bottom: $spacer;
@@ -24,7 +24,7 @@
     border-top: 2px solid $table-border-color;
   }
 
-  .table {
+  .#{$ns}table {
     background-color: $body-bg;
   }
 }
@@ -46,7 +46,7 @@
 //
 // Add borders all around the table and between all the columns.
 
-.table-bordered {
+.#{$ns}table-bordered {
   border: 1px solid $table-border-color;
 
   th,
@@ -67,7 +67,7 @@
 //
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
 
-.table-striped {
+.#{$ns}table-striped {
   tbody tr:nth-of-type(odd) {
     background-color: $table-bg-accent;
   }
@@ -78,7 +78,7 @@
 //
 // Placed here since it has to come after the potential zebra striping
 
-.table-hover {
+.#{$ns}table-hover {
   tbody tr {
     @include hover {
       background-color: $table-bg-hover;
@@ -106,7 +106,7 @@
 // by enabling horizontal scrolling. Only applies <768px. Everything above that
 // will display normally.
 
-.table-responsive {
+.#{$ns}table-responsive {
   display: block;
   width: 100%;
   overflow-x: auto;
@@ -119,20 +119,20 @@
 }
 
 
-.thead-inverse {
+.#{$ns}thead-inverse {
   th {
     color: #fff;
     background-color: $gray-dark;
   }
 }
-.thead-default {
+.#{$ns}thead-default {
   th {
     color: $gray;
     background-color: $gray-lighter;
   }
 }
 
-.table-inverse {
+.#{$ns}table-inverse {
   color: $gray-lighter;
   background-color: $gray-dark;
 
@@ -148,7 +148,7 @@
 }
 
 
-.table-reflow {
+.#{$ns}table-reflow {
   thead {
     float: left;
   }

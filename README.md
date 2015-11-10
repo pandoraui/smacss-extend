@@ -1,6 +1,6 @@
 # smacss-extend
 
-按 samcss 结构实现样式规划，实现易维护、易使用，侧重继承、组合、扩展、场景层次划分。
+按 samcss 结构规划样式，实现易维护、易使用的样式表，侧重继承、组合、扩展、场景层次划分。
 
 ### 参考项目
 
@@ -70,6 +70,15 @@ buttons
 这样这个组件就可以外部独立引用（而不用引用整个样式库），也支持 webpack 这样的工具打包。
 
 
+# 文档
+
+样式的测试，总归要展示来看看效果吧，整理文档在所难免。那就来吧，网络上有现成的文档，bootstrap amazeui 和 google 的都还不错，加上以前公司项目用的一些实例，测试覆盖面还是蛮广的。
+
+不过由于有改动，不能直接用，就一个一个组件的测试吧，一边修改完善组件，对应着也完善 demo，就基于 amazeui 的文档修改吧，这个文档对中文布局以及国情做过优化。
+
+具体细节，参见 SCSS 源码 [styles](./src/styles) 的进度。
+
+
 ## 结构
 
 最终实现结构向这个靠拢，但也会有调整变动。
@@ -78,7 +87,7 @@ buttons
 + css-extend/
   |
   | + base/                   # reset, typography
-  |   |-- _reset                # simple reset, 类似 normalize
+  |   |-- _reset                # reset, base on normalize
   |   |-- _base                 # base styles
   |   |-- _typo                 # typography
   |   |-- _default              # imports for all base styles

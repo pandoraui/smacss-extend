@@ -1,0 +1,11 @@
+
+@import "themes/bootstrap/test";
+
+html .hide{
+  display: none;
+}
+
+.font-family-sans-serif{font-family:$font-family-sans-serif}
+.font-family-serif{font-family:$font-family-serif}
+.font-family-monospace{font-family:$font-family-monospace}
+.font-family-kai{font-family:$font-family-kai}

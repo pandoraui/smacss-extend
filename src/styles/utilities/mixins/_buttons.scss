@@ -19,14 +19,14 @@
   }
 
   &:focus,
-  &.focus {
+  &.#{$ns}focus {
     color: $color;
     background-color: $active-background;
         border-color: $active-border;
   }
 
   &:active,
-  &.active,
+  &.#{$ns}active,
   .open > &.dropdown-toggle {
     color: $color;
     background-color: $active-background;
@@ -37,17 +37,17 @@
 
     &:hover,
     &:focus,
-    &.focus {
+    &.#{$ns}focus {
       color: $color;
       background-color: darken($background, 17%);
           border-color: darken($border, 25%);
     }
   }
 
-  &.disabled,
+  &.#{$ns}disabled,
   &:disabled {
     &:focus,
-    &.focus {
+    &.#{$ns}focus {
       background-color: $background;
           border-color: $border;
     }
@@ -65,10 +65,10 @@
   border-color: $color;
 
   &:focus,
-  &.focus,
+  &.#{$ns}focus,
   &:active,
-  &.active,
-  .open > &.dropdown-toggle {
+  &.#{$ns}active,
+  .#{$ns}open > &.#{$ns}dropdown-toggle {
     color: #fff;
     background-color: $color;
         border-color: $color;
@@ -79,10 +79,10 @@
         border-color: $color;
   }
 
-  &.disabled,
+  &.#{$ns}disabled,
   &:disabled {
     &:focus,
-    &.focus {
+    &.#{$ns}focus {
       border-color: lighten($color, 20%);
     }
     @include hover {

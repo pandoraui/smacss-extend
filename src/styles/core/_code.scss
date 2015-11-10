@@ -12,6 +12,7 @@ code {
   font-size: 90%;
   color: $code-color;
   background-color: $code-bg;
+  white-space: nowrap;
   @include border-radius($border-radius);
 }
 
@@ -35,24 +36,40 @@ kbd {
 // Blocks of code
 pre {
   display: block;
-  margin-top: 0;
-  margin-bottom: 1rem;
+  //margin-top: 0;
+  //margin-bottom: 1rem;
+  margin: 1rem  0;
+  padding: 1rem;
+  border: $pre-border;
   font-size: 90%;
   line-height: $line-height;
+  word-break: break-all;
+  word-wrap: break-word;
   color: $pre-color;
+  background-color: $pre-bg;
 
   // Account for some code outputs that place code tags in pre tags
   code {
     padding: 0;
     font-size: inherit;
     color: inherit;
+    white-space: pre-wrap;
     background-color: transparent;
     border-radius: 0;
   }
 }
 
 // Enable scrollable blocks of code
-.pre-scrollable {
+.#{$ns}pre-scrollable {
   max-height: $pre-scrollable-max-height;
   overflow-y: scroll;
+  
+  // @include hook-pre-scrollable();
 }
+
+
+// Hooks
+// =============================================================================
+
+// @mixin hook-pre-scrollable(){}
+

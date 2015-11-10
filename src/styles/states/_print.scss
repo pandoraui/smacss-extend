@@ -9,6 +9,8 @@
   *,
   *::before,
   *::after {
+    background: transparent !important;
+    color: #000 !important; // Black prints faster: h5bp.com/s
     text-shadow: none !important;
     box-shadow: none !important;
   }
@@ -18,8 +20,21 @@
     text-decoration: underline;
   }
 
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
   abbr[title]::after {
     content: " (" attr(title) ")";
+  }
+
+  /**
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="javascript:"]::after,
+  a[href^="#"]::after {
+    content: "";
   }
 
   pre,
@@ -53,23 +68,32 @@
     page-break-after: avoid;
   }
 
+  @page {
+    margin: 0.5cm;
+  }
+
+  // Chrome (OSX) fixed
+  select {
+    background: #fff !important;
+  }
+  
   // Bootstrap specific changes start
 
   // Bootstrap components
-  .navbar {
+  .#{$ns}navbar {
     display: none;
   }
-  .btn,
-  .dropup > .btn {
-    > .caret {
+  .#{$ns}btn,
+  .#{$ns}dropup > .#{$ns}btn {
+    > .#{$ns}caret {
       border-top-color: #000 !important;
     }
   }
-  .label {
+  .#{$ns}label {
     border: 1px solid #000;
   }
 
-  .table {
+  .#{$ns}table {
     border-collapse: collapse !important;
 
     td,
@@ -77,7 +101,7 @@
       background-color: #fff !important;
     }
   }
-  .table-bordered {
+  .#{$ns}table-bordered {
     th,
     td {
       border: 1px solid #ddd !important;
@@ -85,4 +109,38 @@
   }
 
   // Bootstrap specific changes end
+
+}
+
+
+// print helper classes
+
+.#{$ns}print-block {
+  display: none !important;
+
+  @media print {
+    display: block !important;
+  }
+}
+
+.#{$ns}print-inline {
+  display: none !important;
+
+  @media print {
+    display: inline !important;
+  }
+}
+
+.#{$ns}print-inline-block {
+  display: none !important;
+
+  @media print {
+    display: inline-block !important;
+  }
+}
+
+.#{$ns}print-hide {
+  @media print {
+    display: none !important;
+  }
 }

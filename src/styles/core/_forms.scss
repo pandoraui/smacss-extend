@@ -2,7 +2,7 @@
 // Textual form controls
 //
 
-.form-control {
+.#{$ns}form-control {
   display: block;
   width: 100%;
   // // Make inputs at least the height of their button counterpart (base line-height + padding + border)
@@ -63,8 +63,8 @@
 
 
 // Make file inputs better match text inputs by forcing them to new lines.
-.form-control-file,
-.form-control-range {
+.#{$ns}form-control-file,
+.#{$ns}form-control-range {
   display: block;
 }
 
@@ -75,7 +75,7 @@
 
 // For use with horizontal and inline forms, when you need the label text to
 // align with the form controls.
-.form-control-label {
+.#{$ns}form-control-label {
   padding: $input-padding-y $input-padding-x;
   margin-bottom: 0; // Override the `<label>` default
 }
@@ -95,17 +95,17 @@
   input[type="time"],
   input[type="datetime-local"],
   input[type="month"] {
-    &.form-control {
+    &.#{$ns}form-control {
       line-height: $input-height;
     }
 
-    &.input-sm,
-    .input-group-sm &.form-control {
+    &.#{$ns}input-sm,
+    .#{$ns}input-group-sm &.#{$ns}form-control {
       line-height: $input-height-sm;
     }
 
-    &.input-lg,
-    .input-group-lg &.form-control {
+    &.#{$ns}input-lg,
+    .#{$ns}input-group-lg &.#{$ns}form-control {
       line-height: $input-height-lg;
     }
   }
@@ -117,7 +117,7 @@
 // Apply class to an element to make any string of text align with labels in a
 // horizontal form layout.
 
-.form-control-static {
+.#{$ns}form-control-static {
   min-height: $input-height;
   // Size it appropriately next to real form controls
   padding-top: $input-padding-y;
@@ -125,8 +125,8 @@
   // Remove default margin from `p`
   margin-bottom: 0;
 
-  &.form-control-sm,
-  &.form-control-lg {
+  &.#{$ns}form-control-sm,
+  &.#{$ns}form-control-lg {
     padding-right: 0;
     padding-left: 0;
   }
@@ -141,7 +141,7 @@
 // The `.form-group-* form-control` variations are sadly duplicated to avoid the
 // issue documented in https://github.com/twbs/bootstrap/issues/15074.
 
-.form-control-sm {
+.#{$ns}form-control-sm {
   // height: $input-height-sm;
   padding: $input-padding-y-sm $input-padding-x-sm;
   font-size: $font-size-sm;
@@ -149,7 +149,7 @@
   @include border-radius($input-border-radius-sm);
 }
 
-.form-control-lg {
+.#{$ns}form-control-lg {
   // height: $input-height-lg;
   padding: $input-padding-y-lg $input-padding-x-lg;
   font-size: $font-size-lg;
@@ -163,7 +163,7 @@
 // Designed to help with the organization and spacing of vertical forms. For
 // horizontal forms, use the predefined grid classes.
 
-.form-group {
+.#{$ns}form-group {
   margin-bottom: $form-group-margin-bottom;
 }
 
@@ -172,8 +172,8 @@
 //
 // Indent the labels to position radios/checkboxes as hanging controls.
 
-.radio,
-.checkbox {
+.#{$ns}radio,
+.#{$ns}checkbox {
   position: relative;
   display: block;
   // margin-top:    ($spacer * .75);
@@ -191,25 +191,25 @@
     }
   }
 }
-.radio input[type="radio"],
-.radio-inline input[type="radio"],
-.checkbox input[type="checkbox"],
-.checkbox-inline input[type="checkbox"] {
+.#{$ns}radio input[type="radio"],
+.#{$ns}radio-inline input[type="radio"],
+.#{$ns}checkbox input[type="checkbox"],
+.#{$ns}checkbox-inline input[type="checkbox"] {
   position: absolute;
   margin-top: .25rem;
   // margin-top: 4px \9;
   margin-left: -1.25rem;
 }
 
-.radio + .radio,
-.checkbox + .checkbox {
+.#{$ns}radio + .#{$ns}radio,
+.#{$ns}checkbox + .#{$ns}checkbox {
   // Move up sibling radios or checkboxes for tighter spacing
   margin-top: -.25rem;
 }
 
 // Radios and checkboxes on same line
-.radio-inline,
-.checkbox-inline {
+.#{$ns}radio-inline,
+.#{$ns}checkbox-inline {
   position: relative;
   display: inline-block;
   padding-left: 1.25rem;
@@ -218,8 +218,8 @@
   vertical-align: middle;
   cursor: pointer;
 }
-.radio-inline + .radio-inline,
-.checkbox-inline + .checkbox-inline {
+.#{$ns}radio-inline + .#{$ns}radio-inline,
+.#{$ns}checkbox-inline + .#{$ns}checkbox-inline {
   margin-top: 0;
   margin-left: .75rem;
 }
@@ -231,21 +231,21 @@
 input[type="radio"],
 input[type="checkbox"] {
   &:disabled,
-  &.disabled {
+  &.#{$ns}disabled {
     cursor: $cursor-disabled;
   }
 }
 // These classes are used directly on <label>s
-.radio-inline,
-.checkbox-inline {
-  &.disabled {
+.#{$ns}radio-inline,
+.#{$ns}checkbox-inline {
+  &.#{$ns}disabled {
     cursor: $cursor-disabled;
   }
 }
 // These classes are used on elements with <label> descendants
-.radio,
-.checkbox {
-  &.disabled {
+.#{$ns}radio,
+.#{$ns}checkbox {
+  &.#{$ns}disabled {
     label {
       cursor: $cursor-disabled;
     }
@@ -257,9 +257,9 @@ input[type="checkbox"] {
 //
 // Apply contextual and semantic states to individual form controls.
 
-.form-control-success,
-.form-control-warning,
-.form-control-error {
+.#{$ns}form-control-success,
+.#{$ns}form-control-warning,
+.#{$ns}form-control-error {
   padding-right: ($input-padding-x * 3);
   background-repeat: no-repeat;
   background-position: center right ($input-height * .25);
@@ -267,107 +267,29 @@ input[type="checkbox"] {
 }
 
 // Form validation states
-.has-success {
+.#{$ns}has-success {
   @include form-control-validation($brand-success);
 
-  .form-control-success {
+  .#{$ns}form-control-success {
     background-image: url($form-icon-success);
   }
 }
 
-.has-warning {
+.#{$ns}has-warning {
   @include form-control-validation($brand-warning);
 
-  .form-control-warning {
+  .#{$ns}form-control-warning {
     background-image: url($form-icon-warning);
   }
 }
 
-.has-error {
+.#{$ns}has-error {
   @include form-control-validation($brand-danger);
 
-  .form-control-error {
+  .#{$ns}form-control-error {
     background-image: url($form-icon-error);
   }
 }
-
-
-
-
-// .form-control-success {
-//   background-image: url("#{$form-icon-success}");
-//   border-color: $brand-success;
-// }
-//
-// .form-control-warning {
-//   background-image: url("#{$form-icon-warning}");
-//   border-color: $brand-warning;
-// }
-//
-// .form-control-error {
-//   background-image: url("#{$form-icon-danger}");
-//   border-color: $brand-danger;
-// }
-
-
-// .has-feedback {
-//   // Enable absolute positioning
-//   position: relative;
-//
-//   // Ensure icons don't overlap text
-//   .form-control {
-//     padding-right: ($input-height * 1.25);
-//   }
-// }
-// // Feedback icon
-// .form-control-feedback {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   z-index: 2; // Ensure icon is above input groups
-//   display: block;
-//   width: $input-height;
-//   height: $input-height;
-//   line-height: $input-height;
-//   text-align: center;
-//   pointer-events: none;
-// }
-// .input-lg + .form-control-feedback,
-// .input-group-lg + .form-control-feedback {
-//   width: $input-height-lg;
-//   height: $input-height-lg;
-//   line-height: $input-height-lg;
-// }
-// .input-sm + .form-control-feedback,
-// .input-group-sm + .form-control-feedback {
-//   width: $input-height-sm;
-//   height: $input-height-sm;
-//   line-height: $input-height-sm;
-// }
-//
-// // Form validation states
-// .has-success {
-//   @include form-control-validation($state-success-text, $state-success-text, $state-success-bg);
-// }
-// .has-warning {
-//   @include form-control-validation($state-warning-text, $state-warning-text, $state-warning-bg);
-// }
-// .has-error {
-//   @include form-control-validation($state-danger-text, $state-danger-text, $state-danger-bg);
-// }
-//
-// // Reposition feedback icon if input has visible label above
-// .has-feedback label {
-//
-//   ~ .form-control-feedback {
-//     // TODO: redo this since we nuked the `$line-height-computed`
-//     top: 0; // Height of the `label` and its margin
-//   }
-//
-//   &.sr-only ~ .form-control-feedback {
-//     top: 0;
-//   }
-// }
 
 
 // Inline forms
@@ -381,54 +303,54 @@ input[type="checkbox"] {
 //
 // Heads up! This is mixin-ed into `.navbar-form` in _navbar.scss.
 
-.form-inline {
+.#{$ns}form-inline {
 
   // Kick in the inline
   @include media-breakpoint-up(sm) {
     // Inline-block all the things for "inline"
-    .form-group {
+    .#{$ns}form-group {
       display: inline-block;
       margin-bottom: 0;
       vertical-align: middle;
     }
 
     // In navbar-form, allow folks to *not* use `.form-group`
-    .form-control {
+    .#{$ns}form-control {
       display: inline-block;
       width: auto; // Prevent labels from stacking above inputs in `.form-group`
       vertical-align: middle;
     }
 
     // Make static controls behave like regular ones
-    .form-control-static {
+    .#{$ns}form-control-static {
       display: inline-block;
     }
 
-    .input-group {
+    .#{$ns}input-group {
       display: inline-table;
       vertical-align: middle;
 
-      .input-group-addon,
-      .input-group-btn,
-      .form-control {
+      .#{$ns}input-group-addon,
+      .#{$ns}input-group-btn,
+      .#{$ns}form-control {
         width: auto;
       }
     }
 
     // Input groups need that 100% width though
-    .input-group > .form-control {
+    .#{$ns}input-group > .#{$ns}form-control {
       width: 100%;
     }
 
-    .form-control-label {
+    .#{$ns}form-control-label {
       margin-bottom: 0;
       vertical-align: middle;
     }
 
     // Remove default margin on radios/checkboxes that were used for stacking, and
     // then undo the floating of radios and checkboxes to match.
-    .radio,
-    .checkbox {
+    .#{$ns}radio,
+    .#{$ns}checkbox {
       display: inline-block;
       margin-top: 0;
       margin-bottom: 0;
@@ -438,14 +360,14 @@ input[type="checkbox"] {
         padding-left: 0;
       }
     }
-    .radio input[type="radio"],
-    .checkbox input[type="checkbox"] {
+    .#{$ns}radio input[type="radio"],
+    .#{$ns}#{$ns}checkbox input[type="checkbox"] {
       position: relative;
       margin-left: 0;
     }
 
     // Re-override the feedback icon.
-    .has-feedback .form-control-feedback {
+    .#{$ns}has-feedback .#{$ns}form-control-feedback {
       top: 0;
     }
   }
