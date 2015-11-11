@@ -11,7 +11,7 @@ group: content
 
 除此外，还涉及表格中的内容布局：内容居中，内容垂直居中，强制不换行等。
 
-使用时注意 <table> HTML 结构的完整性。另外在展现大数据时，不要使用过大的表格，可能存在一定的性能问题（比如大于500行），可使用翻页或其他元素替代表格列表。
+使用时注意 `<table>` HTML 结构的完整性。另外在展现大数据时，不要使用过大的表格，可能存在一定的性能问题（比如大于500行），可使用翻页或其他元素替代表格列表。
 
 __表格相关的 JS 插件：__
 
@@ -241,10 +241,8 @@ __表格相关的 JS 插件：__
     </tr>
   </tbody>
 </table>
-<hr/>
 `````
 ```html
-
 ```
 
 
@@ -308,62 +306,62 @@ __表格相关的 JS 插件：__
   </thead>
   <tbody>
     <tr>
-      <td>.active</td>
-      <td class="active">激活</td>
+      <td>.table-active</td>
+      <td class="table-active">激活</td>
       <td>td</td>
     </tr>
-      <tr class="active">
-      <td>.active</td>
+      <tr class="table-active">
+      <td>.table-active</td>
       <td>激活</td>
       <td>tr</td>
     </tr>
     <tr>
-      <td>.disabled</td>
-      <td class="disabled">禁用</td>
+      <td>.table-disabled</td>
+      <td class="table-disabled">禁用</td>
       <td>td</td>
     </tr>
-    <tr class="disabled">
-      <td>.disabled</td>
+    <tr class="table-disabled">
+      <td>.table-disabled</td>
       <td>禁用</td>
       <td>tr</td>
     </tr>
     <tr>
-      <td class="primary">.primary</td>
+      <td class="table-primary">.table-primary</td>
       <td>蓝色高亮</td>
       <td>td</td>
     </tr>
-    <tr class="primary">
-      <td>.primary</td>
+    <tr class="table-primary">
+      <td>.table-primary</td>
       <td>蓝色高亮</td>
       <td>tr</td>
     </tr>
     <tr>
-      <td class="success">.success</td>
+      <td class="table-success">.table-success</td>
       <td>绿色高亮</td>
       <td>td</td>
     </tr>
-      <tr class="success">
-      <td>.success</td>
+      <tr class="table-success">
+      <td>.table-success</td>
       <td>绿色高亮</td>
       <td>tr</td>
     </tr>
     <tr>
-      <td class="warning">.warning</td>
+      <td class="table-warning">.table-warning</td>
       <td>橙色高亮</td>
       <td>td</td>
     </tr>
-    <tr class="warning">
-      <td>.warning</td>
+    <tr class="table-warning">
+      <td>.table-warning</td>
       <td>橙色高亮</td>
       <td>tr</td>
     </tr>
     <tr>
-      <td class="danger">.danger</td>
+      <td class="table-danger">.table-danger</td>
       <td>红色高亮</td>
       <td>td</td>
     </tr>
-    <tr class="danger">
-      <td>.danger</td>
+    <tr class="table-danger">
+      <td>.table-danger</td>
       <td>红色高亮</td>
       <td>tr</td>
     </tr>
@@ -419,7 +417,7 @@ __表格相关的 JS 插件：__
 添加 `.table-sm` ，调整 `padding`（内填充减半）显示更紧凑(compact)的单元格。
 
 `````html
-<table class="table table-sm">
+<table class="table table-bordered table-sm">
   <thead>
     <tr>
       <th>#</th>
@@ -606,13 +604,13 @@ __表格相关的 JS 插件：__
 
 火狐浏览器有一些非常糟糕的字段集式样，涉及干扰响应式表格的 `width`。如果没有火狐浏览器特有的hack，这将不能被覆盖，所以于我们不能在样式库中提供如下代码：
 
+欲得详细信息，请参阅[Stack Overflow](https://stackoverflow.com/questions/17408815/fieldset-resizes-wrong-appears-to-have-unremovable-min-width-min-content/17863685#17863685)上的解答。
+`````
 ```css
 @-moz-document url-prefix() {
   fieldset { display: table-cell; }
 }
 ```
-欲得详细信息，请参阅[Stack Overflow](https://stackoverflow.com/questions/17408815/fieldset-resizes-wrong-appears-to-have-unremovable-min-width-min-content/17863685#17863685)上的解答。
-`````
 
 `````html
 <div class="table-responsive">

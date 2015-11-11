@@ -2,6 +2,8 @@
 
 按 samcss 结构规划样式，实现易维护、易使用的样式表，侧重继承、组合、扩展、场景层次划分。
 
+__小记：__整理出了整理样式库，还要集成一个[解决方案](http://docs.yanzhanjun.cn/cnBootstrap/cnDocs/solution.php)列表，所谓头痛的问题，我们提前搞定。
+
 ### 参考项目
 
 - [yahoo_pure](https://github.com/yahoo/pure/)

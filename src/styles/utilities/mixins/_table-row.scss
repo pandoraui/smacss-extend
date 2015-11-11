@@ -1,30 +1,44 @@
 // Tables
 
-@mixin table-row-variant($state, $background) {
+@mixin table-row-variant($state, $bg, $color) {
   // Exact selectors below required to override `.table-striped` and prevent
   // inheritance to nested tables.
-  .#{$ns}table-#{$state} {
-    &,
-    > th,
-    > td {
-      background-color: $background;
+  tr.#{$ns}table-#{$state},
+  th.#{$ns}table-#{$state},
+  td.#{$ns}table-#{$state} {
+    @if ($color != '') {
+      color: $color;
+    }
+
+    @if ($bg != '') {
+      background-color: rgba(red($bg), green($bg), blue($bg), .115);
+      @if ($color == '') {
+        color: darken($bg, 4%);
+      }
     }
   }
 
   // Hover states for `.table-hover`
   // Note: this is not available for cells or rows within `thead` or `tfoot`.
   .#{$ns}table-hover {
-    $hover-background: darken($background, 5%);
 
-    .#{$ns}table-#{$state} {
-      @include hover {
-        background-color: $hover-background;
+    @if ($bg != '') {
+      $hover-background: darken($bg, 5%);
 
-        > td,
-        > th {
+      .#{$ns}table-#{$state} {
+        @include hover {
           background-color: $hover-background;
+
+          > td,
+          > th {
+            background-color: $hover-background;
+          }
         }
       }
     }
   }
+}
+
+@mixin table-state-variant($state, $bg, $color) {
+  //以上的逻辑可移到此处，没必要用到上述的
 }
