@@ -1,14 +1,58 @@
-# SMACSS
+# SMACSS-BEM
+
+随着CSS的发展，使用CSS有语义化的命名约定和CSS层的分离，将有助于它的可扩展性，性能的提高和代码的组织管理。
+
+## BEM 是什么？
+
+BEM（block：块，Element：元素，Modifier：修饰符）是最流行的命名规则之一。通过给每个元素添加它的父级block模块作为前缀，使得目标的安全性变得更加简单了。BEM还有助于消除页面和body类对嵌套或者附加样式依赖。
+
+```
+.block {}
+.block__element {}
+.block--modifier {}
+
+.product-details {}
+.product-details__price {}
+.product-details__price--sale {}
+
+.product-details {}
+.product-details__title {}
+.product-details__title--small {}
+```
+
+下划线（__）被用来区分元素，而用连字符(--)是用来修饰元素的。
+
+## SMACSS 是什么？参看 [SMACSS](https://smacss.com/)
+
+SMACSS定义了五种样式类型：
+
+- Base (基本)
+- Layout（布局）
+- Module (模块)
+- State (状态)
+- Theme (皮肤)
+
+
+我们的方法看起来像这样：
+
+- __Base (基本)__
+- <del>Layout（布局）</del>
+- __Module (模块)__
+- __State (状态)__
+- <del>Theme (皮肤)</del>
+
+而之前在 pandora 项目中，也具备了 SMACSS 雏形，有 typo 排版布局属性，以及模块皮肤定制，只是抽离得不够彻底。而最新的 bootstrap 也按照这种 SMACSS 层次划分实现，抽离的很彻底很合我意，赞一个。只是关于无依赖引用，还有点不满意的地方，我下面做的是消化他的结构化分代码，之后再抽离一层出来，作为 core 层，这层将相当于是精简版的样式库文件。
+
 
 ## 结构规划如下：
 
-发下所谓的 SMACSS，bootstrap 已经按照这种结构实现了，只是没分那样的层级结构，但具体模块却是这样结构实现的。赞一个
-
-以下即 bootstrap 的划分，只是放在不同的文件夹里了，稍有改动。
+bootstrap 已经按照 SMACSS 结构实现，我们直接用，不过要针对中文以及常用布局，稍作变更。
 
 问：为什么没按照物理文件夹结构细分下 SMACSS 实现？
 
 答：细分物理文件夹结构后，会遇到不同时序优先级的文件，分在同一个文件夹中的情况，这样维护起来就有点混乱了，所以 bootstrap 才放在一起的吧
+
+我们怎么实现？虽然物理结构没法一致，但是我们依然可以按照功能、实现粒度、以及从属关系划分。
 
 目标：期望实现各组件能独立存在并能被独立引用。另外可以学习了这些组件，可以再扩展一些常用的组件。
 
@@ -18,7 +62,7 @@ styles/
 ├── .csscomb.json
 ├── .scss-lint.yml
 │
-├── utilities/          //时序相关 00
+├── utilities/          //最底层 00
 │   ├── _variables.scss
 │   ├── _mixins.scss
 │   ├── _utilities-responsive.scss
@@ -34,12 +78,14 @@ styles/
 │   ├── _type.scss
 │   └── _base.scss
 │
-├── core/
+├── elements/
 │   ├── _code.scss
 │   ├── _images.scss
 │   ├── _tables.scss
 │   ├── _buttons.scss
-│   ├── _forms.scss
+│   └── _forms.scss
+│
+├── layout/
 │   └── _grid.scss
 │
 ├── states/
