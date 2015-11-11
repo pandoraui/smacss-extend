@@ -96,21 +96,28 @@ styles/
 @import "variables";            done
 @import "mixins";               doing
 
-// Reset and dependencies
+
+// base Reset and dependencies
 @import "normalize";            
+@import "reboot";               
+
+
+// states
 @import "print";                
 
-// Core CSS
-@import "reboot";               
+
+// Elements && Layout
 @import "type";                 
 @import "images";               
 @import "code";                 
-@import "grid";                 
 @import "tables";               
-@import "forms";                
 @import "buttons";              
+@import "forms";                
 
-// // Components
+@import "grid";                 
+
+
+// Components
 @import "animation";            
 @import "dropdown";             
 @import "button-group";         
