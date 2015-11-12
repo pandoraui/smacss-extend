@@ -78,15 +78,13 @@ styles/
 │   ├── _normalize.scss
 │   ├── _reset.scss
 │   ├── _reboot.scss
-│   ├── _type.scss
 │   └── _base.scss
 │
 ├── elements/
+│   ├── _typo.scss
 │   ├── _code.scss
 │   ├── _images.scss
-│   ├── _tables.scss
-│   ├── _buttons.scss
-│   └── _forms.scss
+│   └── _tables.scss
 │
 ├── layout/
 │   └── _grid.scss
@@ -94,15 +92,17 @@ styles/
 ├── states/
 │   └── _print.scss
 │
-├── components/         //主要调整这里，改为独立组件
+├── components/         //组件
 │   ├── _alert.scss
 │   ├── _animation.scss
 │   ├── _breadcrumb.scss
+│   ├── _buttons.scss
 │   ├── _button-group.scss
 │   ├── _card.scss
 │   ├── _close.scss
 │   ├── _custom-forms.scss
 │   ├── _dropdown.scss
+│   ├── _forms.scss
 │   ├── _input-group.scss
 │   ├── _jumbotron.scss
 │   ├── _labels.scss
