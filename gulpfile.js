@@ -23,11 +23,20 @@ var projectConfig = {
 
 var mdDoc = 'test';
 var tplPath = 'template';
+var tplName = 'docs';
+
+var getTplFile = function(tplName) {
+  return fs.readFileSync(tplPath + '/' + tplName + '.hbs', { encoding: 'utf8' })
+}
+
+var tplFiles = {
+  "docs": getTplFile('docs')
+};
 var paths = {
-  tpl: fs.readFileSync(tplPath + '/docs.hbs', { encoding: 'utf8' }),
+  tpl: tplFiles['docs'],
   tplStyle: tplPath + '/assets/scss/docs.scss',
   mdDocs: './docs/' + mdDoc + '.md',  //测试那个文档，就写哪个
-  dist: { 
+  dist: {
     html: './dist',
     assets: 'dist/assets'
   }
@@ -54,7 +63,7 @@ var config = {
       src:[tplPath + '/assets/js/vendor/*.js'],
       dist: paths.dist.assets + '/js/vendor'
     },
-  
+
   },
 
   styles: {
@@ -114,7 +123,7 @@ var setAsserts = function(cb) {
     } else if (relative.indexOf('css') > -1) {
       type = 'Style';
     }
-     
+
     var temp = {
       "title": data.title || "",
       "titleEn": data.titleEn || "",
@@ -124,6 +133,13 @@ var setAsserts = function(cb) {
     };
     jsonArr.push(temp);
     // console.log(data);
+
+    //更新当前模板
+    if(!tplFiles[temp.layout]){
+      tplFiles[temp.layout] = getTplFile(temp.layout);
+    }
+    paths.tpl = tplFiles[temp.layout];
+
     data.assets = assets;
     input.contents = new Buffer(JSON.stringify(data));
     this.push(input);
