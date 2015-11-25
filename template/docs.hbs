@@ -3,26 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>{{title}} | SMACSS docs</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>{{title}} | SMACSS docs</title>
   <link rel="stylesheet" href="{{assets}}css/app.css">
   <link rel="stylesheet" href="{{assets}}css/docs.css">
   {{{head}}}
 </head>
-<body class="am-doc">
-<!--[if lte IE 9 ]>
-<div class="am-alert am-alert-danger ie-warning" data-am-alert>
-  <button type="button" class="am-close">&times;</button>
-  <div class="am-container">
-    安全提醒：你的浏览器太古董了，有太多漏洞有可能导致安全问题，<a
-    href="http://browsehappy.com/" target="_blank">速速点击换一个</a>！</div>
-</div>
-<![endif]-->
+<body class="bd-docs" data-spy="scroll" data-target=".bd-sidenav-active">
+  <!--[if lte IE 9 ]>
+  <div class="am-alert am-alert-danger ie-warning" data-am-alert>
+    <button type="button" class="am-close">&times;</button>
+    <div class="am-container">
+      安全提醒：你的浏览器太古董了，有太多漏洞有可能导致安全问题，<a
+      href="http://browsehappy.com/" target="_blank">速速点击换一个</a>！</div>
+  </div>
+  <![endif]-->
 
-<header id="amz-header" class="hide">
+  <div class="header-bar">
+  <a id="skippy" class="sr-only sr-only-focusable" href="#content">
+    <div class="container">
+      <span class="skiplink-text">Skip to main content</span>
+    </div>
+  </a>
+  <div class="container">
+    <header class="navbar-static-top bd-navbar" role="banner">
+      <div class="clearfix">
+        <button class="navbar-toggler pull-right hidden-sm-up" type="button" data-toggle="collapse" data-target="#bd-main-nav">☰</button>
+        <a class="navbar-brand hidden-sm-up" href="/">Bootstrap</a>
+      </div>
+      <div class="collapse navbar-toggleable-xs" id="bd-main-nav">
+        <nav class="nav pull-left">
+          <a class="nav-item nav-link " href="/">Bootstrap</a>
+          <a class="nav-item nav-link active" href="/getting-started">开始使用</a>
+          <a class="nav-item nav-link" href="/layout">布局</a>
+          <a class="nav-item nav-link" href="/components">组件</a>
+          <a class="nav-item nav-link" href="/solutions">解决方案</a>
+          <!-- <a class="nav-item nav-link" href="/expo/">精品</a> -->
+        </nav>
+        <nav class="nav pull-right hidden-sm-down">
+          <a class="nav-item nav-link" href="http://themes.getbootstrap.com">主题</a>
+          <a class="nav-item nav-link " href="/examples/">经典案例</a>
+        </nav>
+      </div>
+    </header>
+  </div>
+</div>
+
+<!-- <header id="amz-header">
   <div class="amz-container am-cf">
     <h1>
       <a href="/">SMACSS</a>
@@ -50,27 +79,96 @@
       </ul>
     </nav>
   </div>
-</header>
+</header> -->
 
-<div class="amz-banner hide">
-  <div class="amz-container" data-am-scrollspy="{animation: 'scale-up', repeat: false}">
+<div class="bd-pageheader">
+  <div class="container" data-scrollspy="{animation: 'scale-up', repeat: false}">
     <h1>开始使用</h1>
-    <p>Amaze UI 概览，下载、使用，模板示例，二次开发……</p>
+    <p class="lead">样式库概览，下载、使用，模板示例，二次开发...</p>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-3 bd-sidebar"></div>
+    <div class="col-md-3 bd-sidebar">
+      <div class="bd-sidebar">
+        <form class="bd-search hidden-sm-down">
+          <input type="text" class="form-control" id="search-input" placeholder="搜索...">
+          <div class="dropdown-menu bd-search-results" id="search-results"></div>
+        </form>
+        <nav class="bd-links" id="docsNavbarContent">
+            <div class="bd-toc-item active">
+              <a class="bd-toc-link" href="/getting-started/introduction">
+                开始使用
+                <small>Getting-started</small>
+              </a>
+              <ul class="nav bd-sidenav">
+              </ul>
+            </div>
+            <div class="bd-toc-item ">
+              <a class="bd-toc-link" href="/layout/overview">
+                布局
+                <small>Layout</small>
+              </a>
+              <ul class="nav bd-sidenav">
+              </ul>
+            </div>
+            <div class="bd-toc-item ">
+              <a class="bd-toc-link" href="/content/reboot">
+                内容
+                <small>Content</small>
+              </a>
+              <ul class="nav bd-sidenav">
+              </ul>
+            </div>
+            <div class="bd-toc-item ">
+              <a class="bd-toc-link" href="/components/buttons">
+                组件
+                <small>Components</small>
+              </a>
+              <ul class="nav bd-sidenav">
+              </ul>
+            </div>
+            <div class="bd-toc-item ">
+              <a class="bd-toc-link" href="/about/history">
+                关于
+                <small>About</small>
+              </a>
+              <ul class="nav bd-sidenav">
+              </ul>
+            </div>
+            <div class="bd-toc-item ">
+              <a class="bd-toc-link" href="/migration/">
+                迁移
+                <small>Migration</small>
+              </a>
+              <ul class="nav bd-sidenav">
+              </ul>
+            </div>
+        </nav>
+      </div>
+    </div>
     <div class="col-md-9 bd-content">
       {{{body}}}
     </div>
   </div>
 </div>
 
-
-
-
+<footer class="bd-footer text-muted" role="contentinfo">
+  <div class="footer-wave"></div>
+  <div class="footer-info">
+    <div class="container">
+      <ul class="bd-footer-links">
+        <li><a href="https://github.com/twbs/bootstrap">GitHub</a></li>
+        <li><a href="https://twitter.com/getbootstrap">Twitter</a></li>
+        <li><a href="/examples/">实例</a></li>
+        <li><a href="/about/history/">关于</a></li>
+      </ul>
+      <p>由<a href="https://twitter.com/mdo" target="_blank">@mdo</a> 与 <a href="https://twitter.com/fat" target="_blank">@fat</a> 设计构建. 由 <a href="https://github.com/orgs/twbs/people">核心团队 </a> 提供支持维护，感谢 <a href="https://github.com/twbs/bootstrap/graphs/contributors">贡献者们 </a>的帮助。</p>
+      <p>当前版本 v4.0.0-alpha。 代码License <a rel="license" href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>, 文档 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
+    </div>
+  </div>
+</footer>
 {{{footer}}}
 <!-- <script src="{{assets}}js/jquery.min.js"></script> -->
 <script src="{{assets}}js/vendor/holder.min.js"></script>

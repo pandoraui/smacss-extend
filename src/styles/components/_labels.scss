@@ -3,9 +3,9 @@
 // Requires one of the contextual, color modifier classes for `color` and
 // `background-color`.
 
-.label {
+.#{$ns}label {
   display: inline-block;
-  padding: .25em .4em;
+  padding: .25em .625em;
   font-size: 75%;
   font-weight: bold;
   line-height: 1;
@@ -13,7 +13,19 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  @include border-radius();
+
+  &.#{$ns}square {
+     border-radius: 0;
+  }
+
+  &.#{$ns}radius {
+    @include border-radius($radius-normal);
+  }
+
+  &.#{$ns}round {
+    @include border-radius($global-rounded);
+  }
+  
 
   // Empty labels collapse automatically
   &:empty {
@@ -22,13 +34,13 @@
 }
 
 // Quick fix for labels in buttons
-.btn .label {
+.#{$ns}btn .#{$ns}label {
   position: relative;
   top: -1px;
 }
 
 // Add hover effects, but only for links
-a.label {
+a.#{$ns}label {
   @include hover-focus {
     color: $label-link-hover-color;
     text-decoration: none;
@@ -40,10 +52,12 @@ a.label {
 //
 // Make them extra rounded with a modifier to replace v3's badges.
 
-.label-pill {
+.#{$ns}label-pill {
   padding-right: .6em;
   padding-left: .6em;
-  border-radius: 1rem;
+  // Use a higher than normal value to ensure completely rounded edges when
+  // customizing padding or font-size on labels.
+  @include border-radius(10rem);
 }
 
 
@@ -51,26 +65,26 @@ a.label {
 //
 // Contextual variations (linked labels get darker on :hover).
 
-.label-default {
+.#{$ns}label-default {
   @include label-variant($label-default-bg);
 }
 
-.label-primary {
+.#{$ns}label-primary {
   @include label-variant($label-primary-bg);
 }
 
-.label-success {
+.#{$ns}label-success {
   @include label-variant($label-success-bg);
 }
 
-.label-info {
+.#{$ns}label-info {
   @include label-variant($label-info-bg);
 }
 
-.label-warning {
+.#{$ns}label-warning {
   @include label-variant($label-warning-bg);
 }
 
-.label-danger {
+.#{$ns}label-danger {
   @include label-variant($label-danger-bg);
 }

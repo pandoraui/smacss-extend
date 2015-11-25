@@ -84,19 +84,19 @@ redirect_from: "/layout/"
 
 
 ```css
-// Extra small devices (portrait phones, less than 34em)
-// No media query since this is the default in Bootstrap
+// 超小型设备 (小屏手机, < 34em)
+// 没有媒体查询，这个作为样式库默认设置
 
-// Small devices (landscape phones, 34em and up)
+// 小型设备 (大屏手机, >= 34em)
 @media (min-width: 34em) { ... }
 
-// Medium devices (tablets, 48em and up)
+// 中型设备 (平板, >= 48em)
 @media (min-width: 48em) { ... }
 
-// Large devices (desktops, 62em and up)
+// 大型设备 (桌面屏幕, >= 62em)
 @media (min-width: 62em) { ... }
 
-// Extra large devices (large desktops, 75em and up)
+// 超大型设备 (超大屏幕, >= 75em)
 @media (min-width: 75em) { ... }
 ```
 
@@ -122,20 +122,20 @@ redirect_from: "/layout/"
 偶尔也使用其它的媒体查询（比如：针对给定的屏幕尺寸或更小屏幕）：
 
 ```css
-// Extra small devices (portrait phones, less than 34em)
+// 超小型设备 (小屏手机, < 33.9em)
 @media (max-width: 33.9em) { ... }
 
-// Small devices (landscape phones, less than 48em)
+// 小型设备 (大屏手机, < 47.9em)
 @media (max-width: 47.9em) { ... }
 
-// Medium devices (tablets, less than 62em)
+// 中型设备 (平板, < 61.9em)
 @media (max-width: 61.9em) { ... }
 
-// Large devices (desktops, less than 75em)
+// 大型设备 (桌面屏幕, < 74.9em)
 @media (max-width: 74.9em) { ... }
 
-// Extra large devices (large desktops)
-// No media query since the extra-large breakpoint has no upper bound on its width
+// 超大型设备 (超大屏幕)
+// 没有媒体查询，因为超大型设备的宽度没有上限
 ```
 
 并且，这些媒体查询也可以通过Sass mixins使用：

@@ -4,17 +4,16 @@
 
 .#{$ns}btn {
   display: inline-block;
-  vertical-align: middle;
   font-weight: $btn-font-weight;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  touch-action: manipulation;
   cursor: pointer;
   user-select: none;
   border: $border-width solid transparent;
   @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $line-height, $btn-border-radius);
   @include transition(all .2s ease-in-out);
+  touch-action: manipulation;
 
   &,
   &:active,
@@ -44,7 +43,7 @@
   fieldset[disabled] & {
     // https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
     pointer-events: none; // Disable mouse events
-    
+
     cursor: $cursor-disabled;
     opacity: .65;
     @include box-shadow(none);
@@ -111,7 +110,6 @@ fieldset[disabled] a.#{$ns}btn {
   font-weight: normal;
   color: $link-color;
   border-radius: 0;
-  cursor: pointer;
 
   &,
   &:active,

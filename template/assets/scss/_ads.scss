@@ -11,9 +11,9 @@
   font-size: .8rem !important;
   font-family: inherit !important;
   line-height: 1rem !important;
-  color: $bd-purple-light !important;
+  color: $bd-docs-light !important;
   text-align: left;
-  background-color: darken($bd-purple, 10%) !important;
+  background-color: darken($bd-docs, 10%) !important;
   border: 0 !important;
 }
 
@@ -42,7 +42,7 @@
 
 .carbonad-text a,
 .carbonad-tag a {
-  color: $bd-purple-light !important;
+  color: $bd-docs-light !important;
 
   &:hover {
     color: #fff !important;

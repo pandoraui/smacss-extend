@@ -158,7 +158,7 @@ When using Bootstrap's source Sass files, you have the option of using Sass vari
 
 Variables determine the number of columns, the gutter width, and the media query point at which to begin floating columns. We use these to generate the predefined grid classes documented above, as well as for the custom mixins listed below.
 
-{% highlight scss %}
+```scss
 $grid-breakpoints: (
   // Extra small screen / phone
   xs: 0,
@@ -175,13 +175,13 @@ $grid-breakpoints: (
 
 $grid-columns:      12;
 $grid-gutter-width: 1.875rem;
-{% endhighlight %}
+```
 
 ### Mixins
 
 Mixins are used in conjunction with the grid variables to generate semantic CSS for individual grid columns.
 
-{% highlight scss %}
+```scss
 // Creates a wrapper for a series of columns
 @mixin make-row($gutter: $grid-gutter-width) {
   margin-left:  ($gutter / -2);
@@ -213,7 +213,7 @@ Mixins are used in conjunction with the grid variables to generate semantic CSS 
 @mixin make-col-pull($columns) {
   right: percentage(($columns / $grid-columns));
 }
-{% endhighlight %}
+```
 
 ### Example usage
 
@@ -221,7 +221,7 @@ You can modify the variables to your own custom values, or just use the mixins w
 
 See it in action in <a href="http://jsbin.com/ruxona/edit">this rendered example</a>.
 
-{% highlight scss %}
+```scss
 .container {
   max-width: 60em;
   @include make-container();
@@ -249,16 +249,16 @@ See it in action in <a href="http://jsbin.com/ruxona/edit">this rendered example
     @include make-col-span(4);
   }
 }
-{% endhighlight %}
+```
 
-{% highlight html %}
+```html
 <div class="container">
   <div class="row">
     <div class="content-main">...</div>
     <div class="content-secondary">...</div>
   </div>
 </div>
-{% endhighlight %}
+```
 
 ## Predefined classes
 

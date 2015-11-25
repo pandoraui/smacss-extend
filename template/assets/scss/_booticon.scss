@@ -11,15 +11,15 @@
   color: #fff;
   text-align: center;
   cursor: default;
-  background-color: $bd-purple;
+  background-color: $bd-docs;
   border-radius: 15%;
 
   &.inverse {
-    color: $bd-purple;
+    color: $bd-docs;
     background-color: #fff;
   }
   &.outline {
     background-color: transparent;
-    border: 1px solid $bd-purple-light;
+    border: 1px solid $bd-docs-light;
   }
 }

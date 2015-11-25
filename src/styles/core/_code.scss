@@ -63,13 +63,4 @@ pre {
 .#{$ns}pre-scrollable {
   max-height: $pre-scrollable-max-height;
   overflow-y: scroll;
-  
-  // @include hook-pre-scrollable();
 }
-
-
-// Hooks
-// =============================================================================
-
-// @mixin hook-pre-scrollable(){}
-

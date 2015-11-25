@@ -30,13 +30,24 @@
 $bd-purple:         #563d7c;
 $bd-purple-bright:  lighten(saturate($bd-purple, 5%), 15%);
 $bd-purple-light:   #cdbfe3;
-$bd-graphite:       #2a2730;
+
+// 主题
+$bd-docs:           $bd-purple;  //#0e90d2; //#099fde
+$bd-docs-bright:    lighten(saturate($bd-docs, 5%), 15%);
+$bd-docs-light:     $bd-purple-light;
+
+$bd-graphite:       #f2f2f2; //#2a2730;
 $bd-graphite-light: lighten($bd-graphite, 40%);
 $bd-yellow:         #ffe484;
 $bd-danger:         #d9534f;
 $bd-warning:        #f0ad4e;
 $bd-info:           #5bc0de;
+
+
+
 $font-size-docs:    0.875rem;
+
+
 
 // Load docs components
 @import "booticon";
@@ -63,3 +74,6 @@ $font-size-docs:    0.875rem;
 // Load docs dependencies
 @import "syntax";
 @import "anchor";
+
+// Custom
+// @import "custom";

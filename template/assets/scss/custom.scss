@@ -1,0 +1,49 @@
+
+//自定义文档样式
+
+@media (min-width:768px) {
+	.navbar-right {
+		float: right !important;
+	}
+}
+@media (min-width:48em) {
+	.bd-masthead {
+		padding-bottom: 1rem;
+	}
+}
+@media (min-width:34em) {
+	.bd-masthead {
+		padding-top: 4rem;
+		padding-bottom: 2rem;
+	}
+}
+.bd-masthead .index-main-link, .bd-masthead .index-main-link:hover, .bd-masthead .index-main-link:focus, .bd-masthead .index-main-link:active {
+	color: #cdbfe3;
+	text-decoration: underline;
+}
+.bd-masthead .fanyi {
+	box-sizing: border-box;
+	color: #cdbfe3;
+	display: block;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 21px;
+	margin-bottom: 20px;
+	margin-top: -16px;
+	position: relative;
+	text-align: center;
+	top: -10px;
+}
+.bd-masthead .xuexi {
+	margin-bottom: 5px;
+}
+.v3 {
+	font-size: 14px;
+}
+.bd-masthead .v3 a, .v3 a:hover, .v3 a:focus, .v3 a:active {
+	color: #cdbfe3;
+	text-decoration: underline;
+}
+.bd-masthead .v3 a:first-child {
+	margin-right: 30px;
+}

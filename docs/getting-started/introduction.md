@@ -10,9 +10,17 @@ Bootstrap 是当前世界最受欢迎的用于建立响应式、移动设备优�
 
 下面教你如何快速上手这个样式库，并建立一个模板化的起始页面。
 
+在开始之前，先说明一下需要注意的地方：
+
+- 样式库不会覆盖所有的布局细节
+- 样式库提取最经典的实例实现，并考虑大多数的兼容及扩展
+- 使用样式库可以只是用其中一部分组件
+- 保持独立性，样式库不应该与其他文件样式冲突
+
 ## Contents
 
 * Will be replaced with the ToC, excluding the "Contents" header
+
 {:toc}
 
 ## 快速开始
@@ -55,13 +63,11 @@ Looking to quickly add Bootstrap to your project? Use the Bootstrap CDN, provide
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ site.cdn.css }}">
   </head>
   <body>
     <h1>Hello, world!</h1>
-
     <!-- jQuery first, then Bootstrap JS. -->
     <script src="{{ site.cdn.jquery }}"></script>
     <script src="{{ site.cdn.js }}"></script>
