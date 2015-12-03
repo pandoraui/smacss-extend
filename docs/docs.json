@@ -1,55 +1,133 @@
 {
-  "nav": {
-    
-  },
   "page-header": {
     "getting-started": {
-      "title": "起步",
+      "title": "开始使用",
       "desc": "简要介绍，以及如何下载、使用，还有基本模版和案例，等等。",
       "titleEn": "Getting started",
-      "descEn": "An overview of Bootstrap, including how to download and use it, some basic templates and examples, and more."
+      "descEn": "An overview of Bootstrap, including how to download and use it, some basic templates and examples, and more.",
+      "href": "",
+      "sort": [
+        "introduction",
+        "download",
+        "browsers-devices",
+        "options",
+        "flexbox",
+        "build-tools",
+        "best-practices",
+        "accessibility",
+        "javascript",
+        "contents"
+      ]
     },
     "layout": {
       "title": "布局",
       "desc": "构建页面的选项，包括全局样式，必不可少的脚手架(scaffolding), 网格系统等。",
       "titleEn": "Layout",
-      "descEn": "Options for structuring your pages with Bootstrap, including global styles, required scaffolding, grid system, and more."
+      "descEn": "Options for structuring your pages with Bootstrap, including global styles, required scaffolding, grid system, and more.",
+      "href": "",
+      "sort": [
+        "overview",
+        "grid",
+        "media-object",
+        "responsive-utilities"
+      ]
     },
     "content": {
       "title": "内容",
       "desc": "常用HTML元素的样式，包括标准化、排版、图像、表格等。",
       "titleEn": "Content",
-      "descEn": "Styles for displaying content with some of the most commonly used HTML elements, including normalization, typography, images, tables, and more."
+      "descEn": "Styles for displaying content with some of the most commonly used HTML elements, including normalization, typography, images, tables, and more.",
+      "href": "",
+      "sort": [
+        "reboot",
+        "typography",
+        "print",
+        "code",
+        "images",
+        "tables",
+        "figures"
+      ]
     },
     "components": {
       "title": "组件",
       "desc": "十几种可以重复使用的组件，包括按钮、下拉菜单、输入组、导航、提示框等。",
       "titleEn": "Components",
-      "descEn": "Over a dozen reusable components built to provide buttons, dropdowns, input groups, navigation, alerts, and much more."
+      "descEn": "Over a dozen reusable components built to provide buttons, dropdowns, input groups, navigation, alerts, and much more. Bring Bootstrap's components to life with over a dozen custom jQuery plugins. Easily include them all, or one by one.",
+      "href": "",
+      "sort": [
+        "buttons",
+        "button-group",
+        "button-dropdown",
+        "forms",
+        "input-group",
+        "dropdowns",
+        "jumbotron",
+        "label",
+        "alerts",
+        "card",
+        "navs",
+        "navbar",
+        "breadcrumb",
+        "pagination",
+        "progress",
+        "list-group",
+        "modal",
+        "scrollspy",
+        "tooltips",
+        "popovers",
+        "collapse",
+        "carousel",
+        "utilities"
+      ]
     },
-    "javascript": {
-      "title": "Javascript",
-      "desc": "",
-      "titleEn": "JavaScript plugins",
-      "descEn": "Bring Bootstrap's components to life with over a dozen custom jQuery plugins. Easily include them all, or one by one."
+    "utility": {
+      "title": "实用工具",
+      "desc": "常用 JS 工具方法。",
+      "titleEn": "Utility Tools",
+      "sort": [
+        "cookie",
+        "fastclick",
+        "fullscreen",
+        "hammer",
+        "iscroll",
+        "store",
+        "geo",
+        "qrcode"
+      ]
     },
     "about": {
       "title": "关于",
       "desc": "了解这个项目的历史，认识这个维护团队，并了解如何使用这个Bootstrap商标。",
       "titleEn": "About",
-      "descEn": "Learn about the project's history, meet the maintaining teams, and find out how to use the Bootstrap brand."
+      "descEn": "Learn about the project's history, meet the maintaining teams, and find out how to use the Bootstrap brand.",
+      "href": "",
+      "sort": [
+        "history",
+        "team",
+        "brand",
+        "license",
+        "translations"
+      ]
     },
     "migration": {
       "title": "迁移",
       "desc": "指导如何从Bootstrap v3.x升级到v4.x，重点是主要的变化，有什么新内容，以及哪些内容被移除了。",
       "titleEn": "Migration",
-      "descEn": "Guidance on how to upgrade from Bootstrap v3.x to v4.x with emphasis on major changes, what's new, and what's been removed."
+      "descEn": "Guidance on how to upgrade from Bootstrap v3.x to v4.x with emphasis on major changes, what's new, and what's been removed.",
+      "href": "",
+      "sort": [
+
+      ]
     },
     "browser-bugs": {
       "title": "浏览器 Bugs",
       "desc": "浏览器 bugs 列表",
       "titleEn": "Wall of browser bugs",
-      "descEn": "A list of the browser bugs that Bootstrap is currently grappling with."
+      "descEn": "A sort of the browser bugs that Bootstrap is currently grappling with.",
+      "href": "",
+      "sort": [
+
+      ]
     }
   }
 }

@@ -147,20 +147,19 @@ styles/
 
 
 // base Reset and dependencies
-@import "normalize";            
-@import "reboot";               
+@import "normalize";            done
+@import "reboot";               done
 
 
 // states
-@import "print";                
+@import "print";                done
 
 
 // Elements && Layout
-@import "type";                 
-@import "images";               
-@import "code";                 
-@import "tables";               
-@import "buttons";              
+@import "type";                 done
+@import "images";               done
+@import "code";                 done
+@import "tables";               doing
 @import "forms";                
 
 @import "grid";                 
@@ -169,19 +168,20 @@ styles/
 // Components
 @import "animation";            
 @import "dropdown";             
+@import "buttons";              done
 @import "button-group";         
 @import "input-group";          
 @import "custom-forms";         
 @import "nav";                  
 @import "navbar";               
-@import "card";                 
-@import "breadcrumb";           
-@import "pagination";           
+@import "card";                 done
+@import "breadcrumb";           doing
+@import "pagination";           doing
 @import "pager";                
-@import "labels";               
-@import "jumbotron";            
-@import "alert";                
-@import "progress";             
+@import "labels";               done
+@import "jumbotron";            done
+@import "alert";                doing
+@import "progress";             doing
 @import "media";                
 @import "list-group";           
 @import "responsive-embed";     
@@ -196,5 +196,5 @@ styles/
 // Utility classes
 @import "utilities";            
 @import "utilities-spacing";    
-@import "utilities-responsive"; 
+@import "utilities-responsive";
 ```

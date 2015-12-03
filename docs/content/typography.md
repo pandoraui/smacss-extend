@@ -9,14 +9,15 @@ group: content
 
 这里设定了一些简单易用的自定义排版，充分发挥 html 标签语义化功用，并在一定程度上考虑了中文排版特性。此文档整体基于 Amzae ui 内容修改，结合 bootstrap 以及以前整理的 typo 排版布局案例整理。
 
-__理念：__最简的样式，达到美观的布局。
+**理念：**最简的样式，达到美观的布局。
 
+[TOC]
 
 ## 全局设置
 
 样式库设置了基本的全局样式，包括文字排版，以及链接样式，我们特地做了这些设置：
 
-- 设置 `<body>` 全局背景色为白色 `background-color: #fff;`。
+- 设置 `<body>` 全局背景色为白色 `background-color: #ffffff;`。
 - 使用 `$font-family-base`, `$font-size-base` 以及 `$line-height-base` 属性作为排版基础。
 - 通过 `$link-color` 设置全局链接样式，并让链接只在鼠标悬停 `:hover` 状态下才出现下划线。
 
@@ -206,16 +207,16 @@ __中文排版相关开源项目__
 如果你想要一个标题醒目，考虑使用**大标题**——一种更大型、鲜明的标题样式。
 
 `````html
-<h1 class="display-4">大标题 4</h1>
-<h1 class="display-3">大标题 3</h1>
-<h1 class="display-2">大标题 2</h1>
 <h1 class="display-1">大标题 1</h1>
+<h1 class="display-2">大标题 2</h1>
+<h1 class="display-3">大标题 3</h1>
+<h1 class="display-4">大标题 4</h1>
 `````
 ```html
-<h1 class="display-4">大标题 4</h1>
-<h1 class="display-3">大标题 3</h1>
-<h1 class="display-2">大标题 2</h1>
 <h1 class="display-1">大标题 1</h1>
+<h1 class="display-2">大标题 2</h1>
+<h1 class="display-3">大标题 3</h1>
+<h1 class="display-4">大标题 4</h1>
 ```
 
 ### 段落 `<p>`
@@ -237,6 +238,16 @@ __中文排版相关开源项目__
 ```html
 <p class="lead">以人为本</p>
 ```
+
+### 分隔线 `<hr>`
+
+`````html
+<hr/>
+`````
+```html
+<hr/>
+```
+
 
 ### 内联文本元素，待定
 

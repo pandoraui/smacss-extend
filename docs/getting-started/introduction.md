@@ -10,22 +10,24 @@ Bootstrap 是当前世界最受欢迎的用于建立响应式、移动设备优�
 
 下面教你如何快速上手这个样式库，并建立一个模板化的起始页面。
 
-在开始之前，先说明一下需要注意的地方：
+## 开始之前
 
-- 样式库不会覆盖所有的布局细节
-- 样式库提取最经典的实例实现，并考虑大多数的兼容及扩展
-- 使用样式库可以只是用其中一部分组件
-- 保持独立性，样式库不应该与其他文件样式冲突
+很多时候，我们选择使用一个样式库，尤其是在一个长期且自定义控制的项目中，我们面临的不仅仅是要使用，还要定制需求，难免发生改动，这要求我们要知道里面的设定，为什么如此？
+
+所谓知其然亦知其所以然。所以在开始之前，规范的文档有必要指出为什么这么设定！！！
+
+- 可维护性第一
 
 ## Contents
 
 * Will be replaced with the ToC, excluding the "Contents" header
-
+<!-- *toc -->
 {:toc}
+
 
 ## 快速开始
 
-想要快速地把BootStrap添加到你的工程项目中？那就使用Bootstrap CDN吧，它则MaxCDN提供。想使用一个程序包管理器或者想下载源文件？ [前往下载页面]({{ site.baseurl }}/getting-started/download)。
+想要快速地把BootStrap添加到你的工程项目中？那就使用Bootstrap CDN吧，它由 MaxCDN 提供。想使用一个程序包管理器或者想下载源文件？ [前往下载页面]({{ site.baseurl }}/getting-started/download)。
 
 Looking to quickly add Bootstrap to your project? Use the Bootstrap CDN, provided for free by the folks at MaxCDN. Using a package manager or need to download the source files? [Head to the downloads page.]({{ site.baseurl }}/getting-started/download)
 
@@ -127,7 +129,6 @@ Bootstrap要求使用HTML5文档类型。没有它，你就会看到一些并不
 
 为了改进跨浏览器渲染效果，我们使用了 [Normalize.css](http://necolas.github.io/normalize.css/) 来校正不同设备和浏览器之间的细小的不一致。之后我们会基于它创建 [Reboot]({{ site.baseurl }}/content/reboot/) 来创造出我们自己的、稍微有点固执己见的样式风格。
 
-For improved cross-browser rendering, we use [Normalize.css]() to correct small inconsistencies across browsers and devices. We further build on this with our own, slightly more opinionated styles with [Reboot]().
 
 ## Community
 

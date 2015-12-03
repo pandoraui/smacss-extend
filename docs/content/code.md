@@ -25,7 +25,13 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 多行的代码文本，请使用 `<pre>` 标签，再次提型别忘了转义。
 
 `````html
-<pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
+<pre>
+&lt;p&gt;Sample text here...&lt;/p&gt;
+
+window.addEventListener('load', function() {
+    FastClick.attach(document.body);
+}, false);
+</pre>
 `````
 ```html
 <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
@@ -80,7 +86,7 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
   fieldset[disabled] & {
     // https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
     pointer-events: none; // Disable mouse events
-    
+
     cursor: $cursor-disabled;
     opacity: .65;
     @include box-shadow(none);

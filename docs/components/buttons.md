@@ -10,23 +10,18 @@ redirect_from: "/components/"
 
 具体的参数有：颜色，尺寸，风格，圆角，状态(激活、禁用)，按钮 ICON，单选按钮，复选按钮。
 
-## Contents
-
-* Will be replaced with the ToC, excluding the "Contents" header
-{:toc}
-
 ## 示例
 
 样式库包含 N 种预定义的按钮样式，每种样式都与其语义相符合。
 
 `````html
-<button type="button" class="btn btn-default">默认样式</button>
+<button type="button" class="btn btn-default">默认样式</button><br>
 
 <!-- 提供视觉行为，标识主要操作-->
-<button type="button" class="btn btn-primary">主色按钮</button>
+<button type="button" class="btn btn-primary">主要按钮</button>
 
 <!-- 次级操作 -->
-<button type="button" class="btn btn-secondary">次色按钮</button>
+<button type="button" class="btn btn-secondary">次要按钮</button>
 
 <!-- 标识成功或积极的行动 -->
 <button type="button" class="btn btn-success">绿色按钮</button>
@@ -41,11 +36,12 @@ redirect_from: "/components/"
 <button type="button" class="btn btn-danger">Danger</button>
 
 <!-- 使它看起来像一个连接，并淡化按钮 -->
-<button type="button" class="btn btn-link">链接</button>
-<a class="btn btn-link">链接</a>
+<button type="button" class="btn btn-link">链接</button><br>
 
-<a class="btn btn-link" href="http://www.baidu.com">应用按钮样式的链接</a>
+<a class="btn btn-danger" href="###">应用按钮样式的链接</a>
 `````
+```html
+```
 
 `````html-warning
 #### 向使用辅助技术的人传达含义
@@ -65,7 +61,8 @@ redirect_from: "/components/"
 <input class="btn btn-primary" type="button" value="Input">
 <input class="btn btn-primary" type="submit" value="Submit">
 `````
-
+```html
+```
 
 ## 描边按钮
 
@@ -79,28 +76,47 @@ redirect_from: "/components/"
 <button type="button" class="btn btn-warning-outline">Warning</button>
 <button type="button" class="btn btn-danger-outline">Danger</button>
 `````
+```html
+```
 
 
 ## 按钮尺寸
 
-更喜欢大一点或者小一点的按钮？给按钮添加 `.btn-lg` 或者 `.btn-sm` 类以实现别的尺寸大小。
+更喜欢大一点或者小一点的按钮？给按钮添加下面类以实现特定尺寸大小。
+
+- `.btn-xl` 超大按钮
+- `.btn-lg` 大按钮
+- `.btn` 默认按钮
+- `.btn-sm` 小按钮
+- `.btn-xl` 迷你按钮
+
+按钮经常和其他元素如表单，组合在一起布局，所以对按钮的大小也有特定的要求。目前排版表单有小类型 30px 高度，
+默认 36px 高度左右，更大的44px 左右。对应中间三种尺寸，具体待调试。
 
 `````html
-<button type="button" class="btn btn-primary btn-lg">Large button</button>
-<button type="button" class="btn btn-secondary btn-lg">Large button</button>
+<button class="btn btn-default btn-xl">按钮 - xl</button>
+<button class="btn btn-default btn-lg">按钮 - lg</button>
+<button class="btn btn-default">按钮默认大小</button>
+<button class="btn btn-default btn-sm">按钮 - sm</button>
+<button class="btn btn-default btn-xs">按钮 - xs</button>
+<br>
+<button class="btn btn-primary btn-xl">按钮 - xl</button>
+<button class="btn btn-primary btn-lg">按钮 - lg</button>
+<button class="btn btn-primary">按钮默认大小</button>
+<button class="btn btn-primary btn-sm">按钮 - sm</button>
+<button class="btn btn-primary btn-xs">按钮 - xs</button>
 `````
-
-`````html
-<button type="button" class="btn btn-primary btn-sm">Small button</button>
-<button type="button" class="btn btn-secondary btn-sm">Small button</button>
-`````
+```html
+```
 
 给按钮添加 `.btn-block` 类，可以创建一个块区域按钮——即那种延展到父元素全宽的按钮。
 
 `````html
-<button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+<button type="button" class="btn btn-primary btn-block btn-lg">块级显示的按钮</button>
+<button type="button" class="btn btn-default btn-block btn-lg">块级显示的按钮</button>
 `````
+```html
+```
 
 ## 激活状态
 
@@ -120,22 +136,46 @@ __注意！__ IE 9以及更低的版本会把禁用的按钮的文字渲染成�
 `````
 
 `````html
-<button type="button" class="btn btn-lg btn-primary" disabled>Primary button</button>
-<button type="button" class="btn btn-secondary btn-lg" disabled>Button</button>
+<button type="button" class="btn btn-lg btn-primary" disabled>禁用状态</button>
+<button type="button" class="btn btn-default btn-lg" disabled>禁用状态</button>
+<br>
+<a href="#" class="btn btn-primary btn-lg disabled" role="button">链接按钮禁用状态</a>
+<a href="#" class="btn btn-default btn-lg disabled" role="button">链接按钮禁用状态</a>
 `````
 
 因为 `<a>` 元素不支持 `disabled` 属性，所以你必须添加 `.disabled` 类以伪装它。
-
-`````html
-<a href="#" class="btn btn-primary btn-lg disabled" role="button">Primary link</a>
-<a href="#" class="btn btn-secondary btn-lg disabled" role="button">Link</a>
-`````
 
 `````html-warning
 #### 链接功能警告
 
 这个类使用 `pointer-events:none` 会试图禁用 `<a>` 的链接功能。但是那个CSS特性还没有标准化，因此在Opera 18以及以下版本中不完全支持，IE 11中也没有完全支持。另外，即使在支持 `pointer-events: none` 的浏览器中，键盘导航依然不受影响。这意味着不盲的键盘用户以及使用辅助技术的用户依然能够激活那些链接。所以为了安全起见，使用自定义JavaScript来禁用这些链接吧。
 `````
+
+## 按钮 Icon
+
+`````html
+<button class="btn btn-default">
+  <i class="icon-cog"></i>
+  设置
+</button>
+
+<a class="btn btn-warning" href="#">
+  <i class="icon-shopping-cart"></i>
+  结账
+</a>
+
+<button class="btn btn-default">
+  <i class="icon-spinner icon-spin"></i>
+  加载中
+</button>
+
+<button class="btn btn-primary">
+  下载片片
+  <i class="icon-cloud-download"></i>
+</button>
+`````
+```html
+```
 
 ## 按钮插件
 

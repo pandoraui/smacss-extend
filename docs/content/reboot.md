@@ -1,6 +1,7 @@
 ---
 layout: docs
-title: Reboot
+title: 重启
+titleEn: Reboot
 group: content
 redirect_from: "/content/"
 ---

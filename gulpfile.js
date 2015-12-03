@@ -9,10 +9,19 @@ var runSequence = require('run-sequence');
 var fs = require('fs');
 var del = require('del');
 var markJSON = require('markit-json');
+var yaml = require('js-yaml');
+var _ = require('lodash');
 var docUtil = require('amazeui-doc-util');
+var markdownToc = require('markdown-toc');
 var through = require('through2');
 
 var pkg = require('../amazeui/package.json');
+var docsNavbar = {};
+
+docsNavbar = require('./docs/docs')['page-header'];
+
+var tplPath = 'template';
+var tplName = 'docs';
 
 // 项目配置
 var projectConfig = {
@@ -21,19 +30,39 @@ var projectConfig = {
   distRoot: 'dist'         //编译输出目录
 };
 
-var mdDoc = 'test';
-var tplPath = 'template';
-var tplName = 'docs';
+var mdDoc = '**/*';
+// var mdDoc = 'test';
+
 
 var getTplFile = function(tplName) {
-  return fs.readFileSync(tplPath + '/' + tplName + '.hbs', { encoding: 'utf8' })
-}
+  // extname = extname || '.hbs';
+  return fs.readFileSync(tplName, { encoding: 'utf8' });
+};
+var getYaml = function(fileName) {
+  return yaml.safeLoad(fs.readFileSync(tplPath + '/_data/' + fileName + '.yml'));
+};
+
+var hbs = {
+  meta: getTplFile(tplPath + '/_hbs/meta.html'),
+  navhome: getTplFile(tplPath + '/_hbs/navhome.html'),
+  pageheader: getTplFile(tplPath + '/_hbs/pageheader.html'),
+  navdocs: getTplFile(tplPath + '/_hbs/navdocs.html'),
+  footer: getTplFile(tplPath + '/_hbs/footer.html')
+};
+
+var yamlList = {
+  browserBugs: getYaml('browser-bugs'),
+  coreTeam: getYaml('core-team'),
+  nav: getYaml('nav'),
+  showcase: getYaml('showcase'),
+  translations: getYaml('translations')
+};
 
 var tplFiles = {
-  "docs": getTplFile('docs')
+  "docs": getTplFile(tplPath + '/docs.hbs')
 };
 var paths = {
-  tpl: tplFiles['docs'],
+  tpl: tplFiles.docs,
   tplStyle: tplPath + '/assets/scss/docs.scss',
   mdDocs: './docs/' + mdDoc + '.md',  //测试那个文档，就写哪个
   dist: {
@@ -105,6 +134,7 @@ tasks(gulp, config);
 
 
 var jsonArr = [];
+var tempJSON = {};
 
 var setAsserts = function(cb) {
   return through.obj(function(input, enc, callback) {
@@ -124,42 +154,117 @@ var setAsserts = function(cb) {
       type = 'Style';
     }
 
-    var temp = {
+    var reg = new RegExp(data.group);
+    tempJSON = {
       "title": data.title || "",
       "titleEn": data.titleEn || "",
       "layout": data.layout || "docs",
       "group": data.group || "",
-      "href": data.href || ""
+      "href": '/' + relative + '.html',
+      "basename": relative.replace(reg, '').replace('/', '')
     };
-    jsonArr.push(temp);
-    // console.log(data);
 
+    jsonArr.push(tempJSON);
+    // console.log(data);
     //更新当前模板
-    if(!tplFiles[temp.layout]){
-      tplFiles[temp.layout] = getTplFile(temp.layout);
+    if(!tplFiles[tempJSON.layout]){
+      tplFiles[tempJSON.layout] = getTplFile(tplPath + '/' + tempJSON.layout + '.hbs');
     }
-    paths.tpl = tplFiles[temp.layout];
+
+    data = _.extend(data, hbs);
+
+    paths.tpl = tplFiles[tempJSON.layout];
 
     data.assets = assets;
+    //设置标题
+    var header = '<h1>' + data.title + ' <small>' + data.titleEn + '</small></h1><hr/>';
+
+
+    data.body = header + data.body;
+
     input.contents = new Buffer(JSON.stringify(data));
     this.push(input);
     callback();
   });
 };
 
+var makeToc = function(cb) {
+  return through.obj(function(input, enc, callback) {
+    // var relative = input.relative.replace('.json', '');
+    // var data = JSON.parse(input.contents.toString());
+
+    var data = input.contents.toString();
+
+    var toc = markdownToc(data).content;
+    console.log(toc.toString());
+
+    input.contents = new Buffer(toc + data);
+    this.push(input);
+    callback();
+  });
+};
+
+gulp.task('nav', function() {
+  var output = 'dist/';
+  var jsonArrTemp = _.indexBy(jsonArr, 'basename');
+  // console.log(jsonArr);
+  for(var key in docsNavbar){
+    var sort = docsNavbar[key].sort || [];
+    // console.log(key);
+    docsNavbar[key].list = [];
+    var temp = [];
+    // console.log(JSON.stringify(jsonArrTemp, null, 2));
+    // console.log()
+    sort.forEach(function(item){
+      if (jsonArrTemp[item]) {
+        temp.push(jsonArrTemp[item]);
+      }
+    });
+    docsNavbar[key].list = temp;
+  }
+
+  var jsonNav = JSON.stringify(docsNavbar, null, 2);
+  // console.log(jsonNav);
+  fs.writeFile(output + 'docsNav.json', jsonNav, {
+    encoding: 'utf8',
+  }, function (err) {
+    if (err) throw err;
+    console.log('json: docsNav saved!');
+  });
+});
+
+// gulp.task('docs:nav', function() {
+//   var aa = markdownToc(paths.mdDocs).json;
+//   // var aa = JSON.stringify(aa);
+//   console.log(aa)
+// });
+
+
 
 gulp.task('docs:md', function() {
+  // console.log(markdownToc(paths.mdDocs).content);
   return gulp.src([
     paths.mdDocs,
     // '!amazeui/docs/en/**/*',
   ])
+    //生成 marked-toc 目录
+    // .pipe(makeToc())
     .pipe(markJSON(docUtil.markedOptions))
     //.pipe($.if(docsType === 'docset', setAsserts() ) )
     .pipe(setAsserts())//这里生成 docs 时，报 unable to open database file
     .pipe(docUtil.applyTemplate(paths.tpl))
     .pipe($.rename(function(file) {
       file.extname = '.html';
-      if (file.basename === mdDoc) {
+      // var dirname = '/';
+      // if ( !/^\.$/.test(file.dirname )) {
+      //   dirname = '/' + file.dirname + '/';
+      // }
+      // var pathHref =  dirname + file.basename +  '.html';
+      // tempJSON.basename = file.basename;
+      // tempJSON.href = pathHref;
+      // console.log(tempJSON);
+      // jsonArr.push(tempJSON);
+      if (file.basename === 'test') {
         file.basename = 'index';
       }
     }))
@@ -181,7 +286,8 @@ gulp.task('build', function(cb) {
 // 不要直接使用 gulp.task('dev', ['build', 'server']);
 // build 和 server 没有先后执行顺序，可能时序错乱，建议如下使用
 gulp.task('dev', function(cb) {
-  runSequence('build', 'server', cb);
+  // console.log(yamlList);
+  runSequence('build', 'nav', 'server', cb);
 });
 
 
@@ -189,7 +295,9 @@ gulp.task('dev', function(cb) {
 
 
 
-
+gulp.task('test', function(cb) {
+  console.log(hbs);
+});
 
 
 
