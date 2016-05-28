@@ -1,0 +1,99 @@
+
+/* 使用 图标字体，自选配置
+  详参 http://www.iconfont.cn/
+
+  此时对应 字体图标项目 smacss，真实使用请自己选配
+**/
+
+
+// icon 字体图标 (建议使用 :after )
+// ClOSE 为什么字体在这里是加载失败？ 需要添加 http:
+@font-face {
+  font-family: 'iconfont';
+  src: url('http://at.alicdn.com/t/font_1464419204_8139555.eot'); /* IE9*/
+  src: url('http://at.alicdn.com/t/font_1464419204_8139555.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('http://at.alicdn.com/t/font_1464419204_8139555.woff') format('woff'), /* chrome、firefox */
+  url('http://at.alicdn.com/t/font_1464419204_8139555.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('http://at.alicdn.com/t/font_1464419204_8139555.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+// font-weight: normal;
+// font-style: normal;
+
+
+// Icon
+// -----------------------------------------------------------------------------
+$icon-prefix: #{$ns}icon;
+// $icon-path: 'fonts/';
+$icons: (
+  code: \e600,
+  menu: \e601,
+  app: \e602,
+  cart: \e603,
+  delete: \e604,
+  home: \e606,
+  message: \e607,
+  share: \e608,
+  back: \e609,
+  comment: \e60a,
+  edit: \e60b,
+  favorite: \e60c,
+  help: \e60d,
+  info: \e60e,
+  less: \e60f,
+  detail: \e60f,
+  more: \e611,
+  pic: \e612,
+  refresh: \e613,
+  search: \e614,
+  set: \e615,
+  success: \e616,
+  warning: \e617,
+  error: \e618,
+  clock: \e619,
+  remind: \e61a,
+  discount: \e61b,
+  dift: \e61c,
+  browse: \e61d,
+  scanning: \e61e,
+  pin: \e61f,
+  link: \e620,
+  friend: \e621,
+  download: \e622,
+  card: \e623,
+  local: \e624,
+  person: \e625,
+) !default;
+
+
+// Output
+// -----------------------------------------------------------------------------
+
+%font-icon {
+  display: inline-block;
+  font-family: "iconfont", sans-serif !important;
+  font-size: 24px;
+  line-height: 1;
+  font-style: normal;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  // -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// .#{$icon-prefix} {
+.iconfont:before {
+  @extend %font-icon;
+
+  // .#{$button-prefix} & {
+  //   font-size: inherit;
+  // }
+}
+
+// @see https://github.com/sass/sass/issues/659#issuecomment-119285467
+@each $icon-name, $icon-code in $icons {
+  .#{$icon-prefix}-#{$icon-name} {
+    &:before {
+      content: unquote('"#{$icon-code}"');
+    }
+  }
+}

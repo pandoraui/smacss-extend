@@ -1,0 +1,31 @@
+// @source http://smacss.com/book/type-base
+//
+// Base Rules
+//
+// A Base rule is applied to an element using an element selector, a
+// descendent selector, or a child selector, along with any pseudo-classes.
+// It doesn’t include any class or ID selectors. It is defining the default
+// styling for how that element should look in all occurrences on the page.
+
+
+// reset 超级简单的 reset
+// --------------------------------------------------------------------------
+// 输出样式，是针对非常精简的活动或专题页面使用，可以辅助引用 typography 排版样式
+// update: 2015-10-16
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: none;
+}
+
+a {
+  color: #039;
+}
+
+a:hover {
+  color: #03F;
+}

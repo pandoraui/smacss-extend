@@ -1,0 +1,1259 @@
+// Global Variables
+//
+// Copy settings from this file into the provided `_custom.scss` to override
+// the Bootstrap defaults without modifying key, versioned files.
+
+
+// 自定义 pxtorem 函数
+@function fontsize($values, $base-value: null) {
+  @return rem-calc($values, $base-value: null);
+}
+
+// Namespace
+// -----------------------------------------------------------------------------
+// 链接字符串 usage: #{$ns}
+
+// Set classes namespace, e.g. `am-`
+$namespace: null !default;
+$ns: $namespace;
+
+
+// Table of Contents
+//
+// Fonts
+// Themes: Colors
+// Options
+// Spacing
+// Body
+// Links
+// Grid breakpoints
+// Grid containers
+// Grid columns
+// Components
+//    Tables Buttons Forms Dropdowns
+//    Navbar Navs Pagination Pager [form/alerts]States Cards
+//    Tooltips Popovers Labels Modals Alerts
+//    Progress bars   List group   Image thumbnails
+//    Breadcrumbs Carousel Close Code
+
+// General variable structure
+//
+// Variable format should follow the `$component-modifier-state-property` order.
+
+
+// Font-size: 1rem = 16px
+// -----------------------------------------------------------------------------
+//
+
+// This sets 1rem to be 16px
+$rem-base: 16px;
+
+// The default font-size is set to 100% of the browser style sheet (usually 16px)
+// for compatibility with browser-based text zoom or user-set defaults.
+
+// Since the typical default browser font-size is 16px, that makes the calculation for grid size.
+// If you want your base font-size to be different and not have it affect the grid breakpoints,
+// set $rem-base to $base-font-size and make sure $base-font-size is a px value.
+$font-size-root:      $rem-base !default;
+$font-size-base:      1rem !default;
+$font-size-inherit:   100% !default;
+//$base-font-size:      100% !default;//base怎么可以用继承
+
+// $base-line-height is 24px while $base-font-size is 16px
+$base-line-height:    1.5 !default;
+
+// Define default font weights
+$font-weight-normal:  normal !default;
+$font-weight-bold:    400 !default;  //某些字体使用 bold 太粗
+
+$font-size-xs:        rem-calc(12) !default;
+$font-size-sm:        rem-calc(14) !default;
+$font-size-default:   rem-calc(16) !default;
+$font-size-md:        $font-size-default !default;
+$font-size-lg:        rem-calc(18) !default;
+$font-size-xl:        rem-calc(20) !default;
+$font-size-xxl:       rem-calc(24) !default;
+
+
+// Colors:
+// -----------------------------------------------------------------------------
+// Grayscale and brand colors for use across Bootstrap.
+// 所有组件颜色样式都应该由此处可控
+
+$black:                    #000;
+$white:                    #fff;
+
+// Application Colors
+// 这里是主题色，若设为背景，则对应字体颜色取反相色（如按钮，效果同此 ATOM 预览，自动显示了背景色并且反相了字体颜色）
+$brand-primary:             #0e90d2 !default;
+$brand-secondary:           lighten($brand-primary, 15%) !default;
+$brand-info:                #5bc0de !default;
+$brand-success:             #5cb85c !default;
+$brand-warning:             #F37B1D !default;
+$brand-danger:              #d9534f !default;
+
+// @see http://sassme.arc90.com/
+$gray-darker:   lighten($black, 13.5%) !default; // #222
+$gray-dark:     lighten($black, 20%) !default;   // #333
+$gray:          lighten($black, 33.5%) !default; // #555
+// $gray-light:    lighten($black, 46.7%) !default; // #777
+$gray-light:    lighten($black, 53.3%) !default; // #888
+$gray-lighter:  lighten($black, 87.5%) !default; // #dfdfdf //#efeff4
+$gray-lightest: lighten($black, 93.5%) !default; // #eee
+
+// @see https://github.com/winjs/winjs/blob/master/src/less/color-definitions.less
+$light-alt: #e6e6e6 !default;
+$light-base: $gray-dark !default;
+
+$dark-alt: #393939 !default;
+$dark-base: $white !default;
+
+// $brand-active:              #ffffdd !default;
+// $brand-disabled:            $gray-light !default;
+
+// 备选颜色
+//#0275d8 //#157EFB //#428bca //#15afef
+//#5eb95e //#53D76A //#5cb85c
+//#f0ad4e //#FD9426 //#f0ad4e
+//#dd514c //#FC3159 //#da314b
+
+
+
+// For internal use: a color map
+$theme-colors: (
+  primary:   $brand-primary,
+  secondary: $brand-secondary,
+  info:      $brand-info,
+  success:   $brand-success,
+  warning:   $brand-warning,
+  danger:    $brand-danger,
+  dark:      $dark-alt
+);
+
+$theme-sizes: (
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  lg: $font-size-lg,
+  xl: $font-size-xl
+);
+
+$theme-states: (
+  active: #{$ns}active,
+  disabled: #{$ns}disabled
+);
+
+// Diffirent border-radius styles
+$global-radius: 4px !default;
+$global-rounded: 1000px !default;
+
+$theme-radius: (
+  radius: $global-radius,
+  rounded: $global-rounded
+);
+
+
+// Options
+// -----------------------------------------------------------------------------
+// Quickly modify global styling by enabling or disabling optional features.
+
+// flex 兼容性受限？具体情况如何
+//See
+//http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+//http://www.ruanyifeng.com/blog/2015/07/flex-examples.html
+// chrome 21+ firefox22+ safari6.1+ IE10+ 都已支持实现
+// 设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。
+// FIXME Android Browser 4.3浏览器 不支持  flex 的 order 以及 auto 属性，所以暂时不要使用
+// 主要是老版本的 flex 方式，方法没有新版的强，想兼容改写的布局的地方太多
+$enable-flex:               false !default;
+// @if $enable-flex {
+//
+// } @else {
+//
+// }
+
+$enable-rounded:            false !default;
+$enable-shadows:            false !default;
+$enable-gradients:          false !default;
+$enable-transitions:        false !default;
+$enable-hover-media-query:  false !default;
+$enable-grid-classes:       true !default;
+
+
+// Spacing
+// -----------------------------------------------------------------------------
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+
+$spacer:                     1rem !default;
+$spacer-x:                   $spacer !default;
+$spacer-y:                   $spacer !default;
+$border-width:               1px !default;
+$line-height:                1.5 !default;
+
+
+// Fixed: Default spacing
+// 这个可以用 $spacer 间距来替代
+$global-padding: 1rem !default;
+$global-margin:  1rem !default;
+$global-spacing: rem-calc(15) !default;
+
+
+// Typography
+// -----------------------------------------------------------------------------
+// Font, line-height, and color for body text, headings, and more.
+
+/*
+// FreeSans: Ships with many Linux distros, including Ubuntu
+// Arimo: Ships with Chrome OS. Arimo has to be defined before Helvetica and
+//        Arial to get picked up by the browser, even though neither is available
+//        in Chrome OS.
+// Droid Sans: Ships with all versions of Android.
+// Roboto: Android new font-family from Android ISC
+// Helvetica, Arial, sans-serif: Common font stack on OS X and Windows.
+// Helvetica Neue: iOS & OS X 10.10 UI font (not Lucida Grande any more)
+//                 http://morrick.me/archives/6873
+// http://www.kendraschaefer.com/2012/06/chinese-standard-web-fonts-the-ultimate-guide-to-css-font-family-declarations-for-web-design-in-simplified-chinese/
+
+// Helvetica
+
+// apple.com: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana,
+*/
+
+$font-family-sans-serif: "Helvetica Neue", Helvetica, "Segoe UI", Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei", sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", Times, SimSimSun, serif; //FangSong, STFangSong
+$font-family-monospace: Monaco, Menlo, Consolas, "Courier New", monospace !default;
+//楷体？根本就用不到
+$font-family-kai: Georgia, "Times New Roman", Times, Kai, "Kaiti SC", KaiTi, BiauKai, serif !default;
+
+
+$font-family-base:     $font-family-sans-serif;
+
+// Z-index
+$z-index-view-top:     20 !default;
+$z-index-view-bottom:  $z-index-view-top - 10 !default;
+
+$z-index-base:         1000 !default;
+$z-index-modal:        $z-index-base + 10 !default;
+$z-index-notification: $z-index-base + 100 !default;
+$z-index-offcanvas:    $z-index-base + 20 !default;
+$z-index-popover:      $z-index-base + 30 !default;
+
+
+
+// TODO Links
+// -----------------------------------------------------------------------------
+// Style anchor elements.
+
+$link-color:                 $brand-primary !default;
+$link-decoration:            none !default;
+$link-hover-color:           darken($link-color, 15%) !default;
+$link-hover-decoration:      underline !default;
+
+
+// TODO Grid breakpoints
+// -----------------------------------------------------------------------------
+// Define the minimum and maximum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+/*
+@breakpoint-small:            640px;  // 0 - 640px
+@breakpoint-medium:           1024px; // 641 - 1024px
+@breakpoint-large:            1280px; // 1025 - 1280px
+@breakpoint-xl:               1440px; // 1281 - 1440px
+@breakpoint-xxl:              1920px; // 1441 -1920px
+*/
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 544px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // Extra large screen / wide desktop
+  xl: 1200px
+) !default;
+
+
+// TODO Grid containers
+// -----------------------------------------------------------------------------
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 576px,
+  md: 720px,
+  lg: 940px,
+  xl: 1140px
+) !default;
+
+
+// TODO Grid columns
+// -----------------------------------------------------------------------------
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:               12 !default;
+$grid-gutter-width:          1.875rem !default; // 30px
+
+
+// Typography
+// -----------------------------------------------------------------------------
+// Pixel value used to responsively scale all typography. Applied to the `<html>` element.
+
+// 一些约定：
+// 变量 *-color 即字体颜色，其他边框等，需指明 *-border-color
+// 组件的实现，独立且被其他组件依赖的先实现，如容器，网格，按钮
+
+// Body base
+// -----------------------------------------------------------------------------
+// Settings for the `<body>` element.
+
+$body-bg:                    #fff !default;
+$body-background:            #fff !default; //#f4f4f4 //#FBF9FE
+$body-color:                 $gray-dark !default;
+$body-font-family:           $font-family-base;
+$body-font-weight:           $font-weight-normal !default;
+$body-font-style:            normal !default;
+$body-font-size:             $font-size-base !default;
+
+
+// Headings
+$headings-margin-bottom:     ($spacer / 2) !default;
+$headings-font-family:       inherit !default;
+$headings-font-weight:       $font-weight-bold !default;
+$headings-line-height:       1.2 !default;
+$headings-color:             inherit !default;
+
+// We use these to control header font sizes
+$font-size-h1: rem-calc(24) !default;
+$font-size-h2: rem-calc(22) !default;
+$font-size-h3: rem-calc(20) !default;
+$font-size-h4: rem-calc(18) !default;
+$font-size-h5: rem-calc(16) !default;
+$font-size-h6: rem-calc(14) !default;
+
+// $display1-size:              4rem !default;
+// $display2-size:              3rem !default;
+// $display3-size:              2.5rem !default;
+// $display4-size:              2rem !default;
+//
+// $lead-font-size:             1.25rem !default;
+// $lead-font-weight:           300 !default;
+
+// Paragraph
+// We use these to style paragraphs
+// 这里不要自定义字体大小，应该和 body 一致即可
+$paragraph-font-size:     $body-font-size !default;
+$paragraph-line-height:   $line-height !default;
+
+
+
+$text-muted:                  $gray-light !default;
+$abbr-border-color:           $gray-light !default;
+
+
+
+// Lists
+$list-line-height:        $paragraph-line-height !default;
+$list-side-padding:       2em !default;
+$dl-header-weight:        $font-weight-bold !default;
+$dl-header-margin-bottom: rem-calc(10) !default;
+$dl-margin-bottom:        rem-calc(12) !default;
+
+// Blockquotes
+// 引用元素，这个布局可以固定用法
+$blockquote-font-family:       $font-family-serif;
+$blockquote-font-size:         $font-size-inherit !default;
+$blockquote-border-color:      $gray-lighter !default;
+$blockquote-cite-color:        $gray-light !default;
+
+// <hr>
+// border-width 没必要提取和 alert 组件边框同宽
+// 上下间距，倒可以使用 $spacer 单独控制
+$hr-border-width:   1px !default;
+$hr-border-style:   solid !default;
+//用半透明色，若用固定色在同色背景情况下就看不到了
+$hr-border-color:   rgba(0, 0, 0, 0.1) !default;
+$hr-margin:         rem-calc(20) !default;
+
+// -----------------------------------------------------------------------------
+// Components
+// -----------------------------------------------------------------------------
+$cursor-disabled:       not-allowed !default;
+
+
+// 容器 Container
+// -----------------------------------------------------------------------------
+$container-prefix: #{$ns}container !default;
+
+
+// 网格 Grid
+// -----------------------------------------------------------------------------
+$grid-prefix: #{$ns}g !default;
+$col-prefix: #{$ns}col !default;
+$grid-padding: rem-calc(10) !default;
+$grid-aligns: (
+  left: flex-start,
+  right: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+) !default;
+$total-columns: 6 !default;
+
+
+// 手风琴 Accordion
+// -----------------------------------------------------------------------------
+$accordion-prefix: #{$ns}accordion !default;
+$accordion-background: $white !default;
+$accordion-border: 1px solid #eee !default;
+
+
+// 标签 Badge Variables
+// -----------------------------------------------------------------------------
+$badge-prefix: #{$ns}badge !default;
+$label-prefix: #{$ns}label !default;
+$badge-fontsize: 0.8rem !default;  //75%; ???
+$badge-padding: 0.25em 0.5em !default;//($spacer-y * 0.25) ($spacer-x * 0.4) !default; //.25 .625 em ???
+$badge-radius: 0 !default;
+$badge-background: $light-alt !default;
+$badge-color: islight($badge-background) !default;
+
+
+// 按钮 Button
+// -----------------------------------------------------------------------------
+$button-prefix:         #{$ns}btn !default;
+$button-group-prefix:   #{$ns}btn-group !default;
+$button-padding:        rem-calc(10) rem-calc(10) !default; // 10px 15px
+//默认高度为 30 32 34 36 38 五中尺寸，可灵活更改字体大小
+//匹配12px 字体，有高度为 22 26 30 36 42
+//匹配14px 字体，比上各大2px
+$button-padding-sizes: (
+  xs: rem-calc(4) rem-calc(6),     //22
+  sm: rem-calc(6) rem-calc(10),    //30
+  lg: rem-calc(11) rem-calc(12),   //36
+  xl: rem-calc(14) rem-calc(15)    //44
+);
+$button-margin:         0 $global-padding $global-padding 0 !default;
+$button-style:          solid !default;
+$button-background:     $light-alt !default;
+$button-background-active: scale-color($button-background, $lightness: -15%) !default;
+$button-color:          auto !default;
+$button-radius:         0 !default;
+$button-font-size:      $font-size-default !default;
+$button-opacity-disabled: 0.5 !default;
+$button-tag-selector:   false !default;
+
+
+// 按钮组 Button Group
+// -----------------------------------------------------------------------------
+
+
+// 卡片 Card
+// -----------------------------------------------------------------------------
+$card-prefix: #{$ns}card !default;
+$card-margin: rem-calc(10) $spacer-x !default;
+$card-padding: rem-calc(20) $spacer-x !default;
+$card-background: $white !default;
+$card-color: islight($card-background) !default;
+
+
+// 表单 Form
+// -----------------------------------------------------------------------------
+$form-prefix: #{$ns}form;
+$field-prefix: #{$ns}field;
+
+$form-fontsize: 1rem !default;
+$form-padding: 0.75rem 0.5rem !default;
+
+// 文本框 Text fields
+$text-field-selectors: 'input[type="text"],
+                        input[type="password"],
+                        input[type="date"],
+                        input[type="datetime"],
+                        input[type="datetime-local"],
+                        input[type="month"],
+                        input[type="week"],
+                        input[type="time"],
+                        input[type="email"],
+                        input[type="tel"],
+                        input[type="url"],
+                        input[type="number"],
+                        input[type="search"],
+                        input[type="color"],
+                        textarea';
+$text-field-color: $gray-darker !default;
+$text-field-color-hover: $text-field-color !default;
+$text-field-color-focus: $text-field-color !default;
+$text-field-background: #fff !default;
+$text-field-background-hover: $text-field-background !default;
+$text-field-background-focus: $text-field-background !default;
+$text-field-background-disabled: smartscale($text-field-background) !default;
+$text-field-border: #ccc !default;
+$text-field-border-hover: #bbb !default;
+$text-field-border-focus: #999 !default;
+$text-field-cursor-disabled: not-allowed !default;
+
+// 标签 Labels
+$form-label-fontsize: 1rem !default;
+$form-label-margin: 0.5rem !default;
+$form-label-color: #333 !default;
+
+// 选择框 Select
+$select-color: $gray-darker !default;
+$select-background: #fafafa !default;
+$select-background-hover: smartscale($select-background, 4%) !default;
+$select-arrow: true !default;
+$select-arrow-color: $select-color !default;
+
+// 输入域 Field group
+$field-group-prefix: #{$ns}field-group;
+$field-group-color: #333 !default;
+$field-group-background: #eee !default;
+$field-group-border: $text-field-border !default;
+
+
+
+
+// 分组 Group
+// -----------------------------------------------------------------------------
+$group-prefix:  #{$ns}group !default;
+$group-header-color: #6d6d72 !default;
+$group-header-font-size: $font-size-sm !default;
+
+//
+// // Icon
+// // -----------------------------------------------------------------------------
+// $icon-prefix: #{$ns}icon;
+// $icon-path: 'fonts/';
+// $icons: (
+//   back: \e80a,
+//   bars: \e80e,
+//   caret: \e80f,
+//   check: \e810,
+//   close: \e811,
+//   code: \e812,
+//   compose: \e813,
+//   download: \e815,
+//   edit: \e829,
+//   forward: \e82a,
+//   gear: \e821,
+//   home: \e82b,
+//   info: \e82c,
+//   list: \e823,
+//   more-vertical: \e82e,
+//   more: \e82f,
+//   pages: \e824,
+//   pause: \e830,
+//   person: \e832,
+//   play: \e816,
+//   plus: \e817,
+//   refresh: \e825,
+//   search: \e819,
+//   share: \e81a,
+//   sound: \e827,
+//   sound2: \e828,
+//   sound3: \e80b,
+//   sound4: \e80c,
+//   star-filled: \e81b,
+//   star: \e81c,
+//   stop: \e81d,
+//   trash: \e81e,
+//   up-nav: \e81f,
+//   up: \e80d,
+//   right-nav: \e818,
+//   right: \e826,
+//   down-nav: \e814,
+//   down: \e820,
+//   left-nav: \e82d,
+//   left: \e822
+// ) !default;
+
+
+// 列表 List
+// -----------------------------------------------------------------------------
+$list-prefix: #{$ns}list !default;
+$item-prefix: #{$ns}item !default;
+$list-margin: $spacer-y * 2 0 !default;
+$list-background: $white !default;
+$list-border-color: $light-alt !default;
+
+
+// 加载器 Loader
+// -----------------------------------------------------------------------------
+$loader-prefix: #{$ns}loader !default;
+$loader-width: 32px !default;
+$loader-color: $gray-light !default;
+
+
+// 模态窗口 Modal
+// -----------------------------------------------------------------------------
+$modal-prefix: #{$ns}modal !default;
+$modal-width: 270px !default;
+$modal-background: #f8f8f8 !default;
+$modal-btn-color: $brand-primary !default;
+$modal-btn-bg: $modal-background !default;
+$modal-btn-active-bg: #d4d4d4 !default;
+$modal-duration: .3s !default;
+$modal-border-color: #dedede !default;
+
+$modal-actions-btn-bg: rgba(243, 243, 243, 0.95) !default;
+$modal-actions-active-btn-bg: #dcdcdc !default;
+
+$modal-popup-prefix: #{$ns}popup !default;
+$modal-popup-title-height: 44 !default;
+
+
+// 导航条 Navbar
+// -----------------------------------------------------------------------------
+$navbar-prefix: #{$ns}navbar !default;
+$navbar-class-center: #{$navbar-prefix}-center !default;
+$navbar-class-left: #{$navbar-prefix}-left !default;
+$navbar-class-right: #{$navbar-prefix}-right !default;
+$navbar-class-title: #{$navbar-prefix}-title !default;
+
+$navbar-height-px: 44 !default;
+$navbar-height: rem-calc($navbar-height-px) !default;
+$navbar-center-width: 50% !default;
+$navbar-side-width: (100% - $navbar-center-width) / 2 !default;
+$navbar-background: #efeff4 !default;  //$gray-lighter
+$navbar-color: $gray-dark !default;
+$navbar-padding: 0 rem-calc(10) !default;
+$navbar-line-height: rem-calc($navbar-height-px - 1);
+
+
+// 通知 Notification
+// -----------------------------------------------------------------------------
+$notification-prefix: #{$ns}notification !default;
+$notification-padding: rem-calc(10) $global-padding !default;
+$notification-background: $gray-darker !default;
+$notification-color: $white!default;
+
+
+// 侧边栏 OffCanvas
+// -----------------------------------------------------------------------------
+$offcanvas-prefix: #{$ns}offcanvas !default;
+$offcanvas-width: rem-calc(270);
+$offcanvas-background: $white !default;
+$offcanvas-duration: .4s !default;
+$offcanvas-timing-function: ease-in-out !default;
+
+
+// 冒泡提醒 Popover
+// -----------------------------------------------------------------------------
+$popover-prefix: #{$ns}popover !default;
+$popover-width: rem-calc(240);
+$popover-background: $white !default;
+$popover-border: #ddd !default;
+$popover-color: $gray-dark !default;
+$popover-duration: .3s !default;
+$popover-angle-size: 8px !default;
+
+
+// Slider
+// -----------------------------------------------------------------------------
+$slider-prefix: #{$ns}slider !default;
+$slider-duration: .5s;
+$slider-text-shadow: 0 1px 2px rgba(0, 0, 0, .6) !default;
+$slider-indicator-active-bg: $white !default;
+$slider-indicator-border-color: $white !default;
+$slider-caption-color: $white !default;
+
+
+// 开关 Switch
+// -----------------------------------------------------------------------------
+$switch-prefix: #{$ns}switch !default;
+$switch-background: #ddd !default;
+$switch-background-active: $brand-primary !default;
+$switch-inner-background: $white !default;
+$switch-radius: 9999px !default;
+
+
+// TabBar
+// -----------------------------------------------------------------------------
+$tabbar-prefix: #{$ns}tabbar !default;
+$tabbar-height-px: 49 !default;
+$tabbar-height: rem-calc($tabbar-height-px) !default;
+$tabbar-padding-horizontal: $global-padding !default;
+$tabbar-background: $light-alt !default;
+$tabbar-color: $gray-light!default;
+
+
+// Tabs
+// -----------------------------------------------------------------------------
+$tabs-prefix: #{$ns}tabs !default;
+$tab-prefix: #{$ns}tab !default;
+$tabs-background: $white !default;
+
+
+
+
+// View
+// -----------------------------------------------------------------------------
+$views-prefix: #{$ns}views !default;
+$view-prefix: #{$ns}view !default;
+
+$view-transition-duration: .5s;
+$view-transition-timing-function: cubic-bezier(0.36, 0.66, 0.04, 1) !default;
+// cubic-bezier(0.03, 0.76, 0.31, 1.0);
+// cubic-bezier(0.1,0.9,0.2,1);
+// cubic-bezier(0.84, 0, 1, 0.32) !default;
+// cubic-bezier(.36, .66, .04, 1) !default; // iOS
+
+
+
+
+
+
+
+
+
+
+
+
+// 以下都待定
+/////////////////////////
+////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+// TODO Components
+// -----------------------------------------------------------------------------
+// Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+$line-height-lg:         (4 / 3) !default;
+$line-height-sm:         1.5 !default;
+
+$border-radius:          0.25rem !default;
+$border-radius-lg:       0.3rem !default;
+$border-radius-sm:       0.2rem !default;
+
+$component-active-color: #fff !default;
+$component-active-bg:    $brand-primary !default;
+
+$caret-width:            0.3em !default;
+$caret-width-lg:         $caret-width !default;
+
+
+
+// TODO Border radius
+// -----------------------------------------------------------------------------
+
+$global-radius:          0 !default;
+$radius-normal:          2px !default;
+$radius-lg:              5px !default;
+$radius-sm:              1px !default;
+
+$global-rounded:          1000px !default;
+$global-square:            0 !default;
+
+
+
+
+// Tables
+// -----------------------------------------------------------------------------
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-cell-padding:            0.6rem !default;
+$table-sm-cell-padding:         0.3rem !default;
+
+$table-bg:                      transparent !default;
+
+
+$table-bg-accent:               #f9f9f9 !default;
+$table-bg-hover:                #e9e9e9 !default;  //#f5f5f5;// #fbf6e9;
+$table-bg-active:               #ffd !default;  //$table-bg-hover !default;
+
+$table-border-color:            #ddd; //$gray-lighter !default;
+
+
+// Buttons
+// -----------------------------------------------------------------------------
+// For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-padding-x:                  1rem !default;
+$btn-padding-y:                  0.375rem !default;
+$btn-font-weight:                normal !default;
+
+$btn-default-color:               #444 !default;
+$btn-default-bg:                  #e6e6e6 !default;
+$btn-default-border:              $btn-default-bg !default;
+
+$btn-primary-color:              #fff !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             $btn-primary-bg !default;
+
+$btn-secondary-color:            $gray-dark !default;
+$btn-secondary-bg:               #fff !default;
+$btn-secondary-border:           #ccc !default;
+
+$btn-info-color:                 #fff !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border:                $btn-info-bg !default;
+
+$btn-success-color:              #fff !default;
+$btn-success-bg:                 $brand-success !default;
+$btn-success-border:             $btn-success-bg !default;
+
+$btn-warning-color:              #fff !default;
+$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-border:             $btn-warning-bg !default;
+
+$btn-danger-color:               #fff !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border:              $btn-danger-bg !default;
+
+$btn-link-disabled-color:        $gray-light !default;
+
+$btn-padding-x-xs:               0.625rem !default;
+$btn-padding-x-sm:               1rem !default;
+$btn-padding-x-lg:               1.25rem !default;
+$btn-padding-x-xl:               1.5rem !default;
+
+$btn-padding-y-xs:               0.125rem !default;
+$btn-padding-y-sm:               0.25rem !default;
+$btn-padding-y-lg:               0.5rem !default;
+$btn-padding-y-xl:               0.5rem !default;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius:              $border-radius !default;
+$btn-border-radius-lg:           $border-radius-lg !default;
+$btn-border-radius-sm:           $border-radius-sm !default;
+
+
+// Forms
+// -----------------------------------------------------------------------------
+
+$input-padding-x:                0.75rem !default;
+$input-padding-y:                0.375rem !default;
+
+$input-bg:                       #fff !default;
+$input-bg-disabled:              $gray-lighter !default;
+
+$input-color:                    $gray !default;
+$input-border:                   #ccc !default;
+$input-box-shadow:               inset 0 1px 1px rgba(0,0,0,.075) !default;
+
+$input-border-radius:            $border-radius !default;
+$input-border-radius-lg:         $border-radius-lg !default;
+$input-border-radius-sm:         $border-radius-sm !default;
+
+$input-border-focus:             #66afe9 !default;
+$input-box-shadow-focus:         rgba(102,175,233,.6) !default;
+
+$input-color-placeholder:        #999 !default;
+
+$input-padding-x-sm:             0.75rem !default;
+$input-padding-y-sm:             0.275rem !default;
+
+$input-padding-x-lg:             1.25rem !default;
+$input-padding-y-lg:             0.75rem !default;
+
+$input-height:                   (($font-size-base * $line-height) + ($input-padding-y * 2)) !default;
+$input-height-lg:                ((1.25rem * $line-height-lg) + ($input-padding-y-lg * 2)) !default;
+$input-height-sm:                ((0.85rem * $line-height-sm) + ($input-padding-y-sm * 2)) !default;
+
+$form-group-margin-bottom:       $spacer-y !default;
+
+$input-group-addon-bg:           $gray-lighter !default;
+$input-group-addon-border-color: $input-border !default;
+
+
+
+
+// Form validation icons
+// -----------------------------------------------------------------------------
+$form-icon-success: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjNWNiODVjIiBkPSJNMjMzLjggNjEwYy0xMy4zIDAtMjYtNi0zNC0xNi44TDkwLjUgNDQ4LjhDNzYuMyA0MzAgODAgNDAzLjMgOTguOCAzODljMTguOC0xNC4yIDQ1LjUtMTAuNCA1OS44IDguNGw3MiA5NUw0NTEuMyAyNDJjMTIuNS0yMCAzOC44LTI2LjIgNTguOC0xMy43IDIwIDEyLjQgMjYgMzguNyAxMy43IDU4LjhMMjcwIDU5MGMtNy40IDEyLTIwLjIgMTkuNC0zNC4zIDIwaC0yeiIvPjwvc3ZnPg==";
+$form-icon-warning: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjZjBhZDRlIiBkPSJNNjAzIDY0MC4ybC0yNzguNS01MDljLTMuOC02LjYtMTAuOC0xMC42LTE4LjUtMTAuNnMtMTQuNyA0LTE4LjUgMTAuNkw5IDY0MC4yYy0zLjcgNi41LTMuNiAxNC40LjIgMjAuOCAzLjggNi41IDEwLjggMTAuNCAxOC4zIDEwLjRoNTU3YzcuNiAwIDE0LjYtNCAxOC40LTEwLjQgMy41LTYuNCAzLjYtMTQuNCAwLTIwLjh6bS0yNjYuNC0zMGgtNjEuMlY1NDloNjEuMnY2MS4yem0wLTEwN2gtNjEuMlYzMDRoNjEuMnYxOTl6Ii8+PC9zdmc+";
+$form-icon-danger: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjZDk1MzRmIiBkPSJNNDQ3IDU0NC40Yy0xNC40IDE0LjQtMzcuNiAxNC40LTUyIDBsLTg5LTkyLjctODkgOTIuN2MtMTQuNSAxNC40LTM3LjcgMTQuNC01MiAwLTE0LjQtMTQuNC0xNC40LTM3LjYgMC01Mmw5Mi40LTk2LjMtOTIuNC05Ni4zYy0xNC40LTE0LjQtMTQuNC0zNy42IDAtNTJzMzcuNi0xNC4zIDUyIDBsODkgOTIuOCA4OS4yLTkyLjdjMTQuNC0xNC40IDM3LjYtMTQuNCA1MiAwIDE0LjMgMTQuNCAxNC4zIDM3LjYgMCA1MkwzNTQuNiAzOTZsOTIuNCA5Ni40YzE0LjQgMTQuNCAxNC40IDM3LjYgMCA1MnoiLz48L3N2Zz4=";
+
+
+// Dropdowns
+// -----------------------------------------------------------------------------
+// Dropdown menu container and contents.
+
+$dropdown-bg:                    #fff !default;
+$dropdown-border:                rgba(0,0,0,.15) !default;
+$dropdown-divider-bg:            #e5e5e5 !default;
+
+$dropdown-link-color:            $gray-dark !default;
+$dropdown-link-hover-color:      darken($gray-dark, 5%) !default;
+$dropdown-link-hover-bg:         #f5f5f5 !default;
+
+$dropdown-link-active-color:     $component-active-color !default;
+$dropdown-link-active-bg:        $component-active-bg !default;
+
+$dropdown-link-disabled-color:   $gray-light !default;
+
+$dropdown-header-color:          $gray-light !default;
+
+
+// Z-index master list
+// -----------------------------------------------------------------------------
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+//
+// Note: These variables are not generated into the Customizer.
+
+$zindex-navbar:            1000 !default;
+$zindex-dropdown:          1000 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
+$zindex-navbar-fixed:      1030 !default;
+$zindex-navbar-sticky:     1030 !default;
+$zindex-modal-bg:          1040 !default;
+$zindex-modal:             1050 !default;
+
+
+// Navbar
+// -----------------------------------------------------------------------------
+
+$navbar-border-radius:              $border-radius !default;
+$navbar-padding-horizontal:         $spacer !default;
+$navbar-padding-vertical:           ($spacer / 2) !default;
+
+$navbar-dark-color:                 rgba(255,255,255,.5) !default;
+$navbar-dark-hover-color:           rgba(255,255,255,.75) !default;
+$navbar-dark-active-color:          rgba(255,255,255,1) !default;
+$navbar-dark-disabled-color:        rgba(255,255,255,.25) !default;
+
+$navbar-light-color:                rgba(0,0,0,.3) !default;
+$navbar-light-hover-color:          rgba(0,0,0,.6) !default;
+$navbar-light-active-color:         rgba(0,0,0,.8) !default;
+$navbar-light-disabled-color:       rgba(0,0,0,.15) !default;
+
+
+// Navs
+// -----------------------------------------------------------------------------
+
+$nav-link-padding:                          0.5em 1em !default;
+$nav-link-hover-bg:                         $gray-lighter !default;
+
+$nav-disabled-link-color:                   $gray-light !default;
+$nav-disabled-link-hover-color:             $gray-light !default;
+
+$nav-tabs-border-color:                     #ddd !default;
+
+$nav-tabs-link-hover-border-color:          $gray-lighter !default;
+
+$nav-tabs-active-link-hover-bg:             $body-bg !default;
+$nav-tabs-active-link-hover-color:          $gray !default;
+$nav-tabs-active-link-hover-border-color:   #ddd !default;
+
+$nav-tabs-justified-link-border-color:            #ddd !default;
+$nav-tabs-justified-active-link-border-color:     $body-bg !default;
+
+$nav-pills-border-radius:                   $border-radius !default;
+$nav-pills-active-link-hover-bg:            $component-active-bg !default;
+$nav-pills-active-link-hover-color:         $component-active-color !default;
+
+
+// Pagination
+// -----------------------------------------------------------------------------
+
+$pagination-padding-x:                0.75rem !default;
+$pagination-padding-y:                0.5rem !default;
+$pagination-padding-x-sm:             0.75rem !default;
+$pagination-padding-y-sm:             0.275rem !default;
+$pagination-padding-x-lg:             1.5rem !default;
+$pagination-padding-y-lg:             0.75rem !default;
+
+
+$pagination-color:                     $link-color !default;
+$pagination-bg:                        #fff !default;
+$pagination-border:                    #ddd !default;
+
+$pagination-hover-color:               $link-hover-color !default;
+$pagination-hover-bg:                  $gray-lighter !default;
+$pagination-hover-border:              #ddd !default;
+
+$pagination-active-color:              #fff !default;
+$pagination-active-bg:                 $brand-primary !default;
+$pagination-active-border:             $brand-primary !default;
+
+$pagination-disabled-color:            $gray-light !default;
+$pagination-disabled-bg:               #fff !default;
+$pagination-disabled-border:           #ddd !default;
+
+
+// Pager
+// -----------------------------------------------------------------------------
+
+$pager-bg:                             $pagination-bg !default;
+$pager-border:                         $pagination-border !default;
+$pager-border-radius:                  15px !default;
+
+$pager-hover-bg:                       $pagination-hover-bg !default;
+
+$pager-active-bg:                      $pagination-active-bg !default;
+$pager-active-color:                   $pagination-active-color !default;
+
+$pager-disabled-color:                 $pagination-disabled-color !default;
+
+
+// Jumbotron
+// -----------------------------------------------------------------------------
+
+$jumbotron-padding:              2rem !default;
+$jumbotron-bg:                   $gray-lighter !default;
+
+
+// Form states and alerts
+// -----------------------------------------------------------------------------
+// Define colors for form feedback states and, by default, alerts.
+
+$state-success-text:             #3c763d !default;
+$state-success-bg:               #dff0d8 !default;
+$state-success-border:           darken($state-success-bg, 5%) !default;
+
+$state-info-text:                #31708f !default;
+$state-info-bg:                  #d9edf7 !default;
+$state-info-border:              darken($state-info-bg, 7%) !default;
+
+$state-warning-text:             #8a6d3b !default;
+$state-warning-bg:               #fcf8e3 !default;
+$state-warning-border:           darken($state-warning-bg, 5%) !default;
+
+$state-danger-text:              #a94442 !default;
+$state-danger-bg:                #f2dede !default;
+$state-danger-border:            darken($state-danger-bg, 5%) !default;
+
+// 荧光笔颜色
+$state-mark-bg:                  #ffff00 !default;
+
+// Cards
+// -----------------------------------------------------------------------------
+
+$card-spacer-x:            1.25rem !default;
+$card-spacer-y:            0.75rem !default;
+$card-border-width:        0.0625rem !default;
+$card-border-radius:       $border-radius !default;
+$card-border-color:        #e5e5e5 !default;
+$card-border-radius-inner: ($card-border-radius - $card-border-width) !default;
+$card-cap-bg:              #f5f5f5 !default;
+$card-bg:                  #fff !default;
+
+$card-link-hover-color:    #fff !default;
+
+// Tooltips
+// -----------------------------------------------------------------------------
+
+$tooltip-max-width:           200px !default;
+$tooltip-color:               #fff !default;
+$tooltip-bg:                  #000 !default;
+$tooltip-opacity:             0.9 !default;
+
+$tooltip-arrow-width:         5px !default;
+$tooltip-arrow-color:         $tooltip-bg !default;
+
+
+// Popovers
+// -----------------------------------------------------------------------------
+
+$popover-bg:                          #fff !default;
+$popover-max-width:                   276px !default;
+$popover-border-color:                rgba(0,0,0,.2) !default;
+$popover-fallback-border-color:       #ccc !default;
+
+$popover-title-bg:                    darken($popover-bg, 3%) !default;
+
+$popover-arrow-width:                 10px !default;
+$popover-arrow-color:                 $popover-bg !default;
+
+$popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
+$popover-arrow-outer-color:           fade-in($popover-border-color, 0.05) !default;
+$popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%) !default;
+
+
+// Labels
+// -----------------------------------------------------------------------------
+
+$label-default-bg:            $gray-light !default;
+$label-primary-bg:            $brand-primary !default;
+$label-success-bg:            $brand-success !default;
+$label-info-bg:               $brand-info !default;
+$label-warning-bg:            $brand-warning !default;
+$label-danger-bg:             $brand-danger !default;
+
+$label-color:                 #fff !default;
+$label-link-hover-color:      #fff !default;
+
+
+// Modals
+// -----------------------------------------------------------------------------
+// Padding applied to the modal body
+
+$modal-inner-padding:         15px !default;
+
+$modal-title-padding:         15px !default;
+$modal-title-line-height:     $line-height !default;
+
+$modal-content-bg:                             #fff !default;
+$modal-content-border-color:                   rgba(0,0,0,.2) !default;
+
+$modal-backdrop-bg:           #000 !default;
+$modal-backdrop-opacity:      0.5 !default;
+$modal-header-border-color:   #e5e5e5 !default;
+$modal-footer-border-color:   $modal-header-border-color !default;
+
+$modal-lg:                    900px !default;
+$modal-md:                    600px !default;
+$modal-sm:                    300px !default;
+
+
+// Alerts
+// -----------------------------------------------------------------------------
+// Define alert colors, border radius, and padding.
+
+$alert-padding:               15px !default;
+$alert-border-radius:         $border-radius !default;
+$alert-link-font-weight:      bold !default;
+$alert-border-width:          $border-width !default;
+
+$alert-success-bg:            $state-success-bg !default;
+$alert-success-text:          $state-success-text !default;
+$alert-success-border:        $state-success-border !default;
+
+$alert-info-bg:               $state-info-bg !default;
+$alert-info-text:             $state-info-text !default;
+$alert-info-border:           $state-info-border !default;
+
+$alert-warning-bg:            $state-warning-bg !default;
+$alert-warning-text:          $state-warning-text !default;
+$alert-warning-border:        $state-warning-border !default;
+
+$alert-danger-bg:             $state-danger-bg !default;
+$alert-danger-text:           $state-danger-text !default;
+$alert-danger-border:         $state-danger-border !default;
+
+
+// Progress bars
+// -----------------------------------------------------------------------------
+
+$progress-bg:                 #f5f5f5 !default;
+$progress-bar-color:          #fff !default;
+$progress-border-radius:      $border-radius !default;
+
+$progress-bar-bg:             $brand-primary !default;
+$progress-bar-success-bg:     $brand-success !default;
+$progress-bar-warning-bg:     $brand-warning !default;
+$progress-bar-danger-bg:      $brand-danger !default;
+$progress-bar-info-bg:        $brand-info !default;
+
+
+// List group
+// -----------------------------------------------------------------------------
+
+$list-group-bg:                 #fff !default;
+$list-group-border:             #ddd !default;
+$list-group-border-radius:      $border-radius !default;
+
+$list-group-hover-bg:           #f5f5f5 !default;
+$list-group-active-color:       $component-active-color !default;
+$list-group-active-bg:          $component-active-bg !default;
+$list-group-active-border:      $list-group-active-bg !default;
+$list-group-active-text-color:  lighten($list-group-active-bg, 40%) !default;
+
+$list-group-disabled-color:      $gray-light !default;
+$list-group-disabled-bg:         $gray-lighter !default;
+$list-group-disabled-text-color: $list-group-disabled-color !default;
+
+$list-group-link-color:         #555 !default;
+$list-group-link-hover-color:   $list-group-link-color !default;
+$list-group-link-heading-color: #333 !default;
+
+
+// Image thumbnails
+// -----------------------------------------------------------------------------
+
+$thumbnail-padding:           0.25rem !default;
+$thumbnail-bg:                $body-bg !default;
+$thumbnail-border:            #ddd !default;
+$thumbnail-border-radius:     $border-radius !default;
+
+
+// Breadcrumbs
+// -----------------------------------------------------------------------------
+
+$breadcrumb-padding-vertical:   0.75rem !default;
+$breadcrumb-padding-horizontal: 1rem !default;
+
+$breadcrumb-bg:                 $gray-lighter !default;
+$breadcrumb-divider-color:      $gray-light !default;
+$breadcrumb-active-color:       $gray-light !default;
+$breadcrumb-divider:            "/" !default;
+
+
+// Carousel
+// -----------------------------------------------------------------------------
+
+$carousel-text-shadow:                        0 1px 2px rgba(0,0,0,.6) !default;
+
+$carousel-control-color:                      #fff !default;
+$carousel-control-width:                      15% !default;
+$carousel-control-opacity:                    0.5 !default;
+$carousel-control-font-size:                  20px !default;
+
+$carousel-indicator-active-bg:                #fff !default;
+$carousel-indicator-border-color:             #fff !default;
+
+$carousel-caption-color:                      #fff !default;
+
+
+// Close
+// -----------------------------------------------------------------------------
+
+$close-font-weight:           bold !default;
+$close-color:                 #000 !default;
+$close-text-shadow:           0 1px 0 #fff !default;
+$close-alt-background:        #eee;
+
+// Code
+// -----------------------------------------------------------------------------
+
+$code-color:                  #bd4147 !default;  //#c7254e;
+$code-bg:                     #f7f7f9 !default;  //#f8f8f8;
+
+$kbd-color:                   #fff !default;
+$kbd-bg:                      #333 !default;
+
+$pre-bg:                      #f7f7f9 !default;
+$pre-color:                   $gray-dark !default;
+$pre-border:                  1px solid #dedede !default;
+$pre-border-color:            #ccc !default;  //#dedede;
+$pre-scrollable-max-height:   340px !default; //24rem;
+
+
+// Icon variables 临时代码
+// -----------------------------------------------------------------------------

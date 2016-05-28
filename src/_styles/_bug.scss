@@ -1,0 +1,33 @@
+
+/*
+  各种代码状态标记
+  FIXME, TODO, CHANGED, XXX, IDEA, HACK, NOTE, REVIEW
+  Bug当前状态 可能值：
+      OPEN
+      CLOSE  已经修复，最终状态：关闭
+      REOPEN 重新打开
+  Bug是否已经解决 可能值：
+      INVALID
+      FIXED（已修复，待确认）
+**/
+
+
+// 修复一些常规的样式或功能缺陷使用
+
+//placeholder并不支持padding和height值，在Android手机原生浏览器里面如果设置了line-height的值，比如设为line-height:32px
+//在Android自带浏览器、百度手机浏览器、小米自带浏览器上出现图一的问题（占位符靠顶部）。uc/qq正常
+//解决办法：把line-height设置为line-height:normal(或者不设置行高问题，只设置padding即可)
+//参看：
+//http://stackoverflow.com/questions/4919680/html5-placeholder-css-padding
+//http://caibaojian.com/html5-placeholder-discuzz.html
+input {
+  line-height: normal !important;
+}
+
+//FIXED: 修复部分手机浏览器 fixed 抖动问题（安卓 UC，360等，在地址栏存在时，滚动页面，则 fixed 定位元素会抖动），
+//http://www.chenyudong.com/archives/chrome-position-fixed-shake.html
+.fixed {
+  position: fixed;
+  -webkit-transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;  // 滚动不流畅，此属性可以恢复弹性滚动 http://efe.baidu.com/blog/mobile-fixed-layout
+}
