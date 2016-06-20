@@ -13,6 +13,7 @@
 
 // Core base
 @import "./base";
+@import "core/animation";                  //done
 
 
 // Layout
@@ -24,18 +25,14 @@
 // @import "element/code";                 //done
 // @import "element/tables";               //doing
 // @import "element/forms";                //待定
-@import "./element/typography";           //doing
+@import "./element/typography";            //doing
 
-
-// states
-// @import "states/print";                    //done
 
 
 // Components [组件实现有优先级，最常用的要先实现，大体级别如下：]
 // 暂时不排序
 // Touch
 // Components
-@import "_helper/_animation";            //done
 @import "components/container";            //done
 @import "components/grid";
 @import "components/group";                //doing
@@ -66,7 +63,6 @@
 // @import "components/pagination";
 // @import "components/progress";
 // @import "components/misc";
-// @import "components/animation";
 
 
 // Bootstrap
@@ -122,7 +118,9 @@
 // @import "utilities/utilities-spacing";
 // @import "utilities/utilities-responsive";
 
-// 状态属性
+
+// states 状态属性
+// @import "states/print";                 //done
 @import "./status";                     //doing
 
 // 处理 bug
