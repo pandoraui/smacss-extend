@@ -1,0 +1,27 @@
+
+// Fade
+// =============================================================================
+
+@mixin fade-make($className, $keyframeName) {
+  @include make-animate($className, $keyframeName);
+  .#{$className}-enter {
+    animation-timing-function: linear;
+  }
+  .#{$className}-leave {
+    animation-timing-function: linear;
+  }
+}
+
+@include fade-make('fade', null);
+
+
+// keyframes
+// -----------------------------------------------------------------------------
+
+@keyframes fade-in  {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fade-out {
+  to { opacity: 0; }
+}

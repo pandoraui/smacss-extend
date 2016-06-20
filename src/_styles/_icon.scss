@@ -68,6 +68,8 @@ $icons: (
 // Output
 // -----------------------------------------------------------------------------
 
+// %placeholder
+// 使用%placeholder创建一个静态规则和使用@mixin创建一个动态规则
 %font-icon {
   display: inline-block;
   font-family: "iconfont", sans-serif !important;

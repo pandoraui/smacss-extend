@@ -1,3 +1,12 @@
+/*! _reboot.css v4.1.1 | MIT License | github.com/twbs/bootstrap/blob/v4-dev/scss/_reboot.scss */
+
+
+// 基础设定，经过考虑，觉得不应该引入非常用变量设定，应只包含基础设定，比如最佳实践
+// 全局字体大小，行高，字体，等
+// 这些设定，本身应该在 base 中含有，用于自定义修改
+
+// scss-lint:disable ImportantRule, QualifyingElement, DuplicateProperty
+
 // Reboot
 //
 // Global resets to common HTML elements and more for easier usage by Bootstrap.
@@ -32,8 +41,7 @@ html {
 //
 // @viewport is needed because IE 10+ doesn't honor <meta name="viewport"> in
 // some cases. See http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/.
-// Eventually @viewport will replace <meta name="viewport">. It's been manually
-// prefixed for forward-compatibility.
+// Eventually @viewport will replace <meta name="viewport">.
 //
 // However, `device-width` is broken on IE 10 on Windows (Phone) 8,
 // (see http://timkadlec.com/2013/01/windows-phone-8-and-device-width/ and https://github.com/twbs/bootstrap/issues/10497)
@@ -41,17 +49,13 @@ html {
 // and apply some conditional CSS.
 //
 // See http://getbootstrap.com/getting-started/#support-ie10-width for the relevant hack.
-
-
+//
 // Wrap `@viewport` with `@at-root` for when folks do a nested import (e.g.,
 // `.class-name { @import "bootstrap"; }`).
 @at-root {
-  @-moz-viewport      { width: device-width; }
-  @-ms-viewport       { width: device-width; }
-  @-o-viewport        { width: device-width; }
-  @-webkit-viewport   { width: device-width; }
-  @viewport           { width: device-width; }
+  @-ms-viewport { width: device-width; }
 }
+
 
 //
 // Reset HTML, body, and more
@@ -60,6 +64,13 @@ html {
 html {
   // Sets a specific default `font-size` for user with `rem` type scales.
   font-size: $font-size-root;
+  // As a side-effect of setting the @viewport above,
+  // IE11 & Edge make the scrollbar overlap the content and automatically hide itself when not in use.
+  // Unfortunately, the auto-showing of the scrollbar is sometimes too sensitive,
+  // thus making it hard to click on stuff near the right edge of the page.
+  // So we add this style to force IE11 & Edge to use a "normal", non-overlapping, non-auto-hiding scrollbar.
+  // See https://github.com/twbs/bootstrap/issues/18543
+  -ms-overflow-style: scrollbar;
   // Changes the default tap highlight to be completely transparent in iOS.
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -68,11 +79,20 @@ body {
   // Make the `body` use the `font-size-root`
   font-family: $font-family-base;
   font-size: $font-size-base;
-  line-height: $line-height;
+  line-height: $line-height-base;
   // Go easy on the eyes and use something other than `#000` for text
   color: $body-color;
   // By default, `<body>` has no `background-color` so we set one as a best practice.
-  background-color: $body-bg;
+  background-color: $body-background;
+}
+
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// This prevents an unwanted focus outline from appearing around elements that
+// might still respond to pointer events.
+//
+// Credit: https://github.com/suitcss/base
+[tabindex="-1"]:focus {
+  outline: none !important;
 }
 
 
@@ -127,7 +147,7 @@ ul ol {
 }
 
 dt {
-  font-weight: bold;
+  font-weight: $dt-font-weight;
 }
 
 dd {
@@ -141,20 +161,40 @@ blockquote {
 
 
 //
-// Links
+// Links 链接颜色及hover、active 状态
 //
 
 a {
   color: $link-color;
   text-decoration: $link-decoration;
 
-  // @include hover-focus {
-  //   color: $link-hover-color;
-  //   text-decoration: $link-hover-decoration;
-  // }
+  @include hover-focus {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
 
   &:focus {
     @include tab-focus();
+  }
+}
+
+// And undo these styles for placeholder links/named anchors (without href)
+// which have not been made explicitly keyboard-focusable (without tabindex).
+// It would be more straightforward to just use a[href] in previous block, but that
+// causes specificity issues in many other styles that are too complex to fix.
+// See https://github.com/twbs/bootstrap/issues/19402
+
+a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+
+  @include hover-focus {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -168,6 +208,8 @@ pre {
   margin-top: 0;
   // Reset browser default of `1em` to use `rem`s
   margin-bottom: 1rem;
+  // Normalize v4 removed this property, causing `<pre>` content to break out of wrapping code snippets
+  overflow: auto;
 }
 
 
@@ -180,7 +222,6 @@ figure {
   // We reset that to create a better flow in-page.
   margin: 0 0 1rem;
 }
-
 
 
 //
@@ -229,11 +270,14 @@ textarea {
   touch-action: manipulation;
 }
 
+
 //
 // Tables
 //
 
 table {
+  // No longer part of Normalize since v4
+  border-collapse: collapse;
   // Reset for nesting within parents with `background-color`.
   background-color: $table-bg;
 }
@@ -257,9 +301,18 @@ th {
 //
 
 label {
-  // Allow labels can use `margin` for spacing.
+  // Allow labels to use `margin` for spacing.
   display: inline-block;
   margin-bottom: .5rem;
+}
+
+// Work around a Firefox/IE bug where the transparent `button` background
+// results in a loss of the default `button` focus styles.
+//
+// Credit: https://github.com/suitcss/base/
+button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
 }
 
 input,
@@ -274,6 +327,29 @@ textarea {
   line-height: inherit;
   // iOS adds rounded borders by default
   border-radius: 0;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  // Apply a disabled cursor for radios and checkboxes.
+  //
+  // Note: Neither radios nor checkboxes can be readonly.
+  &:disabled {
+    cursor: $cursor-disabled;
+  }
+}
+
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  // Remove the default appearance of temporal inputs to avoid a Mobile Safari
+  // bug where setting a custom line-height prevents text from being vertically
+  // centered within the input.
+  //
+  // Bug report: https://github.com/twbs/bootstrap/issues/11266
+  -webkit-appearance: listbox;
 }
 
 textarea {
@@ -300,12 +376,9 @@ legend {
   margin-bottom: .5rem;
   font-size: 1.5rem;
   line-height: inherit;
-//  border: 0;
 }
 
 input[type="search"] {
-  // Undo Normalize's default here to match our global overrides.
-  box-sizing: inherit;
   // This overrides the extra rounded corners on search inputs in iOS so that our
   // `.form-control` class can properly style them. Note that this cannot simply
   // be added to `.form-control` as it's not specific enough. For details, see
