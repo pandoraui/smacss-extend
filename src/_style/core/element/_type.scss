@@ -137,15 +137,19 @@ mark,
 // Blockquotes
 blockquote {
   padding: ($spacer / 2) $spacer;
-  margin-bottom: $spacer;
+  margin: 0 $spacer;
   // font-size: $blockquote-font-size;
   font-size: $blockquote-font-size;
   border: none;
   border-left: .25rem solid $blockquote-border-color;
 
-  blockquote {
-    margin-left: $spacer * 1.5;
+  *:first-child{
+    margin-top: 0;
   }
+
+  // blockquote {
+  //   margin-left: $spacer * 1.5;
+  // }
   p,
   ul,
   ol {

@@ -36,7 +36,7 @@
   height: 1px;
   overflow: hidden;
   width: 100%;
-  background-color: $line-lighter;
+  background-color: $gray-lighter;
   display: block;
   z-index: 15;
   clip: rect(auto auto auto $spacer);
@@ -101,14 +101,13 @@
 
     &:active{
       transition-duration: 0ms;
-      background-color: $line-lighter;
+      background-color: $gray-lighter;
     }
 
     &:after{
       content: '';
       margin-left: px2rem(8);
       margin-right: px2rem(-8);
-      // color: $color-grayer;
     }
   }
 
@@ -169,7 +168,7 @@
   .item-after{
     margin-left: $spacer / 2;
     font-size: px2rem(14);
-    color: $color-grayer;
+    color: $gray-base;
     white-space: nowrap;
   }
 }

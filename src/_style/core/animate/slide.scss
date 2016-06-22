@@ -5,10 +5,10 @@
 @mixin slide-make($className, $keyframeName) {
   @include make-animate($className, $keyframeName);
   .#{$className}-enter {
-    animation-timing-function: @ease-out-quint;
+    animation-timing-function: $ease-out-quint;
   }
   .#{$className}-leave {
-    animation-timing-function: @ease-in-quint;
+    animation-timing-function: $ease-in-quint;
   }
 }
 

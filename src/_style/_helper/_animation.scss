@@ -25,24 +25,11 @@
   animation: $name $duration $delay $iterate;
 }
 
-@mixin make-animate($className, $keyframeName, $timeFunction, $origin) {
+@mixin make-animate($className, $keyframeName) {
   // .#{$className}-appear
   .#{$className}-enter,
   .#{$className}-leave {
     animation-play-state: paused;
-  }
-
-  @if $timeFunction {
-    .#{$className}-enter,
-    .#{$className}-leave {
-      animation-timing-function: $timeFunction;
-    }
-  }
-  @if $origin {
-    .#{$className}-enter,
-    .#{$className}-leave {
-      transform-origin: $origin;
-    }
   }
 
   //@see http://www.jianshu.com/p/e139d449f5bb Miscellaneous函数
