@@ -92,6 +92,10 @@
 }
 
 // All levels of nav
+.bd-sidebar .nav {
+  list-style-type: none;
+  padding: 0;
+}
 .bd-sidebar .nav > li > a {
   display: block;
   padding: .25rem 1rem;

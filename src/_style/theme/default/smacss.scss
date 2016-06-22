@@ -1,0 +1,35 @@
+/*!
+ * Bootstrap v4.0.0-alpha (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+//这里 @import 不能引用变量链接
+//$cssRoot: "";
+
+// !!! components中的组件，全部用单数形式，不要复数命名了（为什么，有单有复，混乱而复杂）
+// 精简结构，快捷实现
+
+
+// Function var
+@import "../../help_var";
+
+
+
+@import "custom";
+
+
+// Base
+@import "../../base/index";                //done
+// Core
+@import "../../core/index";                //doing
+// Components
+@import "../../component/index";           //doing
+
+
+// states 状态属性
+// @import "states/print";                 //done
+@import "../../status";                    //doing
+
+// 处理 bugs (所有命名全为单数，这个 bugs 本事就是 bug，为复数)
+@import "../../bugs";                      //doing

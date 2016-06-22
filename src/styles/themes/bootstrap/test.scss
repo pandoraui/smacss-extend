@@ -5,55 +5,65 @@
  */
 
 //这里 @import 不能引用变量链接
-//$cssRoot: "../../"; 
+//$cssRoot: "../../";
 
 // Core variables and mixins
 @import "../../utilities/variables";
-@import "../../utilities/mixins";
+@import "./variables";
 
-// base Reset and dependencies
-@import "../../base/normalize";
+// Functions && Mixins
+@import "../../helper/functions";
+@import "../../utilities/mixins";
+@import "../../helper/mixins";
+
+// Animation
+@import "../../helper/animation";
+
+// Base Styles and dependencies
+@import "../../vendor/normalize";
 @import "../../base/reboot";
 
 // states
 @import "../../states/print";
 
 // Elements && Layout
-@import "../../core/type";
-@import "../../core/images";
-@import "../../core/code";
-@import "../../core/tables";
-@import "../../core/buttons";
-@import "../../core/forms";
+@import "../../layout/grid";
 
-@import "../../core/grid";
-
-// Components
-@import "../../components/animation";
-@import "../../components/dropdown";
-@import "../../components/button-group";
-@import "../../components/input-group";
-@import "../../components/custom-forms";
-@import "../../components/nav";
-@import "../../components/navbar";
-@import "../../components/card";
-@import "../../components/breadcrumb";
-@import "../../components/pagination";
-@import "../../components/pager";
-@import "../../components/labels";
-@import "../../components/jumbotron";
-@import "../../components/alert";
-@import "../../components/progress";
-@import "../../components/media";
-@import "../../components/list-group";
-@import "../../components/responsive-embed";
-@import "../../components/close";
-
-// Components w/ JavaScript
-@import "../../components/modal";
-@import "../../components/tooltip";
-@import "../../components/popover";
-@import "../../components/carousel";
+@import "../../elements/type";
+@import "../../elements/images";
+@import "../../elements/code";
+@import "../../elements/tables";
+//
+//
+// // Components
+@import "../../components/buttons";
+// @import "../../components/animation";
+// @import "../../components/dropdown";
+// @import "../../components/button-group";
+// @import "../../components/forms";
+// @import "../../components/input-group";
+// @import "../../components/custom-forms";
+// @import "../../components/nav";
+// @import "../../components/navbar";
+// @import "../../components/card";
+// @import "../../components/breadcrumb";
+// @import "../../components/pagination";
+// @import "../../components/pager";
+// @import "../../components/labels";
+// @import "../../components/jumbotron";
+// @import "../../components/alert";
+// @import "../../components/progress";
+// @import "../../components/media";
+// @import "../../components/list-group";
+// @import "../../components/responsive-embed";
+// @import "../../components/close";
+//
+//
+// // Components w/ JavaScript
+// @import "../../components/modal";
+// @import "../../components/tooltip";
+// @import "../../components/popover";
+// @import "../../components/carousel";
 
 // Utility classes
 @import "../../utilities/utilities";

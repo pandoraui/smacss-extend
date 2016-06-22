@@ -1,17 +1,29 @@
 
-// base 扩展一些 normalize reboot 没有的设置
+// base 以 normalize reboot 为基础，扩展基本设置
 // --------------------------------------------------------------------------
 // update: 2015-10-16
+//
+// 此处基于底层的重置样式，用于自定义全局基础样式，需要包括最常用的基础设定
+//
+// 全局字体大小，行高，字体
+// 超链接颜色，hover 与 active 状态(和 reboot 互补并对中文特性优化)
+// 图片相关设定，不要撑破容器，兼容 map 设定
+// 输入框、文本框设定
+// 对使用的标题 h1等标签以及段落 p 标签，做默认处理
+// 最后并入状态样式设定 status.scss，包含 hidden，block，round，disabled 等
 
 
-// Core variables and mixins
-@import "../utilities/variables";
-@import "../utilities/mixins";
-
-// reset
-@import "../vendor/normalize";
-@import "reboot";
-
+html {
+  // rem 基准
+  font-size: $font-size-root;
+}
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $body-color;
+  background-color: $body-background;
+}
 
 /**
  * html 属性设置
@@ -65,10 +77,20 @@ textarea {
  * [img max-width100% 引起地图不显示图片](https://github.com/amazeui/amazeui/issues/502)
  */
 img {
-  // max-width: 100%;
+  max-width: 100%;
   // height: auto;
 }
 
+// Remove max-width style for map
+// add selectors like Baidu Map, Sogou Map, AutoNavi, .etc
+#map_canvas,
+.map_canvas {
+  img,
+  embed,
+  object {
+    max-width: none !important;
+  }
+}
 
 /**
  * 此修改暂不设定

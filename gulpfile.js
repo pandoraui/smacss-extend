@@ -77,6 +77,11 @@ var config = {
   srcRoot: projectConfig.srcRoot,
   distRoot: projectConfig.distRoot,
 
+  clean: [
+    projectConfig.distRoot,
+    ('!' + projectConfig.distRoot + '/asstes'),
+  ],
+
   copy: {
     src: [
       tplPath + '/assets/js/docs.js'
@@ -204,7 +209,7 @@ var makeToc = function(cb) {
   });
 };
 
-gulp.task('nav', function() {
+gulp.task('nav', function(callback) {
   var output = 'dist/';
   var jsonArrTemp = _.indexBy(jsonArr, 'basename');
   // console.log(jsonArr);
@@ -230,6 +235,7 @@ gulp.task('nav', function() {
   }, function (err) {
     if (err) throw err;
     console.log('json: docsNav saved!');
+    callback();
   });
 });
 

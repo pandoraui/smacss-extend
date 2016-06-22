@@ -59,6 +59,19 @@ bootstrap 已经按照 SMACSS 结构实现，我们直接用，不过要针对�
 
 目标：期望实现各组件能独立存在并能被独立引用。另外可以学习了这些组件，可以再扩展一些常用的组件。
 
+
+### 结构精简，更易入手，没必要分太细
+
+```
+//调整结构
+vendor/
+helper/
+components/
+_base
+_var
+_custom
+```
+
 ```
 styles/
 ├── README.md

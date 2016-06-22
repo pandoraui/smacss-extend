@@ -5,55 +5,77 @@
  */
 
 //这里 @import 不能引用变量链接
-//$cssRoot: "../../"; 
+//$cssRoot: "../../";
+
+@import "../../helper/functions";
+
 
 // Core variables and mixins
 @import "../../utilities/variables";
+// @import "./custom";
+
+@import "../../helper/mixins";
+@import "../../helper/animation";
+
 @import "../../utilities/mixins";
 
 // base Reset and dependencies
-@import "../../base/normalize";
+@import "../../vendor/normalize";
 @import "../../base/reboot";
 
 // states
 @import "../../states/print";
 
 // Elements && Layout
-@import "../../core/type";
-@import "../../core/images";
-@import "../../core/code";
-@import "../../core/tables";
-@import "../../core/buttons";
-@import "../../core/forms";
+@import "../../layout/grid";
 
-@import "../../core/grid";
+@import "../../elements/type";
+@import "../../elements/images";
+@import "../../elements/code";
+@import "../../elements/tables";
 
 // Components
-@import "../../components/animation";
-@import "../../components/dropdown";
+@import "../../components/badge";
+@import "../../components/button";
 @import "../../components/button-group";
-@import "../../components/input-group";
-@import "../../components/custom-forms";
-@import "../../components/nav";
-@import "../../components/navbar";
-@import "../../components/card";
-@import "../../components/breadcrumb";
-@import "../../components/pagination";
-@import "../../components/pager";
-@import "../../components/labels";
-@import "../../components/jumbotron";
-@import "../../components/alert";
-@import "../../components/progress";
-@import "../../components/media";
-@import "../../components/list-group";
-@import "../../components/responsive-embed";
-@import "../../components/close";
-
-// Components w/ JavaScript
+@import "../../component/card";
+@import "../../components/form";
+@import "../../components/icon";
+@import "../../components/list";
+@import "../../components/loader";
 @import "../../components/modal";
-@import "../../components/tooltip";
+@import "../../components/navbar";
+@import "../../components/notification";
+@import "../../components/offcanvas";
 @import "../../components/popover";
-@import "../../components/carousel";
+@import "../../components/slider";
+@import "../../components/tabbar";
+@import "../../components/tabs";
+// @import "../../components/typography";
+
+// @import "../../components/animation";
+// @import "../../components/dropdown";
+// @import "../../components/button-group";
+// @import "../../components/input-group";
+// @import "../../components/custom-forms";
+// @import "../../components/nav";
+// @import "../../components/navbar";
+// @import "../../components/breadcrumb";
+// @import "../../components/pagination";
+// @import "../../components/pager";
+// @import "../../components/jumbotron";
+// @import "../../components/alert";
+// @import "../../components/progress";
+// @import "../../components/media";
+// @import "../../components/responsive-embed";
+// @import "../../components/close";
+//
+//
+// // Components w/ JavaScript
+// @import "../../components/modal";
+// @import "../../components/tooltip";
+// @import "../../components/popover";
+// @import "../../components/carousel";
 
 // Utility classes
 @import "../../utilities/utilities";

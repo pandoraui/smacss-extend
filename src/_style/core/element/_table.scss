@@ -1,0 +1,195 @@
+//
+// Basic Bootstrap table
+//
+
+.#{$ns}table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: $spacer;
+
+  th,
+  td {
+    padding: $table-cell-padding;
+    line-height: $line-height;
+    vertical-align: top;
+    border-top: 1px solid $table-border-color;
+  }
+
+  thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid $table-border-color;
+  }
+
+  tbody + tbody {
+    border-top: 2px solid $table-border-color;
+  }
+
+  .#{$ns}table {
+    background-color: $body-background;
+  }
+}
+
+
+//
+// Condensed table w/ half padding
+//
+
+.#{$ns}table-sm {
+  th,
+  td {
+    padding: $table-sm-cell-padding;
+  }
+}
+
+
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+
+.#{$ns}table-bordered {
+  border: 1px solid $table-border-color;
+
+  th,
+  td {
+    border: 1px solid $table-border-color;
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: 2px;
+    }
+  }
+}
+
+
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+.#{$ns}table-striped {
+  tbody tr:nth-of-type(odd) {
+    background-color: $table-bg-accent;
+  }
+}
+
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.#{$ns}table-hover {
+  tbody tr {
+    @include hover {
+      background-color: $table-bg-hover;
+    }
+  }
+}
+
+
+// Table backgrounds
+//
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+
+// Generate the contextual variants (state, background, color)
+// @include table-row-variant(active, '#F3F305', $color-active);
+// @include table-row-variant(disabled, '', $gray-light);
+// @include table-row-variant(primary, $color-primary, '');
+// @include table-row-variant(success, $color-success, '');
+// @include table-row-variant(info, $color-info, '');
+// @include table-row-variant(warning, $color-warning, '');
+// @include table-row-variant(danger, $color-danger, '');
+
+
+// Responsive tables
+//
+// Wrap your tables in `.table-responsive` and we'll make them mobile friendly
+// by enabling horizontal scrolling. Only applies <768px. Everything above that
+// will display normally.
+
+.#{$ns}table-responsive {
+  display: block;
+  width: 100%;
+  min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+  overflow-x: auto;
+
+  // TODO: find out if we need this still.
+  //
+  // border: 1px solid $table-border-color;
+  // -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
+}
+
+
+.#{$ns}thead-inverse {
+  th {
+    color: #fff;
+    background-color: $gray-dark;
+  }
+}
+.#{$ns}thead-default {
+  th {
+    color: $gray;
+    background-color: $gray-lighter;
+  }
+}
+
+.#{$ns}table-inverse {
+  color: $gray-lighter;
+  background-color: $gray-dark;
+
+  &.table-bordered {
+    border: 0;
+  }
+
+  th,
+  td,
+  thead th {
+    border-color: $gray;
+  }
+}
+
+
+.#{$ns}table-reflow {
+  thead {
+    float: left;
+  }
+
+  tbody {
+    display: block;
+    white-space: nowrap;
+  }
+
+  th,
+  td {
+    border-top: 1px solid $table-border-color;
+    border-left: 1px solid $table-border-color;
+
+    &:last-child {
+      border-right: 1px solid $table-border-color;
+    }
+  }
+
+  thead,
+  tbody,
+  tfoot {
+    &:last-child {
+      tr:last-child {
+        th,
+        td {
+          border-bottom: 1px solid $table-border-color;
+        }
+      }
+    }
+  }
+
+  tr {
+    float: left;
+
+    th,
+    td {
+      display: block !important;
+      border: 1px solid $table-border-color;
+    }
+  }
+}
