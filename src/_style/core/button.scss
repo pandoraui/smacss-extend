@@ -1,0 +1,112 @@
+//
+// Buttons
+//
+
+// button 实现力求精简，其实只需要 core 部分即可，
+// 默认支持 主题色、尺寸、块样式、禁用样式、激活样式
+
+// $button-colors: (
+//   primary:   $color-primary,
+//   sub:       $color-sub,
+//   info:      $color-info,
+//   success:   $color-success,
+//   warning:   $color-warning,
+//   danger:    $color-danger,
+//   dark:      $dark-alt,
+// );
+
+
+// Core
+// -----------------------------------------------------------------------------
+.#{$ns}btn {
+  @extend %button;
+
+  // @include button-size();
+  @include transition(all .3s ease-in-out);
+
+  // 默认样式()，大小
+  @include button-style($btn-default-background, $btn-default-color, $btn-default-border);
+  @include button-size($button-padding-base, $font-size-base, $line-height-base);
+
+  @extend %button-status;
+}
+
+
+
+// // Future-proof disabling of clicks on `<a>` elements
+// a.#{$ns}btn.disabled,
+// fieldset[disabled] a.#{$ns}btn {
+//   pointer-events: none;
+// }
+
+
+
+// 主题按钮样式 (空心、虚边框单独处理，可被覆盖)
+// -----------------------------------------------------------------------------
+// primary info success warning danger ghost
+.#{$ns}btn-dashed {
+  border-style: dashed;
+}
+.#{$ns}btn-ghost {
+  @include button-style($btn-ghost-background, $btn-ghost-color, $btn-ghost-border);
+}
+@each $color-key, $color in $button-colors {
+  .#{$ns}btn-#{$color-key} {
+    @include button-style($color);
+  }
+}
+
+// 加载中
+.#{$ns}btn-loading {
+
+}
+.#{$ns}btn-clicked {
+  &:after{
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+    border-radius: inherit;
+    border: 0 solid #2db7f5;
+    opacity: .4;
+    animation: buttonEffect .32s ease forwards;
+    display: block;
+  }
+}
+
+// 按钮尺寸
+// -----------------------------------------------------------------------------
+@each $size-key, $size-size in $button-padding-sizes {
+  .#{$ns}btn-#{$size-key} {
+    @include button-size($size-size);
+  }
+}
+
+
+
+// 块级按钮
+// -----------------------------------------------------------------------------
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.#{$ns}btn.block {
+    width: 100%;
+  }
+}
+
+.#{$ns}btn.block + .#{$ns}btn.block {
+  margin-top: px2rem(10);
+}
+
+
+
+/*
+// Button with loading spinner
+.#{$ns}btn.#{$ns}btn-loading {
+  .#{$ns}icon-spin {
+    margin-right: 5px;
+  }
+} */

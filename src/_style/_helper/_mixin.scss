@@ -146,13 +146,6 @@
   }
 }
 
-@mixin scrollable() {
-  overflow: auto;
-
-  //允许独立的滚动区域和触摸回弹
-  overflow-scrolling: touch;
-}
-
 // Sizing
 // -----------------------------------------------------------------------------
 @mixin size($width, $height) {
@@ -167,7 +160,9 @@
 // TODO: add scrollableX & scrollableY
 @mixin scrollable() {
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
+
+  //允许独立的滚动区域和触摸回弹
+  overflow-scrolling: touch;
 }
 
 // Text

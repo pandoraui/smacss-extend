@@ -3,14 +3,17 @@
 使用软链接 ln –s 源文件 目标文件
 
 ```
-ln -s ~/github/pandoraui/smacss-extend/src/_style/ _style
+ln -s ~/github/pandoraui/smacss-extend/src/_styles/ scss
 ```
 
-## 整体结构如下：【命名全为单数形式】
+## 整体结构如下：
+
 
 ```
 /_helper
+  mixin
   function
+  *placeholder
   animation
       index
 
@@ -18,8 +21,6 @@ _gray
 _var
           _help_var.scss
 
-/mixins
-          mixins.scss
 /_vendor
 
   normalize
@@ -50,7 +51,7 @@ _var
 
 
 status
-bugs
+bug
           output
 ```
 

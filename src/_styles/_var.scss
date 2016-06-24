@@ -145,8 +145,7 @@ $color-danger:              #d9534f !default;
 $gray-darker:   lighten($black, 13.5%) !default; // #222
 $gray-dark:     lighten($black, 20%) !default;   // #333
 $gray:          lighten($black, 33.5%) !default; // #555
-$gray-base:     gray !default;
-// $gray-base:     lighten($black, 46.7%) !default; // #777
+// $gray-light:    lighten($black, 46.7%) !default; // #777
 $gray-light:    lighten($black, 53.3%) !default; // #888
 $gray-lighter:  lighten($black, 87.5%) !default; // #dfdfdf //#efeff4
 $gray-lightest: lighten($black, 93.5%) !default; // #eee
@@ -166,7 +165,6 @@ $dark-base: $white !default;
 //#5eb95e //#53D76A //#5cb85c
 //#f0ad4e //#FD9426 //#f0ad4e
 //#dd514c //#FC3159 //#da314b
-
 
 
 
@@ -291,8 +289,14 @@ $z-index-popover:      $z-index-base + 30 !default;
 
 
 
+// TODO Links
+// -----------------------------------------------------------------------------
+// Style anchor elements.
 
-
+$link-color:                 $color-primary !default;
+$link-decoration:            none !default;
+$link-hover-color:           darken($link-color, 15%) !default;
+$link-hover-decoration:      underline !default;
 
 
 // TODO Grid breakpoints
@@ -360,21 +364,6 @@ $body-font-family:           $font-family-base;
 $body-font-weight:           $font-weight-normal !default;
 $body-font-style:            normal !default;
 $body-font-size:             $font-size-base !default;
-
-$text-color             : #333333;
-
-// Border color
-$border-color-base      : #d9d9d9;        // base border outline a component
-$box-shadow-base        : 0 0 4px rgba(0, 0, 0, 0.17);
-$border-color-split     : #e9e9e9;        // split border inside a component
-
-// Links
-$link-color:                 $color-primary !default;
-$link-decoration:            none !default;
-$link-hover-color:           lighten($link-color, 20%) !default;
-$link-active-color:          darken($link-color, 5%) !default;
-$link-hover-decoration:      none !default;
-$link-disabled-color:        lighten($link-color, 15%) !default;
 
 
 // Headings
@@ -471,44 +460,6 @@ $grid-aligns: (
 $total-columns: 6 !default;
 
 
-// 按钮 Button
-// -----------------------------------------------------------------------------
-$btn-default-color:       $text-color;
-$btn-default-background:  #f4f4f4;
-$btn-default-border:      $border-color-base;
-
-$button-colors: (
-  primary:   $color-primary,
-  sub:       $color-sub,
-  info:      $color-info,
-  success:   $color-success,
-  warning:   $color-warning,
-  danger:    $color-danger,
-  dark:      $dark-alt
-);
-$button-padding-base:      px2rem(8) px2rem(13) !default; // 10px 15px
-//默认高度为 30 32 34 36 38 五中尺寸，可灵活更改字体大小
-//匹配12px 字体，有高度为 22 26 30 36 42
-//匹配14px 字体，比上各大2px
-$button-padding-sizes: (
-  xs: px2rem(4) px2rem(6),     //22
-  sm: px2rem(6) px2rem(10),    //30
-  lg: px2rem(10) px2rem(15),   //36
-  xl: px2rem(14) px2rem(15)    //44
-);
-$btn-ghost-color        : #666;
-$btn-ghost-background   : #fff;
-$btn-ghost-border       : #d9d9d9;
-
-$btn-disabled-color      : #ccc;
-$btn-disabled-background : #f3f5f7;
-$btn-disabled-border     : #d9d9d9;
-
-
-// 按钮组 Button Group
-// -----------------------------------------------------------------------------
-
-
 // 手风琴 Accordion
 // -----------------------------------------------------------------------------
 $accordion-prefix: #{$ns}accordion !default;
@@ -525,6 +476,40 @@ $badge-padding: 0.25em 0.5em !default;//($spacer-y * 0.25) ($spacer-x * 0.4) !de
 $badge-radius: 0 !default;
 $badge-background: $light-alt !default;
 $badge-color: islight($badge-background) !default;
+
+
+// 按钮 Button
+// -----------------------------------------------------------------------------
+$button-color: #fff;
+$button-colors: (
+  primary:   $color-primary,
+  sub:       $color-sub,
+  info:      $color-info,
+  success:   $color-success,
+  warning:   $color-warning,
+  danger:    $color-danger,
+  dark:      $dark-alt
+);
+$button-padding:        px2rem(8) px2rem(13) !default; // 10px 15px
+//默认高度为 30 32 34 36 38 五中尺寸，可灵活更改字体大小
+//匹配12px 字体，有高度为 22 26 30 36 42
+//匹配14px 字体，比上各大2px
+$button-padding-sizes: (
+  xs: px2rem(4) px2rem(6),     //22
+  sm: px2rem(6) px2rem(10),    //30
+  lg: px2rem(10) px2rem(15),   //36
+  xl: px2rem(14) px2rem(15)    //44
+);
+$btn-ghost-color        : #666;
+$btn-ghost-background   : #fff;
+$btn-ghost-border       : #d9d9d9;
+
+$btn-disable-color      : #ccc;
+$btn-disable-background : #f3f5f7;
+$btn-disable-border     : #d9d9d9;
+
+// 按钮组 Button Group
+// -----------------------------------------------------------------------------
 
 
 // 卡片 Card

@@ -5,27 +5,27 @@
 // 必须定义的变量
 // $button-padding $font-size-base $line-height-base
 
-@mixin button-style($color, $background, $border: transparent) {
-  @include button-color($background; $color; $border);
+@mixin button-style($background, $color: $white, $border: transparent) {
+  @include button-color($background, $color, $border);
 
   &:hover {
-    @include button-color(islight($background, 20%); islight($color, 20%); islight($border, 20%));
+    @include button-color(lighten($background, 5%), lighten($color, 5%), lighten($border, 5%));
   }
 
   &:active,
   &.active {
-    @include button-color(darken($background, 5%); darken($color, 5%); darken($border, 5%));
+    @include button-color(darken($background, 5%), darken($color, 5%), darken($border, 5%));
   }
 }
 
-@mixin button-color($color, $background,  $border: transparent) {
+@mixin button-color($background, $color, $border: transparent) {
   color: $color;
   border-color: $border;
   background-color: $background;
 }
 
 @mixin button-size(
-    $padding: $button-padding,
+    $padding: $button-padding-base,
     $font-size: $font-size-base,
     $line-height: $line-height-base) {
 
@@ -35,7 +35,7 @@
 }
 
 @mixin button-group() {
-  
+
 }
 
 %button {
@@ -98,7 +98,7 @@
 
   &:not([disabled]):active {
     outline: 0;
-    .transition(none);
+    transition: none;
   }
 
 
@@ -117,7 +117,7 @@
       cursor: $cursor-disabled;
 
       // opacity: .65;
-      @include button-color($btn-background-disabled; $button-color-disabled; $border-disabled);
+      @include button-color($btn-disabled-background, $btn-disabled-color, $btn-disabled-border);
     }
   }
 }
