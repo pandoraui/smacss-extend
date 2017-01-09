@@ -106,7 +106,7 @@ body {
 // margin for easier control within type scales as it avoids margin collapsing.
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 // Reset margins on paragraphs
@@ -147,7 +147,8 @@ ul ol {
 }
 
 dt {
-  font-weight: $dt-font-weight;
+  //TODO
+  // font-weight: $dt-font-weight;
 }
 
 dd {
@@ -303,7 +304,6 @@ th {
 label {
   // Allow labels to use `margin` for spacing.
   display: inline-block;
-  margin-bottom: .5rem;
 }
 
 // Work around a Firefox/IE bug where the transparent `button` background

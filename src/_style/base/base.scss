@@ -1,5 +1,5 @@
 
-// base 以 normalize reboot 为基础，扩展基本设置
+// base 作为 normalize reboot 的补充，扩展基本设置
 // --------------------------------------------------------------------------
 // update: 2015-10-16
 //
@@ -169,11 +169,12 @@ select {
 
 /**
  * Address `outline` inconsistency between Chrome and other browsers.
+ * 暂时不加
  */
 
-a:focus {
-  outline: thin dotted;
-}
+// a:focus {
+//   outline: thin dotted;
+// }
 
 /**
  * Remove text-decoration
@@ -183,28 +184,28 @@ ins, a {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: 100%;
-}
-
-* + h1,
-* + h2,
-* + h3,
-* + h4,
-* + h5,
-* + h6 {
-  margin-top: 2em;
-}
-
-h1 {
-  font-size: 1.5em;
-}
-
-h2 {
-  font-size: 1.25em;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   font-size: 100%;
+// }
+//
+// * + h1,
+// * + h2,
+// * + h3,
+// * + h4,
+// * + h5,
+// * + h6 {
+//   margin-top: 1em;
+// }
+//
+// h1 {
+//   font-size: 1.5em;
+// }
+//
+// h2 {
+//   font-size: 1.25em;
+// }

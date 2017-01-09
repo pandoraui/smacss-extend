@@ -1,2 +1,10 @@
 
+// 依赖
+@import "./vender_normalize";
+@import "./vender_reboot";
+
+// 初始化
 @import "./base";
+
+// 工具类
+@import "./tool";

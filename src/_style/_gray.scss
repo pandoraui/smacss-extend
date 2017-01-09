@@ -1,5 +1,7 @@
 
 // 生成灰度等级 20个级别 or 10个级别
+// 计算灰度色调，有好几种方式，如不用等差变换，就直接用现成设定固定值
+// 此处设计上的选值，可以参考 antd 项目
 // @see http://codepen.io/airen/pen/xwveK
 // @see http://www.w3cplus.com/preprocessor/sass-color-function.html
 
@@ -8,6 +10,19 @@
 
 $black:                    #000 !default;
 $white:                    #fff !default;
+
+// Color
+
+// 混入黑白色
+// @see http://www.w3cplus.com/preprocessor/sass-color-function.html
+// @see https://segmentfault.com/q/1010000002795066
+// @test http://www.sassmeister.com/
+@function morelight($color, $percent) {
+  @return mix(white, $color, $percent);
+}
+@function moredark($color, $percent) {
+  @return mix(black, $color, $percent);
+}
 
 // white            ...            #808080;         ...          black;
 // $gray-light9 ... $gray-light1  $gray-base  $gray-dark1 ... $gray-dark9

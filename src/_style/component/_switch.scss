@@ -1,0 +1,217 @@
+
+// switch
+
+// @see http://callmenick.com/post/css-toggle-switch-examples
+// @see https://proto.io/freebies/onoff/
+$ui_switch_color: #DFDFDF;
+$ui_switch_check_color: #FDFDFD;
+$ui_switch_checked_color: #52D86D;
+
+.#{$switch-prefix}{
+  box-sizing: border-box;
+  outline: 0;
+  appearance: none;
+  position: relative;
+  width: px2rem(52) !important;
+  height: px2rem(32)  !important;
+  border: 1px solid $ui_switch_color;
+  border-radius: px2rem(16);
+  background: $ui_switch_color;
+
+  &:after,
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: px2rem(30);
+    border-radius: px2rem(15);
+    content: " "
+  }
+
+  &[disabled]{
+    opacity: 0.5;
+  }
+
+  &:before {
+    // content: "•••";
+    width: px2rem(50);
+    box-sizing: border-box;
+    padding: 0 px2rem(8) 0 px2rem(4);
+    font-size: px2rem(16);
+    line-height: px2rem(31);
+    text-align: right;
+    background-color: $ui_switch_check_color;
+    color: #999;
+    transition: background-color .3s;
+  }
+
+  &:after {
+    width: px2rem(30);
+    background-color: #FFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    transition: transform ease .3s
+  }
+  &:checked {
+    border-color: $ui_switch_checked_color;
+    background-color: $ui_switch_checked_color;
+  }
+
+  &:checked:before {
+    // content: "ABC";
+    text-align: left;
+    font-size: px2rem(12);
+    line-height: px2rem(31);
+    color: #fff;
+    background-color: $ui_switch_checked_color;
+    //-webkit-transform: scale(0);
+    //-ms-transform: scale(0);
+    //transform: scale(0);
+  }
+
+  &:checked:after {
+    transform: translateX(px2rem(20))
+  }
+}
+
+
+
+
+
+
+
+
+
+// // Amaze UI Mobile: Switch
+// //
+// // @see http://callmenick.com/post/css-toggle-switch-examples
+// // @see https://proto.io/freebies/onoff/
+// // =============================================================================
+//
+// // Mixins
+// // -----------------------------------------------------------------------------
+// @mixin switch-style(
+//   $background: $switch-background,
+//   $inner-background: $switch-inner-background,
+//   $background-active: $switch-background-active
+// ) {
+//   .#{$switch-prefix} {
+//
+//     // outer style
+//     @if hasValue($background) {
+//       &,
+//       &:after {
+//         background: $background;
+//       }
+//     }
+//
+//     // inner style
+//     @if hasValue($inner-background) {
+//       &:before {
+//         background: $inner-background;
+//       }
+//     }
+//   }
+//
+//   // active style
+//   input:checked + .#{$switch-prefix}-label {
+//     &,
+//     &:after {
+//       background: $background-active;
+//     }
+//   }
+// }
+//
+// @mixin switch-label-base() {
+//   position: relative;
+//   display: block;
+//   // outline: none;
+//   // cursor: pointer;
+//   // user-select: none;
+//   // touch-action: manipulation;
+// }
+//
+// // Output
+// // -----------------------------------------------------------------------------
+// .#{$switch-prefix} {
+//   position: relative;
+//   display: inline-block;
+//   overflow: hidden;
+//   vertical-align: middle;
+//   align-self: center;
+//   outline: none;
+//   cursor: pointer;
+//   user-select: none;
+//   touch-action: manipulation;
+//
+//   input[type="checkbox"] {
+//     position: absolute;
+//     margin-left: -9999px;
+//     visibility: hidden;
+//
+//     &:checked + .#{$switch-prefix}-label {
+//
+//       &:after {
+//         transform: translateX(rem-calc(22));
+//       }
+//     }
+//   }
+//
+//   // status modifier: disabled
+//   &.#{map-get($theme-states, disabled)} {
+//     opacity: 0.5;
+//     cursor: not-allowed;
+//     pointer-events: none;
+//   }
+//
+//   @include switch-style();
+//
+//   .#{$list-prefix} & {
+//     margin-bottom: 0;
+//   }
+// }
+//
+// .#{$switch-prefix} {
+//   @include switch-label-base;
+//
+//   width: rem-calc(52);
+//   height: rem-calc(30);
+//   border-radius: $switch-radius;
+//   transition: background .35s;
+//
+//   &:before,
+//   &:after {
+//     position: absolute;
+//     display: block;
+//     content: " ";
+//     transition: all .35s;
+//     border-radius: $switch-radius;
+//   }
+//
+//   &:before {
+//     top: 2px;
+//     left: 2px;
+//     bottom: 2px;
+//     right: 2px;
+//   }
+//
+//   &:after {
+//     top: 4px;
+//     left: 4px;
+//     bottom: 4px;
+//     width: rem-calc(22);
+//     transform: translateX(0);
+//   }
+// }
+//
+// // Modifiers
+// // -----------------------------------------------------------------------------
+// @each $color-key, $color in $theme-colors {
+//   @if ($color-key != 'primary') {
+//     .#{$switch-prefix}-#{$color-key} {
+//       @include switch-style(
+//           $background: null,
+//           $inner-background: null,
+//           $background-active: $color);
+//     }
+//   }
+// }

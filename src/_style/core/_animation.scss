@@ -27,11 +27,15 @@ $animate-duration: 0.3s;
 // =============================================================================
 // 动画基础样式
 
-.#{$animate-hook} {
+%animated {
   animation-duration: $animate-duration;
   animation-fill-mode: both;
 
   @extend %force-hardware-acceleration;
+}
+
+.#{$animate-hook} {
+  @extend %animated;
 
   // Modifier for infinite repetition
   &--infinite {

@@ -1,0 +1,29 @@
+/* === Tabs === */
+.tabs .tab {
+  display: none;
+}
+.tabs .tab.active {
+  display: block;
+}
+.tabs-animated-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
+.tabs-animated-wrap > .tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+.tabs-animated-wrap > .tabs > .tab {
+  width: 100%;
+  display: block;
+  -webkit-flex-shrink: 0;
+  -ms-flex: 0 0 auto;
+  flex-shrink: 0;
+}

@@ -16,15 +16,21 @@
 
 
 
+// 自定义变量，覆盖系统或默认变量
 @import "custom";
+@import "icon";
 
 
-// Mixins
-@import "../../_mixins/index";             //doing
+
+// 基于 function 以及 自定义变量
+// 结合 mixin + base core extend = theme
+
+// Mixin
+@import "../../_helper/mixin";             //doing
+// Base
+@import "../../base/index";                //doing
 // Core
 @import "../../core/index";                //doing
-// Base
-@import "../../base/index";                //done
 // Components
 @import "../../component/index";           //doing
 

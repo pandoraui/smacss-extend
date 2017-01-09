@@ -1,0 +1,89 @@
+// Package: Badge
+// =============================================================================
+// badge 一般为多彩色，所以默认字体用亮色
+// 组件支持自定义颜色
+
+// Mixins
+// -----------------------------------------------------------------------------
+@mixin badge-layout(
+  $fontsize: $badge-fontsize,
+  $padding: $badge-padding
+) {
+  font-size: $fontsize;
+  padding: $padding;
+}
+
+@mixin badge-style(
+  $background: $badge-background,
+  $color: $badge-color,
+  $radius: $badge-radius
+) {
+  background: $background;
+
+  @if $color == auto {
+    color: islight($background);
+  } @else {
+    color: $color;
+  }
+}
+
+@mixin badge(
+  $background: $badge-background,
+  $color: $badge-color,
+  $radius: $badge-radius,
+  $fontsize: $badge-fontsize,
+  $padding: $badge-padding
+) {
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: default;
+  // min-width: 1.5rem; //注释此行，就可以支持点样式，且默认会是圆
+  text-align: center;
+
+  @include badge-layout($fontsize, $padding);
+  @include badge-style($background, $color, $radius);
+}
+
+
+.#{$badge-prefix} {
+  @include badge();
+}
+
+// modifiers: colors
+// -----------------------------------------------------------------------------
+@each $color-key, $color in $theme-colors {
+  .#{$badge-prefix}-#{$color-key} {
+    @include badge-style($color, auto);
+  }
+}
+
+// modifiers: radius
+// -----------------------------------------------------------------------------
+@each $radius-key, $radius in $theme-radius {
+  .#{$badge-prefix}-#{$radius-key} {
+    border-radius: $radius;
+  }
+}
+
+// modifiers: status
+// -----------------------------------------------------------------------------
+.#{$badge-prefix}:empty,
+.#{$badge-prefix}.is-point {
+  padding: px2rem(4);
+  min-width: initial;
+  border-radius: 400rem;
+  font-size: 0;
+  width: 0;
+  height: 0;
+}
+
+.doc-content {
+  .badge {
+    margin: 5px;
+  }
+}
+
+.badge-todo  { color: #fff; background: $color-info; }
+.badge-doing { color: #fff; background: $color-warning;}
+.badge-done  { color: #fff; background: $color-success; }

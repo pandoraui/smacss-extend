@@ -1,0 +1,482 @@
+
+// Core base
+// @import "../fn";
+
+
+// 修改自 _list-block
+// cell 不再依赖外部样式，可独立存在，使用更方便
+// 内部嵌套 cell-wrapper样式 实现细线效果
+//
+// 实现思路
+//
+//
+// todo: 貌似 cell-link不是垂直居中的
+
+/*
+
+  Example
+
+  <div class="page-part">
+    <div class="cell">简单文本</div>
+    <a class="cell cell-link">
+      <div class="cell-media"><img width="48" src="http://lorempixel.com/160/160/people/" alt="头像"></div>
+      <div class="cell-content">
+        <div class="cell-title">这是标题，字大一点 <span class="desc">标题描述或值</span></div>
+        <div class="cell-subtitle">这是副标题，字小一点</div>
+        <div class="cell-desc">这里是描述内容，正文字体大小，但内容要多一点，这里是描述内容，正文字体大小，但内容要多一点</div>
+      </div>
+      <div class="cell-after">After</div>
+    </a>
+    <div class="cell cell-link" data-type="all">
+      <div class="cell-content">
+        <div class="cell-title">我的订单</div>
+      </div>
+      <div class="cell-after">查看全部订单</div>
+    </div>
+    <div class="cell cell-space-around">
+      <span class="entry-cell cell-column iconfont icon-app">待付款</span>
+      <span class="entry-cell cell-column iconfont icon-app">待收货</span>
+      <span class="entry-cell cell-column iconfont icon-app">待评价</span>
+      <span class="entry-cell cell-column iconfont icon-app">售后</span>
+    </div>
+    <div class="cell cell-sublist">
+      <div class="cell-content">
+        <div class="cell" data-type="">
+          <div class="cell-content">
+            <i class="iconfont icon-group"></i> 一级粉丝
+          </div>
+          <div class="cell-after">10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+**/
+
+// %list-border-line{
+//   content: '';
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   right: auto;
+//   bottom: auto;
+//   height: 1px;
+//   overflow: hidden;
+//   width: 100%;
+//   background-color: $gray-lighter;
+//   display: block;
+//   z-index: 5;
+//   // clip: rect(auto auto auto $spacer);
+//   // transform-origin: 50% 100%;
+//
+//   transform-origin: top;
+// }
+//
+// %_ratio_line {
+//   //屏幕像素密度 针对 ratio 屏幕
+//   @media all and (min-resolution: 150dpi) {
+//     transform: scaleY(0.5);
+//   }
+// }
+
+.#{$ns}cell {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: block;
+  min-height: px2rem(44);
+  color: inherit;
+  text-decoration: none;
+  background-color: #fff;
+
+  &:focus{
+    outline: none;
+  }
+
+  // TODO: 不居中对齐怎么办，临时处理
+  img,
+  span {
+    vertical-align:middle;
+  }
+
+  &,
+  &:first-child .#{$ns}cell-wrapper {
+    background-origin: border-box;
+  }
+
+  &:last-child {
+    background-image: linear-gradient(0deg, #d9d9d9, #d9d9d9 50%, transparent 0);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+
+  .#{$ns}cell-wrapper {
+    background-image:linear-gradient(180deg, #d9d9d9, #d9d9d9 50%, transparent 50%);
+    background-size: 120% 1px;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-origin: content-box;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    font-size: px2rem(14);
+    min-height: inherit;
+    overflow: hidden;
+    padding: 0 px2rem(16);
+    width: 100%;
+  }
+  .#{$ns}cell-mask {}
+  .#{$ns}cell-mask::after {
+    background-color:#000;
+    content:" ";
+    opacity:0;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    position:absolute;
+  }
+  .#{$ns}cell-mask:active::after {
+    opacity:.1;
+  }
+
+  .#{$ns}cell-left {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  .#{$ns}cell-right {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .#{$ns}cell-link {
+    &:after{
+      @extend %font-icon;
+
+      content: '\e611';
+      margin-left: px2rem(4);
+      margin-right: px2rem(-8);
+      font-size: px2rem(16);
+      color: $gray-silver;
+    }
+  }
+  // .cell {
+  //   .icon-arrow-right{
+  //     @extend %font-icon;
+  //
+  //     content: '\e611';
+  //     margin-left: px2rem(8);
+  //     margin-right: px2rem(-8);
+  //     font-size: px2rem(16);
+  //     color: $gray-silver;
+  //   }
+  // }
+
+  // .#{$ns}cell,
+  // .#{$ns}cell-link,
+  .#{$ns}cell-wrapper,
+  .#{$ns}cell-title-row,
+  .#{$ns}cell-space-between,
+  .#{$ns}cell-space-around{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .#{$ns}cell-space-around{
+    justify-content: space-around;
+  }
+
+  .#{$ns}cell-column{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .#{$ns}cell-input input,
+  .#{$ns}cell-input textarea,
+  .#{$ns}cell-content,
+  .#{$ns}cell-title-row{
+    flex: 1;
+  }
+
+  .#{$ns}cell-content{
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    padding-top: px2rem(8);
+    padding-bottom: px2rem(8);
+    overflow: hidden;
+  }
+
+  .#{$ns}cell-media{
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    align-items: center;
+    // margin-right: $spacer / 2;
+    margin-top: px2rem(12);
+    margin-bottom: px2rem(12);
+
+    // + .#{$ns}cell-content{
+    //   margin-left: $spacer / 2;
+    // }
+
+    // cell-media 不为空，会产生一个间距
+    *:first-child{
+      margin-right: $spacer / 2;
+    }
+
+    .#{$ns}badge{
+      position: absolute;
+      top: 0;
+      right: $spacer / 2;
+      // right: $spacer / 2;
+      // right: px2rem(10);
+      // 定位 采用右对齐(向上偏移 40%)
+      transform: translate(px2rem(8), -40%);
+    }
+
+    .badge.is-point{
+      // 定位 采用右对齐(向右偏移100%——自身宽度)
+      transform: translate(40%, -40%);
+    }
+
+    &:empty{
+      display: none;
+    }
+  }
+
+  .#{$ns}cell-title,
+  .#{$ns}cell-value{
+    flex-shrink: 1;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .#{$ns}cell-title{
+    font-size: px2rem(16);
+  }
+  .#{$ns}cell-value{
+    font-size: px2rem(14);
+  }
+  .#{$ns}cell-desc{
+    font-size: px2rem(12);
+  }
+  .#{$ns}cell-after{
+    margin-left: $spacer / 2;
+    font-size: px2rem(14);
+    color: $gray-base;
+    white-space: nowrap;
+  }
+
+}
+
+
+
+// ._list-block{
+//   margin: px2rem(10) 0;
+//   font-size: px2rem(14);
+//   background: #fff;
+//
+//   &{
+//     position: relative;
+//     list-style: none;
+//     padding: 0;
+//     margin: 0;
+//   }
+//
+//   .cell{
+//     box-sizing: border-box;
+//     position: relative;
+//     margin-top: -1px;
+//     padding-left: $spacer;
+//     padding-right: $spacer;
+//     min-height: px2rem(45);
+//     font-size: px2rem(14);
+//   }
+//
+//
+//   &.border:before,
+//   &.border:after,
+//   .cell:before{
+//     @extend %list-border-line;
+//   }
+//
+//   &.border:before,
+//   &.border:after{
+//     @extend %_ratio_line;
+//
+//     background-color: #c4c4c4;
+//     transform-origin: top;
+//   }
+//
+//   .cell:before{
+//     clip: rect(auto auto auto $spacer);
+//   }
+//
+//   &.border:after{
+//     top: auto;
+//     bottom: 0;
+//     transform-origin: bottom;
+//   }
+//
+//   .cell:first-child:before{
+//     display: none;
+//   }
+//
+//   .cell,
+//   .cell-link,
+//   .cell-title-row,
+//   .cell-space-between,
+//   .cell-space-around{
+//     box-sizing: border-box;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//   }
+//
+//   .cell-space-around{
+//     justify-content: space-around;
+//   }
+//
+//   .cell-column{
+//     display: flex;
+//     align-items: center;
+//     flex-direction: column;
+//   }
+//
+//
+//
+//   // .cell-line{
+//   //   &:before{
+//   //     @extend %list-border-line;
+//   //   }
+//   // }
+//   // ul.cell-line{
+//   //   &:before{
+//   //     clip: auto;
+//   //   }
+//   //   &:after{
+//   //     @extend %list-border-line;
+//   //     clip: auto;
+//   //     top: auto;
+//   //     bottom: 0;
+//   //   }
+//   // }
+//
+//   .cell-link{
+//     transition-duration: 300ms;
+//     color: inherit;
+//
+//     &:hover{
+//       text-decoration: none;
+//     }
+//
+//     //设置focus 时无虚线，
+//     //是否要便于键盘操作，显示背景
+//     &:focus{
+//       outline: none;
+//       //这里不可变为无色或白色
+//       // background-color: lighten($gray-lighter, 5%);
+//       //
+//     }
+//     &:active{
+//       z-index: 10;
+//       &:before{
+//         display: none;
+//       }
+//       transition-duration: 0ms;
+//       background-color: $gray-lighter;
+//       // box-shadow: inset 0 px2rem(1) px2rem(5) px2rem(1) darken($gray-lighter, 10%);
+//     }
+//
+//     &:after{
+//       @extend %font-icon;
+//
+//       content: '\e611';
+//       margin-left: px2rem(8);
+//       margin-right: px2rem(-8);
+//       font-size: px2rem(16);
+//       color: $gray-silver;
+//     }
+//   }
+//
+//
+//   .cell-input input,
+//   .cell-input textarea,
+//   .cell-content,
+//   .cell-title-row{
+//     flex: 1;
+//   }
+//
+//   .cell-content{
+//     box-sizing: border-box;
+//     position: relative;
+//     width: 100%;
+//     padding-top: px2rem(8);
+//     padding-bottom: px2rem(8);
+//   }
+//
+//   // .cell.cell-line:first-child:before,
+//   // .cell:first-child .cell-line:before{
+//   //   //第一条线隐藏
+//   //   display: none;
+//   // }
+//   .cell-media{
+//     display: flex;
+//     flex-shrink: 0;
+//     flex-wrap: nowrap;
+//     box-sizing: border-box;
+//     align-items: center;
+//     // margin-right: $spacer / 2;
+//     padding-top: px2rem(8);
+//     padding-bottom: px2rem(8);
+//
+//     + .cell-content{
+//       margin-left: px2rem(16);
+//     }
+//
+//     &:empty{
+//       display: none;
+//     }
+//   }
+//
+//   .cell-title,
+//   .cell-value{
+//     flex-shrink: 1;
+//     white-space: nowrap;
+//     position: relative;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     max-width: 100%;
+//   }
+//
+//   .cell-title{
+//     font-size: px2rem(16);
+//   }
+//   .cell-value{
+//     font-size: px2rem(14);
+//   }
+//   .cell-desc{
+//     font-size: px2rem(12);
+//   }
+//   .cell-after{
+//     margin-left: $spacer / 2;
+//     font-size: px2rem(14);
+//     color: $gray-base;
+//     white-space: nowrap;
+//   }
+// }

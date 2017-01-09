@@ -15,21 +15,6 @@
 //   dark:      $dark-alt,
 // );
 
-
-
-$button-padding-base:      px2rem(8) px2rem(13) !default; // 10px 15px
-$button-line-height:       1.2 !default;
-$button-font-size:         px2rem(14) !default;
-//默认高度为 30 32 34 36 38 五中尺寸，可灵活更改字体大小
-//匹配12px 字体，有高度为 22 26 30 36 42
-//匹配14px 字体，比上各大2px
-$button-padding-sizes: (
-  xs: px2rem(4) px2rem(6),     //22
-  sm: px2rem(6) px2rem(10),    //30
-  md: px2rem(10) px2rem(15),   //36
-  lg: px2rem(14) px2rem(15)    //44
-);
-
 // Core
 // -----------------------------------------------------------------------------
 .#{$ns}btn {
@@ -38,18 +23,11 @@ $button-padding-sizes: (
   // @include button-size();
   @include transition(all .3s ease-in-out);
 
-  // 默认样式()，大小
-  @include button-style($btn-background, $btn-color, $btn-border);
-  @include button-size($button-padding-base, $button-font-size, $button-line-height);
+  // 默认样式，大小
+  @include button-style($gray-lighter, auto, 1px solid $color-gray);
+  @include button-size($button-padding, $font-size-base, $line-height-base);
 
   @extend %button-status;
-
-  .btn-text:empty {
-    display: none;
-  }
-  .btn-icon + .btn-text {
-    margin-left: px2rem(8);
-  }
 }
 
 
@@ -69,11 +47,11 @@ $button-padding-sizes: (
   border-style: dashed;
 }
 .#{$ns}btn-ghost {
-  @include button-style($btn-ghost-background, $btn-ghost-color, $btn-ghost-border);
+  @include button-style($btn-ghost-color, $btn-ghost-background, $btn-ghost-border);
 }
 @each $color-key, $color in $button-colors {
   .#{$ns}btn-#{$color-key} {
-    @include button-style($color);
+    @include button-style($color, auto);
   }
 }
 
@@ -82,8 +60,6 @@ $button-padding-sizes: (
 
 }
 .#{$ns}btn-clicked {
-  @extend %animated;
-
   &:after{
     content: '';
     position: absolute;
@@ -93,7 +69,7 @@ $button-padding-sizes: (
     right: -1px;
     border-radius: inherit;
     border: 0 solid #2db7f5;
-    opacity: 0.4;
+    opacity: .4;
     animation: buttonEffect .32s ease forwards;
     display: block;
   }
@@ -106,12 +82,7 @@ $button-padding-sizes: (
     @include button-size($size-size);
   }
 }
-.#{$ns}btn-xs {
-  font-size: px2rem(12);
-}
-.#{$ns}btn-sm {
-  font-size: px2rem(12);
-}
+
 
 
 // 块级按钮

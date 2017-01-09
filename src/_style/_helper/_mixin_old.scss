@@ -2,18 +2,16 @@
 // @mixin or %placeholder
 // 使用 @mixin name[()] {} 创建一个动态规则 @include name[()];
 // 使用 %placeholder {}    创建一个静态规则 @extend %placeholder;
-// 理论上是要区分，但使用时就存在判断识别了，增加困难性
-// 故规定只选用以上的一种 @mixin ，使用时更简约
+// 理论上是要区分，但使用时就存在判断识别了，是否要规定只使用一种 @mixin 更简约
 //
-// 以上都是用于混入，而函数用于设置属性值
-// 使用 @function name(){} 返回一个函数值  px2rem(16);
+// 以上都是用于混入，以下用于设置属性
+// 使用 @function name(){} 创建一个函数值  px2rem(16);
 //
 
 // Clearfix
 // @see http://nicolasgallagher.com/micro-clearfix-hack/
 // 此处理论用 placeholder 更好
-// clearfix
-@mixin clearfix() {
+@mixin clearfix {
   &:before,
   &:after {
     content: " ";
@@ -25,18 +23,150 @@
   }
 }
 
+@mixin box-shadow($shadow...) {
+  @if $enable-shadows {
+    box-shadow: $shadow;
+  }
+}
+
+@mixin transition($transition...) {
+  @if $enable-transitions {
+    transition: $transition;
+  }
+}
+
+// Responsive image
+//
+// Keep images from scaling beyond the width of their parents.
+
+@mixin img-fluid($display: block) {
+  display: $display;
+  max-width: 100%; // Part 1: Set a maximum relative to the parent
+  height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+}
+
+// WebKit-style focus
+// -----------------------------------------------------------------------------
+@mixin tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+// Unstyled keeps list items block level, just removes default browser padding and list-style
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+// hover
+@mixin hover {
+  @if $enable-hover-media-query {
+    // See Media Queries Level 4: http://drafts.csswg.org/mediaqueries/#hover
+    // Currently shimmed by https://github.com/twbs/mq4-hover-shim
+    @media (hover: hover) {
+      &:hover { @content }
+    }
+  }
+  @else {
+    &:hover { @content }
+  }
+}
+
+@mixin hover-focus {
+  @if $enable-hover-media-query {
+    &:focus { @content }
+    @include hover { @content }
+  }
+  @else {
+    &:focus,
+    &:hover {
+      @content
+    }
+  }
+}
+
+@mixin plain-hover-focus {
+  @if $enable-hover-media-query {
+    &,
+    &:focus {
+      @content
+    }
+    @include hover { @content }
+  }
+  @else {
+    &,
+    &:focus,
+    &:hover {
+      @content
+    }
+  }
+}
+
+@mixin hover-focus-active {
+  @if $enable-hover-media-query {
+    &:focus,
+    &:active {
+      @content
+    }
+    @include hover { @content }
+  }
+  @else {
+    &:focus,
+    &:active,
+    &:hover {
+      @content
+    }
+  }
+}
+
+// Single side border-radius
+@mixin border-radius($radius: $border-radius) {
+  @if $enable-rounded {
+    border-radius: $radius;
+  }
+}
+
+@mixin border-top-radius($radius) {
+  @if $enable-rounded {
+    border-top-right-radius: $radius;
+    border-top-left-radius: $radius;
+  }
+}
+
+@mixin border-right-radius($radius) {
+  @if $enable-rounded {
+    border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
+  }
+}
+
+@mixin border-bottom-radius($radius) {
+  @if $enable-rounded {
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
+  }
+}
+
+@mixin border-left-radius($radius) {
+  @if $enable-rounded {
+    border-bottom-left-radius: $radius;
+    border-top-left-radius: $radius;
+  }
+}
 
 // Sizing
 // -----------------------------------------------------------------------------
-@mixin size($width, $height: $width) {
+@mixin size($width, $height) {
   width: $width;
   height: $height;
 }
 
-// @mixin square($size) {
-//   @include size($size, $size);
-// }
-
+@mixin square($size) {
+  @include size($size, $size);
+}
 
 // TODO: add scrollableX & scrollableY
 @mixin scrollable() {
@@ -69,68 +199,14 @@
   max-height: $line-height * $lines;
 }
 
-// CSS image replacement
-@mixin text-hide() {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-
-@mixin box-shadow($shadow...) {
-  @if $enable-shadows {
-    box-shadow: $shadow;
-  }
-}
-
-@mixin transition($transition...) {
-  @if $enable-transitions {
-    transition: $transition;
-  }
-}
-
-// Responsive image
-//
-// Keep images from scaling beyond the width of their parents.
-
-@mixin img-fluid($display: block) {
-  display: $display;
-  max-width: 100%; // Part 1: Set a maximum relative to the parent
-  height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
-}
-
-
-// Single side border-radius
-@mixin border-radius($radius: $border-radius) {
-  @if $enable-rounded {
-    border-radius: $radius;
-  }
-}
-
-
 // Form
 // -----------------------------------------------------------------------------
 
-
-// WebKit-style focus
-// -----------------------------------------------------------------------------
-@mixin tab-focus() {
-  // Default
-  outline: thin dotted;
-  // WebKit
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+// Disable OS-level styles
+@mixin no-appearance {
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
-
-// Unstyled keeps list items block level, just removes default browser padding and list-style
-@mixin list-unstyled {
-  padding-left: 0;
-  list-style: none;
-}
-
-
-
 
 // Shape
 // -----------------------------------------------------------------------------
@@ -213,10 +289,6 @@
     }
   }
 }
-
-
-
-@import "./_mixin/index";
 
 
 

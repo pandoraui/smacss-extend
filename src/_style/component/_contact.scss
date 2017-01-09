@@ -1,0 +1,21 @@
+/* === Contacts === */
+.contacts-content {
+  background: #fff;
+}
+.contacts-block {
+  margin: 0;
+}
+.contacts-block .list-group-title {
+  padding: 0 15px;
+  background: #f7f7f7;
+  color: #000;
+  font-weight: 500;
+  line-height: 22px;
+  height: 22px;
+}
+.contacts-block .list-group:first-child ul:before {
+  display: none;
+}
+.contacts-block .list-group:last-child ul:after {
+  display: none;
+}

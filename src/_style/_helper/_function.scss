@@ -2,6 +2,12 @@
 // @mixin exports($name)
 
 
+// alias
+@function px2rem($values, $base-value: null) {
+  // @return to-rem($values, $base-value: $base-value);
+  @return rem-calc($values, $base-value: $base-value);
+}
+
 // Strip Unit
 // Removes the unit (e.g. px, em, rem) from a value, returning the number only.
 //
@@ -75,6 +81,9 @@
     @return $no;
   }
 }
+
+
+
 
 /// Smart Scale
 /// Scales a color to be lighter if it's light, or darker if it's dark. Use this function to "fade" a color appropriate to its lightness.

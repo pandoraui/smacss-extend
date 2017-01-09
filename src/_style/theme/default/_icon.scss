@@ -1,21 +1,35 @@
 
 /* 使用 图标字体，自选配置
-  详参 http://www.iconfont.cn/
+  详参 //www.iconfont.cn/
 
   此时对应 字体图标项目 smacss，真实使用请自己选配
 **/
 
 
-// icon 字体图标 (建议使用 :after )
-// ClOSE 为什么字体在这里是加载失败？ 需要添加 http:
+// icon 字体图标 (建议使 iconfont:before fonticon:after )
+// ClOSE 为什么字体在这里是加载失败？ 需要添加 http:（可能是被当做注释抹除掉了）
+// smacss 项目
+
+// SUI
 @font-face {
   font-family: 'iconfont';
-  src: url('http://at.alicdn.com/t/font_1464419204_8139555.eot'); /* IE9*/
-  src: url('http://at.alicdn.com/t/font_1464419204_8139555.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('http://at.alicdn.com/t/font_1464419204_8139555.woff') format('woff'), /* chrome、firefox */
-  url('http://at.alicdn.com/t/font_1464419204_8139555.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('http://at.alicdn.com/t/font_1464419204_8139555.svg#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('//at.alicdn.com/t/font_1464419204_8139555.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1464419204_8139555.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1464419204_8139555.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1464419204_8139555.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1464419204_8139555.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
+
+// element
+// @font-face {
+//   font-family: 'iconfont';  /* project id 207580 */
+//   src: url('//at.alicdn.com/t/font_x88qg1uxvg6i529.eot');
+//   src: url('//at.alicdn.com/t/font_x88qg1uxvg6i529.eot?#iefix') format('embedded-opentype'),
+//   url('//at.alicdn.com/t/font_x88qg1uxvg6i529.woff') format('woff'),
+//   url('//at.alicdn.com/t/font_x88qg1uxvg6i529.ttf') format('truetype'),
+//   url('//at.alicdn.com/t/font_x88qg1uxvg6i529.svg#iconfont') format('svg');
+// }
+
 // font-weight: normal;
 // font-style: normal;
 
@@ -24,6 +38,221 @@
 // -----------------------------------------------------------------------------
 $icon-prefix: #{$ns}icon;
 // $icon-path: 'fonts/';
+
+// $icons: (
+//   'pay-circle-o': \ef10,
+//   'pay-circle': \ef0f,
+//   'apple-o': \ef0a,
+//   'tag-o': \ef09,
+//   'tag': \ef08,
+//   'play-circle-o': \ef07,
+//   'play': \ef06,
+//   'up-square-o': \ef05,
+//   'down-square-o': \ef04,
+//   'left-square-o': \ef03,
+//   'right-square-o': \ef02,
+//   'right-square': \ef01,
+//   'left-square': \ef00,
+//   'down-square': \eeff,
+//   'up-square': \eefe,
+//   'fastforward': \eefd,
+//   'fastbackward': \eefc,
+//   'check-square-o': \eefb,
+//   'check-square': \eefa,
+//   'close-square-o': \eef9,
+//   'close-square': \eef8,
+//   'minus-square': \eef7,
+//   'plus-square': \eef6,
+//   'code-square': \eef5,
+//   'barchart': \eef4,
+//   'dotchart': \eef3,
+//   'windows-o': \eef2,
+//   'calendar': \eef1,
+//   'unlock': \eef0,
+//   'lock': \eeef,
+//   'piechart': \eeee,
+//   'download': \eeed,
+//   'upload': \eeec,
+//   'desktop': \eeea,
+//   'pdffile': \eee8,
+//   'wordfile': \eee7,
+//   'pptfile': \eee6,
+//   'exclefile': \eee5,
+//   'unknowfile': \eee4,
+//   'loading': \eee3,
+//   'github': \eee2,
+//   'chrome': \eee1,
+//   'message': \eee0,
+//   'calculator': \eedf,
+//   'frown-o': \eede,
+//   'smile-o': \eedd,
+//   'smile': \eedc,
+//   'heart-o': \eed9,
+//   'heart': \eed8,
+//   'pushpin': \eed7,
+//   'pushpin-o': \eed6,
+//   'enter': \eed5,
+//   'delete': \eed4,
+//   'dislike': \eed3,
+//   'like': \eed2,
+//   'jpgfile': \eed1,
+//   'ie': \eed0,
+//   'hdd': \eecf,
+//   'folderopen': \eece,
+//   'filetext': \eecd,
+//   'scan': \eecc,
+//   'appstore': \eeca,
+//   'appstore-o': \eec9,
+//   'circledown': \eec8,
+//   'circledown-o': \eec7,
+//   'edit': \eec6,
+//   'export': \eec5,
+//   'export2': \eec4,
+//   'aliwangwang-o': \eec3,
+//   'aliwangwang': \eec2,
+//   'android': \eec1,
+//   'apple': \eec0,
+//   'windows': \eebf,
+//   'camera-o': \eebe,
+//   'camera': \eebd,
+//   'eye-o': \eebc,
+//   'eye': \eebb,
+//   'enviroment-o': \eeba,
+//   'enviroment': \eeb9,
+//   'cloudupload-o': \eeb8,
+//   'clouddownload-o': \eeb7,
+//   'clouddownload': \eeb6,
+//   'cloudupload': \eeb5,
+//   'cloud': \eeb4,
+//   'cloud-o': \eeb3,
+//   'tagso': \eeb2,
+//   'tags': \eeb1,
+//   'qrcode': \eeaf,
+//   'inbox': \eead,
+//   'menuunfold': \eeac,
+//   'mobile': \eeab,
+//   'notification': \eeaa,
+//   'paperclip': \eea9,
+//   'phone': \eea8,
+//   'picture': \eea7,
+//   'poweroff': \eea6,
+//   'setting': \eea5,
+//   'sharealt': \eea4,
+//   'search': \eea3,
+//   'solution': \eea2,
+//   'tablet': \eea1,
+//   'team': \eea0,
+//   'totop': \ee9f,
+//   'videocamera': \ee9e,
+//   'user': \ee9d,
+//   'save': \ee9c,
+//   'shoppingcart': \ee9b,
+//   'meh': \ee9a,
+//   'meho': \ee99,
+//   'exception': \ee98,
+//   'file': \ee97,
+//   'filter': \ee96,
+//   'folder': \ee95,
+//   'star-o': \ee92,
+//   'star': \ee91,
+//   'laptop': \ee90,
+//   'home': \ee8f,
+//   'linechart': \ee8e,
+//   'areachart': \ee8d,
+//   'link': \ee8c,
+//   'logout': \ee8b,
+//   'mail': \ee8a,
+//   'menufold': \ee89,
+//   'swap': \ee88,
+//   'clock-circle-o': \ee87,
+//   'clock-circle': \ee86,
+//   'pause-circle-o': \ee85,
+//   'pause-circle': \ee84,
+//   'pause': \ee83,
+//   'question-circle-o': \ee82,
+//   'question-circle': \ee81,
+//   'question': \ee80,
+//   'bars': \ee7f,
+//   'barschart': \ee7e,
+//   'book': \ee7d,
+//   'code-square-o': \ee7c,
+//   'creditcard': \ee7b,
+//   'customerservice': \ee7a,
+//   'copy': \ee79,
+//   'ellipsis': \ee78,
+//   'frown': \ee77,
+//   'plus-square-o': \ee76,
+//   'swapright': \ee75,
+//   'swapleft': \ee74,
+//   'swap': \ee73,
+//   'clock-circle-o': \ee72,
+//   'clock-circle': \ee71,
+//   'pause-circle-o': \ee70,
+//   'pause-circle': \ee6f,
+//   'pause': \ee6e,
+//   'question-circle-o': \ee6d,
+//   'question-circle': \ee6c,
+//   'question': \ee6b,
+//   'bars': \ee6a,
+//   'barschart': \ee69,
+//   'book': \ee68,
+//   'code-square-o': \ee67,
+//   'creditcard': \ee66,
+//   'customerservice': \ee65,
+//   'close': \ee64,
+//   'check': \ee63,
+//   'check-circle-o': \ee62,
+//   'check-circle': \ee61,
+//   'close-circle-o': \ee60,
+//   'close-circle': \ee5f,
+//   'exclamation-circle-o': \ee5e,
+//   'exclamation-circle': \ee5d,
+//   'exclamation': \ee5c,
+//   'info': \ee5b,
+//   'info-cirlce-o': \ee5a,
+//   'info-cirlce': \ee59,
+//   'plus': \ee58,
+//   'plus-circle': \ee57,
+//   'plus-circle-o': \ee56,
+//   'minus': \ee55,
+//   'minus-circle-o': \ee54,
+//   'minus-circle': \ee53,
+//   'minus-square-o': \ee52,
+//   'left': \ee51,
+//   'right': \ee50,
+//   'up': \ee4f,
+//   'down': \ee4e,
+//   'arrowleft': \ee4d,
+//   'arrowright': \ee4c,
+//   'arrowup': \ee4b,
+//   'arrowdown': \ee4a,
+//   'doubleleft': \ee49,
+//   'doubleright': \ee48,
+//   'reload': \ee47,
+//   'arrowsalt': \ee46,
+//   'shrink': \ee45,
+//   'retweet': \ee44,
+//   'rollback': \ee43,
+//   'verticleright': \ee42,
+//   'verticleleft': \ee41,
+//   'down-circle-o': \ee40,
+//   'up-circle-o': \ee3f,
+//   'left-circle-o': \ee3e,
+//   'right-circle-o': \ee3d,
+//   'down-circle': \ee3c,
+//   'up-circle': \ee3b,
+//   'left-circle': \ee3a,
+//   'right-circle': \ee39,
+//   'caretup': \ee38,
+//   'caretdown': \ee37,
+//   'caretleft': \ee36,
+//   'caretright': \ee35,
+//   'banckward': \ee34,
+//   'forward': \ee33,
+//   'stepbackward': \ee32,
+//   'stepforward': \ee31,
+// ) !default;
+
 $icons: (
   code: \e600,
   menu: \e601,
@@ -67,23 +296,31 @@ $icons: (
 
 // Output
 // -----------------------------------------------------------------------------
+// @see //www.iconfont.cn/help/iconuse.html
 
 // %placeholder
 // 使用%placeholder创建一个静态规则和使用@mixin创建一个动态规则
 %font-icon {
   display: inline-block;
   font-family: "iconfont", sans-serif !important;
-  font-size: 24px;
+  // font-size: px2rem(16);
   line-height: 1;
-  font-style: normal;
-  text-decoration: none;
-  -webkit-font-smoothing: antialiased;
-  // -webkit-text-stroke-width: 0.2px;
+  font-style: normal !important;  //去除斜体
+  font-weight: normal !important; //不要粗体
+  text-decoration: none !important;
+  -webkit-font-smoothing: antialiased; //对图标样式进行抗锯齿处理
+
+  //pc端 chrome 放大出现严重锯齿
+  //对字体图标的边缘进行模糊；（只支持webkit内核浏览器,参数数值不宜设置得很大，这会带来图标加粗的问题）
+  -webkit-text-stroke-width: 0.2px;
+
+  //grayscale对于图标字体表现更清晰，减轻次像素渲染带来的相邻像素色彩污染问题
   -moz-osx-font-smoothing: grayscale;
 }
 
 // .#{$icon-prefix} {
-.iconfont:before {
+.iconfont:before,
+.fonticon:after {
   @extend %font-icon;
 
   // .#{$button-prefix} & {
@@ -97,5 +334,15 @@ $icons: (
     &:before {
       content: unquote('"#{$icon-code}"');
     }
+  }
+}
+
+.#{$icon-prefix}-loading {
+  animation: cirle-anim 1s linear infinite;
+}
+
+@keyframes cirle-anim {
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -9,19 +9,39 @@
 
   Example
 
-  <div class="_list-block">
-    <ul>
-      <li>简单文本</li>
-      <li class="item item-link">
-        <div class="item-media"><img width="48" src="http://lorempixel.com/160/160/people/" alt="头像"></div>
-        <div class="item-content">
-          <div class="item-title">这是标题，字大一点</div>
-          <div class="item-subtitle">这是副标题，字小一点</div>
-          <div class="item-desc">这里是描述内容，正文字体大小，但内容要多一点，这里是描述内容，正文字体大小，但内容要多一点</div>
+  <div class="_list-block border">
+    <div class="item">简单文本</div>
+    <a class="item item-link">
+      <div class="item-media"><img width="48" src="http://lorempixel.com/160/160/people/" alt="头像"></div>
+      <div class="item-content">
+        <div class="item-title">这是标题，字大一点 <span class="desc">标题描述或值</span></div>
+        <div class="item-subtitle">这是副标题，字小一点</div>
+        <div class="item-desc">这里是描述内容，正文字体大小，但内容要多一点，这里是描述内容，正文字体大小，但内容要多一点</div>
+      </div>
+      <div class="item-after">After</div>
+    </a>
+    <div class="item item-link" data-type="all">
+      <div class="item-content">
+        <div class="item-title">我的订单</div>
+      </div>
+      <div class="item-after">查看全部订单</div>
+    </div>
+    <div class="item item-space-around">
+      <span class="entry-item item-column iconfont icon-app">待付款</span>
+      <span class="entry-item item-column iconfont icon-app">待收货</span>
+      <span class="entry-item item-column iconfont icon-app">待评价</span>
+      <span class="entry-item item-column iconfont icon-app">售后</span>
+    </div>
+    <div class="item item-sublist">
+      <div class="item-content">
+        <div class="item" data-type="">
+          <div class="item-content">
+            <i class="iconfont icon-group"></i> 一级粉丝
+          </div>
+          <div class="item-after">10</div>
         </div>
-        <div class="item-after">After</div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 
 **/
@@ -38,76 +58,145 @@
   width: 100%;
   background-color: $gray-lighter;
   display: block;
-  z-index: 15;
-  clip: rect(auto auto auto $spacer);
-  transform-origin: 50% 100%;
+  z-index: 5;
+  // clip: rect(auto auto auto $spacer);
+  // transform-origin: 50% 100%;
+
+  transform-origin: top;
 }
 
-.list-block{
+%_ratio_line {
+  //屏幕像素密度 针对 ratio 屏幕
+  @media all and (min-resolution: 150dpi) {
+    transform: scaleY(0.5);
+  }
+}
+
+._list-block{
   margin: px2rem(10) 0;
   font-size: px2rem(14);
   background: #fff;
 
-  ul{
+  &{
     position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  li{
+  .item{
     box-sizing: border-box;
-    min-height: px2rem(30);
+    position: relative;
+    margin-top: -1px;
+    padding-left: $spacer;
+    padding-right: $spacer;
+    min-height: px2rem(45);
     font-size: px2rem(14);
+  }
+
+
+  &.border:before,
+  &.border:after,
+  .item:before{
+    @extend %list-border-line;
+  }
+
+  &.border:before,
+  &.border:after{
+    @extend %_ratio_line;
+
+    background-color: #c4c4c4;
+    transform-origin: top;
+  }
+
+  .item:before{
+    clip: rect(auto auto auto $spacer);
+  }
+
+  &.border:after{
+    top: auto;
+    bottom: 0;
+    transform-origin: bottom;
+  }
+
+  .item:first-child:before{
+    display: none;
   }
 
   .item,
   .item-link,
-  .item-title-row{
+  .item-title-row,
+  .item-space-between,
+  .item-space-around{
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .item{
-    position: relative;
-    margin-top: -1px;
-    padding-left: $spacer;
-    padding-right: $spacer;
-    min-height: px2rem(45);
+  .item-space-around{
+    justify-content: space-around;
   }
 
-  .item-line{
-    &:before{
-      @extend %list-border-line;
-    }
+  .item-column{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
-  ul.item-line{
-    &:before{
-      clip: auto;
-    }
-    &:after{
-      @extend %list-border-line;
-      clip: auto;
-      top: auto;
-      bottom: 0;
-    }
-  }
+
+
+
+  // .item-line{
+  //   &:before{
+  //     @extend %list-border-line;
+  //   }
+  // }
+  // ul.item-line{
+  //   &:before{
+  //     clip: auto;
+  //   }
+  //   &:after{
+  //     @extend %list-border-line;
+  //     clip: auto;
+  //     top: auto;
+  //     bottom: 0;
+  //   }
+  // }
 
   .item-link{
     transition-duration: 300ms;
     color: inherit;
 
+    &:hover{
+      text-decoration: none;
+    }
+
+    //设置focus 时无虚线，
+    //是否要便于键盘操作，显示背景
+    &:focus{
+      outline: none;
+      //这里不可变为无色或白色
+      // background-color: lighten($gray-lighter, 5%);
+      //
+    }
     &:active{
+      z-index: 10;
+      &:before{
+        display: none;
+      }
       transition-duration: 0ms;
       background-color: $gray-lighter;
+      // box-shadow: inset 0 px2rem(1) px2rem(5) px2rem(1) darken($gray-lighter, 10%);
     }
 
     &:after{
-      content: '';
+      @extend %font-icon;
+
+      content: '\e611';
       margin-left: px2rem(8);
       margin-right: px2rem(-8);
+      font-size: px2rem(16);
+      color: $gray-silver;
     }
   }
 
@@ -127,65 +216,53 @@
     padding-bottom: px2rem(8);
   }
 
-  .item.item-line:first-child:before,
-  .item:first-child .item-line:before{
-    //第一条线隐藏
-    display: none;
-  }
+  // .item.item-line:first-child:before,
+  // .item:first-child .item-line:before{
+  //   //第一条线隐藏
+  //   display: none;
+  // }
   .item-media{
     display: flex;
     flex-shrink: 0;
     flex-wrap: nowrap;
     box-sizing: border-box;
     align-items: center;
-    margin-right: $spacer / 2;
+    // margin-right: $spacer / 2;
     padding-top: px2rem(8);
     padding-bottom: px2rem(8);
+
+    + .item-content{
+      margin-left: px2rem(16);
+    }
 
     &:empty{
       display: none;
     }
   }
+
   .item-title,
-  .item-subtitle{
+  .item-value{
     flex-shrink: 1;
     white-space: nowrap;
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-
   }
+
   .item-title{
     font-size: px2rem(16);
   }
-  .item-subtitle{
-    // font-size: px2rem(14);
+  .item-value{
+    font-size: px2rem(14);
   }
   .item-desc{
-    // font-size: px2rem(14);
+    font-size: px2rem(12);
   }
   .item-after{
     margin-left: $spacer / 2;
     font-size: px2rem(14);
     color: $gray-base;
     white-space: nowrap;
-  }
-}
-
-html.pixel-ratio-2 {
-  .list-block {
-    .item-line:before,
-    ul.item-line:after {
-      transform: scaleY(0.5);
-    }
-  }
-}
-html.pixel-ratio-3 {
-  .list-block {
-    .item-line:before,
-    ul.item-line:after {
-      transform: scaleY(0.33);
-    }
   }
 }

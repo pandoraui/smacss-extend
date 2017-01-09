@@ -1,0 +1,76 @@
+
+//
+// 工具类
+//
+
+
+.#{$ns}root {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+// Float
+// -----------------------------------------------------------------------------
+.#{$ns}clearfix,
+.#{$ns}cf {
+  @include clearfix;
+}
+
+@each $s, $float in (
+  l: left,
+  r: right,
+  n:none) {
+  .#{$ns}f#{$s} {
+    float: #{$float};
+  }
+}
+
+// Alignment
+// -----------------------------------------------------------------------------
+// Vertical alignment
+.#{$ns}align-v {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  $align-values: (
+    'top': flex-start,
+    'center': center,
+    'bottom': flex-end,
+  );
+
+  @each $orient in (top, center, bottom) {
+    .#{$ns}align-#{$orient} {
+      align-self: map-get($align-values, $orient);
+    }
+  }
+}
+
+// Text helpers
+// -----------------------------------------------------------------------------
+.#{$ns}text-overflow {
+  @include text-overflow();
+}
+.#{$ns}text-overflow2 {
+  @include line-clamp(2);
+}
+.#{$ns}text-overflow3 {
+  @include line-clamp(3);
+}
+
+// Text Alignment
+@each $align in (left, right, center, justify) {
+  .#{$ns}text-#{$align} {
+    text-align: $align !important;
+  }
+}
+.#{$ns}text-hide{
+  @include text-hide();
+}
+
+// Disable OS-level styles
+.no-appearance {
+  appearance: none;
+}
